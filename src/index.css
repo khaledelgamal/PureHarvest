@@ -146,6 +146,37 @@
   src: url("/fonts/Poppins-BlackItalic.woff2") format("woff2");
 }
 @theme {
+  --color-primary: #00b207;
+  --color-primary-soft: #84d187;
+  --color-primary-hard: #2c742f;
+  --color-warn: #ff8a00;
+  --color-danger: #ea4b48;
+  --color-white: #ffffff;
+
+  /* Gray */
+  --color-gray-50: #d9d9d9;
+  --color-gray-100: #e5e5e5;
+  --color-gray-200: #cccccc;
+  --color-gray-300: #b3b3b3;
+  --color-gray-400: #999999;
+  --color-gray-500: #808080;
+  --color-gray-600: #666666;
+  --color-gray-700: #4d4d4d;
+  --color-gray-800: #333333;
+  --color-gray-900: #1a1a1a;
+
+  /* Green Gray */
+  --color-green-gray-50: #edf2ee;
+  --color-green-gray-100: #dae5da;
+  --color-green-gray-200: #b4ccb4;
+  --color-green-gray-300: #96b297;
+  --color-green-gray-400: #7a997c;
+  --color-green-gray-500: #618062;
+  --color-green-gray-600: #406b42;
+  --color-green-gray-700: #2b572e;
+  --color-green-gray-800: #173b1a;
+  --color-green-gray-900: #002603;
+
   --font-poppins: Poppins, ui-sans-serif, system-ui, sans-serif;
 }
 
