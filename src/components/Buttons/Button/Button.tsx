@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
-import type { ButtonSize, ButtonVariant } from '../components.type';
-import { baseStyles, sizeStyles, variantStyles } from './button.styles';
+import type { ButtonSize, ButtonVariant } from '../../components.type';
+import { baseStyles, sizeStyles, variantStyles } from './styles';
 import { classNames } from '@/utils';
 
 type ButtonProps = PropsWithChildren<{

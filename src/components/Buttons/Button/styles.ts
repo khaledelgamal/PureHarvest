@@ -1,4 +1,4 @@
-import type { ButtonSize, ButtonVariant } from '../components.type';
+import type { ButtonSize, ButtonVariant } from '../../components.type';
 
 export const baseStyles = 'rounded-[43px] font-semibold py-1.25 px-3 cursor-pointer';
 

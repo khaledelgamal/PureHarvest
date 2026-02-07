@@ -154,7 +154,7 @@
   --color-white: #ffffff;
 
   /* Gray */
-  --color-gray-50: #d9d9d9;
+  --color-gray-50: #f2f2f2;
   --color-gray-100: #e5e5e5;
   --color-gray-200: #cccccc;
   --color-gray-300: #b3b3b3;
@@ -180,8 +180,23 @@
   --font-poppins: Poppins, ui-sans-serif, system-ui, sans-serif;
 }
 
+@layer utilities {
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 @layer base {
   * {
     font-family: var(--font-poppins);
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    @apply transition-colors duration-300;
   }
 }
