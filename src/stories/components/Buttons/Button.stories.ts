@@ -10,6 +10,7 @@ const meta: Meta<StoryProps> = {
   argTypes: {
     variant: { control: 'select', options: buttonVariants },
     size: { control: 'select', options: buttonSizes },
+    onClick: { action: 'clicked' },
   },
 };
 

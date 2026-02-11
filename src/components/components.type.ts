@@ -8,3 +8,6 @@ export type AddToCardButtonVariant = (typeof addToCardButtonVariants)[number];
 
 export const addToWishlistButtonVariants = ['default', 'active'] as const;
 export type AddToWishlistButtonVariant = (typeof addToWishlistButtonVariants)[number];
+
+export const checkboxInputVariants = ['default', 'indeterminate'] as const;
+export type CheckboxInputVariant = (typeof checkboxInputVariants)[number];

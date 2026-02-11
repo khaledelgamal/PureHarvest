@@ -15,17 +15,17 @@ const DeleteIcon = ({ className }: IconProps) => {
       <path
         d="M8.75 0.75L0.75 8.75"
         stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path d="M8.75 8.75L0.75 0.75Z" fill="white" />
       <path
         d="M8.75 8.75L0.75 0.75"
         stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
