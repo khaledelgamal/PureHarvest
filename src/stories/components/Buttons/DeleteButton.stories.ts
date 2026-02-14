@@ -21,6 +21,6 @@ export const Default: Story = {
 
 export const WithClickHandler: Story = {
   args: {
-    onClick: () => console.log('Close button clicked'),
+    onClick: () => console.log('Delete button clicked'),
   },
 };
