@@ -14,30 +14,30 @@ type SocialButtonProps = React.DetailedHTMLProps<
   Icon: ElementType;
 };
 
-export const SocialButton = ({ Icon, className, ...rest }: SocialButtonProps) => {
+export const SocialButton = ({ Icon, className, ...props }: SocialButtonProps) => {
   return (
-    <button className={classNames(baseStyles, className)} {...rest}>
+    <button {...props} className={classNames(baseStyles, className)}>
       <Icon className={iconStyles} />
     </button>
   );
 };
 
 export const FacebookButton = (props: Omit<SocialButtonProps, 'Icon'>) => (
-  <SocialButton Icon={FacebookIcon} title="Facebook" {...props} />
+  <SocialButton {...props} Icon={FacebookIcon} title="Facebook" />
 );
 
 export const InstagramButton = (props: Omit<SocialButtonProps, 'Icon'>) => (
-  <SocialButton Icon={InstagramIcon} title="Instagram" {...props} />
+  <SocialButton {...props} Icon={InstagramIcon} title="Instagram" />
 );
 
 export const PinterestButton = (props: Omit<SocialButtonProps, 'Icon'>) => (
-  <SocialButton Icon={PinterestIcon} title="Pinterest" {...props} />
+  <SocialButton {...props} Icon={PinterestIcon} title="Pinterest" />
 );
 
 export const TwitterButton = (props: Omit<SocialButtonProps, 'Icon'>) => (
-  <SocialButton Icon={TwitterIcon} title="Twitter" {...props} />
+  <SocialButton {...props} Icon={TwitterIcon} title="Twitter" />
 );
 
 export const LinkButton = (props: Omit<SocialButtonProps, 'Icon'>) => (
-  <SocialButton Icon={LinkIcon} title="Link" {...props} />
+  <SocialButton {...props} Icon={LinkIcon} title="Link" />
 );

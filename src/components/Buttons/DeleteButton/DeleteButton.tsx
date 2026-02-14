@@ -7,9 +7,9 @@ type DeleteButtonProps = React.DetailedHTMLProps<
   HTMLButtonElement
 >;
 
-const DeleteButton = ({ className, ...rest }: DeleteButtonProps) => {
+const DeleteButton = ({ className, ...props }: DeleteButtonProps) => {
   return (
-    <button className={classNames(baseStyles, className)} title="delete" {...rest}>
+    <button {...props} className={classNames(baseStyles, className)} title="delete">
       <DeleteIcon className={iconStyles} />
     </button>
   );

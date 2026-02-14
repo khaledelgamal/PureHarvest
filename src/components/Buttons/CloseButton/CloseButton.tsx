@@ -7,9 +7,9 @@ type CloseButtonProps = React.DetailedHTMLProps<
   HTMLButtonElement
 >;
 
-const CloseButton = ({ className, ...rest }: CloseButtonProps) => {
+const CloseButton = ({ className, ...props }: CloseButtonProps) => {
   return (
-    <button className={classNames(baseStyles, className)} title="close" {...rest}>
+    <button {...props} className={classNames(baseStyles, className)} title="close">
       <CloseIcon className={iconStyles} />
     </button>
   );

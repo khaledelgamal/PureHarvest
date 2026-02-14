@@ -15,12 +15,12 @@ export const Button = ({
   variant = 'fill',
   size = 'sm',
   className,
-  ...rest
+  ...props
 }: ButtonProps) => {
   return (
     <button
+      {...props}
       className={classNames(baseStyles, variantStyles[variant], sizeStyles[size], className)}
-      {...rest}
     >
       {children}
     </button>

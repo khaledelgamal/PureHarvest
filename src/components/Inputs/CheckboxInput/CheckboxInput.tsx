@@ -23,11 +23,11 @@ const CheckboxInput = forwardRef<HTMLInputElement, CheckboxInputProps>(
 
     return (
       <input
+        {...props}
         ref={mergeRefs(internalRef, ref)}
         aria-label={props['aria-label'] ?? 'checkbox'}
         type="checkbox"
         className={classNames(baseStyles, props.className)}
-        {...props}
       />
     );
   },

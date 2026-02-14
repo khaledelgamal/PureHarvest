@@ -12,13 +12,13 @@ type AddToCardButtonProps = React.DetailedHTMLProps<
 export const AddToCardButton = ({
   variant = 'default',
   className,
-  ...rest
+  ...props
 }: AddToCardButtonProps) => {
   return (
     <button
+      {...props}
       className={classNames(baseStyles, variantStyles[variant], className)}
       title="Add to card"
-      {...rest}
     >
       <AddToCardIcon className={iconVariantStyles[variant]} />
     </button>

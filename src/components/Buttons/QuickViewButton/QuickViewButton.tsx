@@ -7,12 +7,12 @@ type QuickViewButtonProps = React.DetailedHTMLProps<
   HTMLButtonElement
 >;
 
-export const QuickViewButton = ({ className, ...rest }: QuickViewButtonProps) => {
+export const QuickViewButton = ({ className, ...props }: QuickViewButtonProps) => {
   return (
     <button
+      {...props}
       className={classNames(baseStyles, buttonStyles, className)}
       title="Quick view"
-      {...rest}
     >
       <EyeIcon className={classNames('w-5 h-5', iconStyles)} />
     </button>
