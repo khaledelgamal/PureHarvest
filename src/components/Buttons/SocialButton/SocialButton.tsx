@@ -7,16 +7,16 @@ import TwitterIcon from '@/icons/TwitterIcon';
 import { classNames } from '@/utils';
 import { baseStyles, iconStyles } from './styles';
 
-type SocialButtonProps = {
+type SocialButtonProps = React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> & {
   Icon: ElementType;
-  onClick?: () => void;
-  title?: string;
-  className?: string;
 };
 
-export const SocialButton = ({ Icon, onClick, title, className }: SocialButtonProps) => {
+export const SocialButton = ({ Icon, className, ...rest }: SocialButtonProps) => {
   return (
-    <button className={classNames(baseStyles, className)} onClick={onClick} title={title}>
+    <button className={classNames(baseStyles, className)} {...rest}>
       <Icon className={iconStyles} />
     </button>
   );
