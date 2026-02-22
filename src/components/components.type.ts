@@ -11,3 +11,10 @@ export type AddToWishlistButtonVariant = (typeof addToWishlistButtonVariants)[nu
 
 export const priceDisplaySizes = ['sm', 'md', 'lg'] as const;
 export type PriceDisplaySize = (typeof priceDisplaySizes)[number];
+
+export type DropDownColors = {
+  trigger?: string;
+  option?: string;
+  active?: string;
+  bg?: string;
+};
