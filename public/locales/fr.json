@@ -1,0 +1,5 @@
+{
+  "layouts.AppLayout.components.Header.components.TopBar.signin": "Se connecter",
+  "layouts.AppLayout.components.Header.components.TopBar.signup": "S'inscrire",
+  "layouts.AppLayout.components.Header.components.TopBar.storeLocation": "Emplacement du magasin : Lincoln- 344, Illinois, Chicago, États-Unis"
+}

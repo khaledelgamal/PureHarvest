@@ -1,0 +1,5 @@
+{
+  "layouts.AppLayout.components.Header.components.TopBar.signin": "Sign In",
+  "layouts.AppLayout.components.Header.components.TopBar.signup": "Sign Up",
+  "layouts.AppLayout.components.Header.components.TopBar.storeLocation": "Store Location: Lincoln- 344, Illinois, Chicago, USA"
+}
