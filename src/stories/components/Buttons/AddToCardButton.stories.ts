@@ -1,16 +1,16 @@
 import { type ComponentProps } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { AddToCardButtonVariant } from '@/components/components.type';
-import { AddToCardButton } from '@/components/Buttons/AddToCardButton/AddToCardButton';
+import type { AddToCartButtonVariant } from '@/components/components.type';
+import { AddToCartButton } from '@/components/Buttons/AddToCartButton/AddToCartButton';
 
-type StoryProps = ComponentProps<typeof AddToCardButton>;
+type StoryProps = ComponentProps<typeof AddToCartButton>;
 
-const addToCardButtonVariants: AddToCardButtonVariant[] = ['default', 'secondary'];
+const addToCartButtonVariants: AddToCartButtonVariant[] = ['default', 'secondary'];
 
 const meta: Meta<StoryProps> = {
-  component: AddToCardButton,
+  component: AddToCartButton,
   argTypes: {
-    variant: { control: 'select', options: addToCardButtonVariants },
+    variant: { control: 'select', options: addToCartButtonVariants },
     onClick: { action: 'clicked' },
   },
 };

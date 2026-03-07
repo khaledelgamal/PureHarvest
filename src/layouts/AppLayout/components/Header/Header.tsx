@@ -1,14 +1,13 @@
-import { sectionContainer } from '@/constants/global.styles';
 import TobBar from './components/TopBar/TobBar';
+import MainHeader from './components/MainHeader/MainHeader';
+import Navbar from './components/Navbar/Navbar';
 
 const Header = () => {
   return (
-    <div className={`py-3 bg-gray-800 text-gray-300`}>
-      <div className={sectionContainer}>
-        <TobBar />
-        {/* <MainHeader /> */}
-        {/* <Navbar /> */}
-      </div>
+    <div>
+      <TobBar />
+      <MainHeader />
+      <Navbar />
     </div>
   );
 };

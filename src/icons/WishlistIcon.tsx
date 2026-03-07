@@ -3,17 +3,17 @@ import type { IconProps } from './icons.types';
 const WishlistIcon = ({ className }: IconProps) => {
   return (
     <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       className={className}
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M9.9996 17.5451C-6.66672 8.33331 4.99993 -1.66668 9.9996 4.6567C14.9999 -1.66669 26.6666 8.33331 9.9996 17.5451Z"
+        d="M15.9995 28.0722C-10.6667 13.3333 7.99999 -2.66666 15.9995 7.45075C24 -2.66666 42.6666 13.3333 15.9995 28.0722Z"
         stroke="currentColor"
-        strokeWidth="1.5"
+        stroke-width="1.5"
       />
     </svg>
   );

@@ -10,9 +10,9 @@ export const routePaths = {
   },
 
   SHOPPING_CART: {
-    ROOT: '/shopping-cart',
+    ROOT: '/shopping-Cart',
     CHECKOUT: {
-      path: '/shopping-cart/checkout',
+      path: '/shopping-Cart/checkout',
       pathName: 'checkout',
     },
   },

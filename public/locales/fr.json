@@ -1,4 +1,12 @@
 {
+  "layouts.AppLayout.components.Header.components.MainHeader.GlobalSearch.placeholder": "Rechercher",
+  "layouts.AppLayout.components.Header.components.MainHeader.GlobalSearch.search": "Rechercher",
+  "layouts.AppLayout.components.Header.components.MainHeader.ShoppingCart.shoppingCart": "Panier",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.aboutUs": "À Propos",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.blog": "Blog",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.contactUs": "Contactez-Nous",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.home": "Accueil",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.shop": "Boutique",
   "layouts.AppLayout.components.Header.components.TopBar.signin": "Se connecter",
   "layouts.AppLayout.components.Header.components.TopBar.signup": "S'inscrire",
   "layouts.AppLayout.components.Header.components.TopBar.storeLocation": "Emplacement du magasin : Lincoln- 344, Illinois, Chicago, États-Unis"

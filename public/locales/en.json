@@ -1,4 +1,12 @@
 {
+  "layouts.AppLayout.components.Header.components.MainHeader.GlobalSearch.placeholder": "Search",
+  "layouts.AppLayout.components.Header.components.MainHeader.GlobalSearch.search": "Search",
+  "layouts.AppLayout.components.Header.components.MainHeader.ShoppingCart.shoppingCart": "Shopping Cart",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.aboutUs": "About Us",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.blog": "Blog",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.contactUs": "Contact Us",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.home": "Home",
+  "layouts.AppLayout.components.Header.components.Navbar.tabs.shop": "Shop",
   "layouts.AppLayout.components.Header.components.TopBar.signin": "Sign In",
   "layouts.AppLayout.components.Header.components.TopBar.signup": "Sign Up",
   "layouts.AppLayout.components.Header.components.TopBar.storeLocation": "Store Location: Lincoln- 344, Illinois, Chicago, USA"

@@ -178,6 +178,9 @@
   --color-green-gray-900: #002603;
 
   --font-poppins: Poppins, ui-sans-serif, system-ui, sans-serif;
+
+  --default-transition-duration: 300ms;
+  --duration-DEFAULT: 300ms;
 }
 
 @layer utilities {

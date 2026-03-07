@@ -1,7 +1,7 @@
 import { classNames } from '@/utils';
 import type { IconProps } from './icons.types';
 
-const AddToCardIcon = ({ className }: IconProps) => {
+const AddToCartIcon = ({ className }: IconProps) => {
   return (
     <svg
       width="20"
@@ -21,4 +21,4 @@ const AddToCardIcon = ({ className }: IconProps) => {
     </svg>
   );
 };
-export default AddToCardIcon;
+export default AddToCartIcon;

@@ -1,26 +1,26 @@
-import AddToCardIcon from '@/icons/AddToCardIcon';
-import type { AddToCardButtonVariant } from '../../components.type';
+import AddToCartIcon from '@/icons/AddToCartIcon';
+import type { AddToCartButtonVariant } from '../../components.type';
 import { baseStyles, iconVariantStyles, variantStyles } from './styles';
 import { classNames } from '@/utils';
 
-type AddToCardButtonProps = React.DetailedHTMLProps<
+type AddToCartButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
-  variant?: AddToCardButtonVariant;
+  variant?: AddToCartButtonVariant;
 };
-export const AddToCardButton = ({
+export const AddToCartButton = ({
   variant = 'default',
   className,
   ...props
-}: AddToCardButtonProps) => {
+}: AddToCartButtonProps) => {
   return (
     <button
       {...props}
       className={classNames(baseStyles, variantStyles[variant], className)}
-      title="Add to card"
+      title="Add to Cart"
     >
-      <AddToCardIcon className={iconVariantStyles[variant]} />
+      <AddToCartIcon className={iconVariantStyles[variant]} />
     </button>
   );
 };
