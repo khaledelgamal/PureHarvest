@@ -7,6 +7,11 @@ import ProtectedRoute from '@/layouts/ProtectedRoute/ProtectedRoute';
 // import RootErrorBoundary from '@/components/RootErrorBoundary';
 // import NotFound from '@/components/NotFound';
 import { routePaths } from '@/router/routePaths';
+import { lazy } from 'react';
+
+// Lazy loaded pages
+const HomePage = lazy(() => import('@/pages/Home/HomePage'));
+
 const routes: RouteObject[] = [
   {
     element: <AppLayout />,
@@ -18,7 +23,7 @@ const routes: RouteObject[] = [
       {
         path: routePaths.HOME,
         handle: { breadcrumb: 'Home' },
-        element: <div>Home</div>,
+        element: <HomePage />,
       },
       {
         path: routePaths.SHOP.ROOT,

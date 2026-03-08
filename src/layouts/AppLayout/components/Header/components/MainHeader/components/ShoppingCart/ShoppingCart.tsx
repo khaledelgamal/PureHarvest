@@ -24,7 +24,10 @@ const ShoppingCart = () => {
       </div>
       <div className="flex flex-col items-start">
         <p className="text-[11px] text-gray-700 group-hover:text-primary-hard transition-colors">
-          {t('layouts.AppLayout.components.Header.components.MainHeader.ShoppingCart.shoppingCart')}
+          {t(
+            'layouts.AppLayout.components.Header.components.MainHeader.ShoppingCart.shoppingCart',
+            'Shopping Cart',
+          )}
           :
         </p>
         <p className="text-sm text-gray-900 group-hover:text-primary-hard transition-colors">

@@ -1,6 +1,17 @@
 @import 'tailwindcss';
 
 /* Regular weights */
+
+/* Segoe Script */
+@font-face {
+  font-family: 'Segoe Script';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Segoe Script.woff2') format('woff2');
+}
+
+/* Poppins */
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
@@ -145,6 +156,7 @@
   font-display: swap;
   src: url('/fonts/Poppins-BlackItalic.woff2') format('woff2');
 }
+
 @theme {
   --color-primary: #00b207;
   --color-primary-soft: #84d187;

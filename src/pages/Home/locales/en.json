@@ -1,0 +1,12 @@
+{
+  "components": {
+    "Hero": {
+      "off": "OFF",
+      "welcomeTo": "WELCOME TO",
+      "freshHealthy": "Fresh & Healthy",
+      "organicFood": "Organic Food",
+      "freeShipping": "Free shipping on all your order. we deliver, you enjoy",
+      "shopNow": "Shop now"
+    }
+  }
+}

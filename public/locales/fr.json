@@ -9,5 +9,11 @@
   "layouts.AppLayout.components.Header.components.Navbar.tabs.shop": "Boutique",
   "layouts.AppLayout.components.Header.components.TopBar.signin": "Se connecter",
   "layouts.AppLayout.components.Header.components.TopBar.signup": "S'inscrire",
-  "layouts.AppLayout.components.Header.components.TopBar.storeLocation": "Emplacement du magasin : Lincoln- 344, Illinois, Chicago, États-Unis"
+  "layouts.AppLayout.components.Header.components.TopBar.storeLocation": "Emplacement du magasin",
+  "pages.Home.components.Hero.freeShipping": "Livraison gratuite sur toutes vos commandes. nous livrons, vous profitez",
+  "pages.Home.components.Hero.freshHealthy": "Frais & Sain",
+  "pages.Home.components.Hero.off": "REMISE",
+  "pages.Home.components.Hero.organicFood": "Aliments Biologiques",
+  "pages.Home.components.Hero.shopNow": "Acheter maintenant",
+  "pages.Home.components.Hero.welcomeTo": "BIENVENUE CHEZ"
 }

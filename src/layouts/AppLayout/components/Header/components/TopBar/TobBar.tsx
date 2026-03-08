@@ -21,14 +21,14 @@ const TobBar = () => {
               to={routePaths.ACCOUNT.SIGNIN}
               className="text-gray-300 hover:border-gray-300 px-0 py-0 hover:underline"
             >
-              {t('layouts.AppLayout.components.Header.components.TopBar.signin')}
+              {t('layouts.AppLayout.components.Header.components.TopBar.signin', 'Sign In')}
             </Link>
             /
             <Link
               to={routePaths.ACCOUNT.SIGNUP}
               className="text-gray-300 hover:border-gray-300 px-0 py-0 hover:underline"
             >
-              {t('layouts.AppLayout.components.Header.components.TopBar.signup')}
+              {t('layouts.AppLayout.components.Header.components.TopBar.signup', 'Sign Up')}
             </Link>
           </div>
         </div>

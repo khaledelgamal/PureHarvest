@@ -9,5 +9,11 @@
   "layouts.AppLayout.components.Header.components.Navbar.tabs.shop": "Shop",
   "layouts.AppLayout.components.Header.components.TopBar.signin": "Sign In",
   "layouts.AppLayout.components.Header.components.TopBar.signup": "Sign Up",
-  "layouts.AppLayout.components.Header.components.TopBar.storeLocation": "Store Location: Lincoln- 344, Illinois, Chicago, USA"
+  "layouts.AppLayout.components.Header.components.TopBar.storeLocation": "Store Location",
+  "pages.Home.components.Hero.freeShipping": "Free shipping on all your order. we deliver, you enjoy",
+  "pages.Home.components.Hero.freshHealthy": "Fresh & Healthy",
+  "pages.Home.components.Hero.off": "OFF",
+  "pages.Home.components.Hero.organicFood": "Organic Food",
+  "pages.Home.components.Hero.shopNow": "Shop now",
+  "pages.Home.components.Hero.welcomeTo": "WELCOME TO"
 }

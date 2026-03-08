@@ -12,6 +12,7 @@ const GlobalSearch = () => {
           type="text"
           placeholder={t(
             'layouts.AppLayout.components.Header.components.MainHeader.GlobalSearch.placeholder',
+            'Search',
           )}
           className=" placeholder:text-gray-500 outline-none"
         />
@@ -21,7 +22,10 @@ const GlobalSearch = () => {
         size="md"
         className="rounded-r-md rounded-l-none font-semibold text-sm"
       >
-        {t('layouts.AppLayout.components.Header.components.MainHeader.GlobalSearch.search')}
+        {t(
+          'layouts.AppLayout.components.Header.components.MainHeader.GlobalSearch.search',
+          'Search',
+        )}
       </Button>
     </div>
   );

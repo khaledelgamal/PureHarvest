@@ -1,0 +1,12 @@
+{
+  "components": {
+    "Hero": {
+      "off": "REMISE",
+      "welcomeTo": "BIENVENUE CHEZ",
+      "freshHealthy": "Frais & Sain",
+      "organicFood": "Aliments Biologiques",
+      "freeShipping": "Livraison gratuite sur toutes vos commandes. nous livrons, vous profitez",
+      "shopNow": "Acheter maintenant"
+    }
+  }
+}
