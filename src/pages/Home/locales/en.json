@@ -7,6 +7,16 @@
       "organicFood": "Organic Food",
       "freeShipping": "Free shipping on all your order. we deliver, you enjoy",
       "shopNow": "Shop now"
+    },
+    "ServiceFeatures": {
+      "freeShipping": "Free Shipping",
+      "freeShippingDescription": "Free shipping with discount",
+      "greatSupport": "Great Support 24/7",
+      "greatSupportDescription": "Instant access to contact",
+      "securePayment": "100% Secure Payment",
+      "securePaymentDescription": "We ensure your money is safe",
+      "moneyBack": "Money-Back Guarantee",
+      "moneyBackDescription": "30 days money-back guarantee"
     }
   }
 }

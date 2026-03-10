@@ -15,5 +15,13 @@
   "pages.Home.components.Hero.off": "OFF",
   "pages.Home.components.Hero.organicFood": "Organic Food",
   "pages.Home.components.Hero.shopNow": "Shop now",
-  "pages.Home.components.Hero.welcomeTo": "WELCOME TO"
+  "pages.Home.components.Hero.welcomeTo": "WELCOME TO",
+  "pages.Home.components.ServiceFeatures.freeShipping": "Free Shipping",
+  "pages.Home.components.ServiceFeatures.freeShippingDescription": "Free shipping with discount",
+  "pages.Home.components.ServiceFeatures.greatSupport": "Great Support 24/7",
+  "pages.Home.components.ServiceFeatures.greatSupportDescription": "Instant access to contact",
+  "pages.Home.components.ServiceFeatures.moneyBack": "Money-Back Guarantee",
+  "pages.Home.components.ServiceFeatures.moneyBackDescription": "30 days money-back guarantee",
+  "pages.Home.components.ServiceFeatures.securePayment": "100% Secure Payment",
+  "pages.Home.components.ServiceFeatures.securePaymentDescription": "We ensure your money is safe"
 }

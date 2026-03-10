@@ -15,5 +15,13 @@
   "pages.Home.components.Hero.off": "REMISE",
   "pages.Home.components.Hero.organicFood": "Aliments Biologiques",
   "pages.Home.components.Hero.shopNow": "Acheter maintenant",
-  "pages.Home.components.Hero.welcomeTo": "BIENVENUE CHEZ"
+  "pages.Home.components.Hero.welcomeTo": "BIENVENUE CHEZ",
+  "pages.Home.components.ServiceFeatures.freeShipping": "Livraison gratuite",
+  "pages.Home.components.ServiceFeatures.freeShippingDescription": "Livraison gratuite avec réduction",
+  "pages.Home.components.ServiceFeatures.greatSupport": "Assistance 24h/24 et 7j/7",
+  "pages.Home.components.ServiceFeatures.greatSupportDescription": "Accès instantané au support",
+  "pages.Home.components.ServiceFeatures.moneyBack": "Garantie satisfait ou remboursé",
+  "pages.Home.components.ServiceFeatures.moneyBackDescription": "Garantie de remboursement sous 30 jours",
+  "pages.Home.components.ServiceFeatures.securePayment": "Paiement 100% sécurisé",
+  "pages.Home.components.ServiceFeatures.securePaymentDescription": "Nous garantissons la sécurité de votre argent"
 }

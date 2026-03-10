@@ -7,6 +7,16 @@
       "organicFood": "Aliments Biologiques",
       "freeShipping": "Livraison gratuite sur toutes vos commandes. nous livrons, vous profitez",
       "shopNow": "Acheter maintenant"
+    },
+    "ServiceFeatures": {
+      "freeShipping": "Livraison gratuite",
+      "freeShippingDescription": "Livraison gratuite avec réduction",
+      "greatSupport": "Assistance 24h/24 et 7j/7",
+      "greatSupportDescription": "Accès instantané au support",
+      "securePayment": "Paiement 100% sécurisé",
+      "securePaymentDescription": "Nous garantissons la sécurité de votre argent",
+      "moneyBack": "Garantie satisfait ou remboursé",
+      "moneyBackDescription": "Garantie de remboursement sous 30 jours"
     }
   }
 }
