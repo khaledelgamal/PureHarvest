@@ -1,4 +1,4 @@
-import AddToCartIcon from '@/icons/AddToCardIcon';
+import AddToCartIcon from '@/icons/AddToCartIcon';
 import { useTranslation } from 'react-i18next';
 import useCartStore from '@/store/useCartStore';
 import { useFormatPrice } from '@/hooks/useFormatPrice';
