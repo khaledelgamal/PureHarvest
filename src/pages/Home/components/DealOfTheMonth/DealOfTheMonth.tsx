@@ -43,6 +43,7 @@ const DealOfTheMonth = () => {
           <Button
             className="flex gap-4 items-center font-medium"
             onClick={() => navigate(routePaths.SHOP.ROOT)}
+            size="md"
           >
             <span>{t(`${tRoute}.shopNow`, 'Shop now')}</span>
             <ArrowIcon />
