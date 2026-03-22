@@ -2,6 +2,7 @@ import DealOfTheMonth from './components/DealOfTheMonth/DealOfTheMonth';
 import Hero from './components/Hero/Hero';
 import PromoBanners from './components/PromoBanners/PromoBanners';
 import ServiceFeatures from './components/ServiceFeatures/ServiceFeatures';
+import Testimonials from './components/Testimonials/Testimonials';
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       {/* TODO, ProductShowcase section */}
       <PromoBanners />
       <DealOfTheMonth />
+      <Testimonials />
       {/* <FeaturedProducts />
       <Testimonials />
       <VideoBanner />
