@@ -16,11 +16,13 @@ const DealOfTheMonth = () => {
     <section className="bg-green-gray-50 overflow-hidden relative min-h-[400px]">
       <div className="flex items-center justify-between max-w-[1440px] mx-auto">
         {/* Left image */}
-        <img
-          src="/images/best-deals-1.png"
-          alt="best deals 1"
-          className="hidden xl:block shrink-0 w-[30%] max-w-[521px] h-auto object-contain self-end"
-        />
+        <div className="flex items-center justify-center w-[30%] max-w-[521px] ">
+          <img
+            src="/images/best-deals-1.png"
+            alt="best deals 1"
+            className="hidden xl:block shrink-0 h-auto object-contain self-end"
+          />
+        </div>
 
         {/* Center content */}
         <div className="flex flex-col gap-6 justify-center items-center py-10 px-6 flex-1 min-w-0">
