@@ -17,6 +17,36 @@
       "securePaymentDescription": "Nous garantissons la sécurité de votre argent",
       "moneyBack": "Garantie satisfait ou remboursé",
       "moneyBackDescription": "Garantie de remboursement sous 30 jours"
+    },
+    "PromoBanners": {
+      "milkTitle": "100% Frais",
+      "milkTitle2": "Lait de vache",
+      "milkDescription": "À partir de",
+
+      "colaSubtitle": "PROMO BOISSON",
+      "colaTitle": "Eau &",
+      "colaTitle2": "Sodas",
+
+      "legumesSubtitle": "100% BIO",
+      "legumesTitle": "Petit",
+      "legumesTitle2": "Déjeuner rapide",
+
+      "shopNow": "Acheter maintenant"
+    },
+
+    "DealOfTheMonth": {
+      "bestDeals": "MEILLEURES OFFRES",
+      "ourSpecialProducts": "Nos Produits Spéciaux",
+      "dealOfTheMonth": "Offre du Mois",
+      "shopNow": "Acheter maintenant",
+      "components": {
+        "CountdownTimer": {
+          "days": "JOURS",
+          "hours": "HEURES",
+          "mins": "MINS",
+          "secs": "SECS"
+        }
+      }
     }
   }
 }

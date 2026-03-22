@@ -17,6 +17,35 @@
       "securePaymentDescription": "We ensure your money is safe",
       "moneyBack": "Money-Back Guarantee",
       "moneyBackDescription": "30 days money-back guarantee"
+    },
+    "PromoBanners": {
+      "milkTitle": "100% Fresh",
+      "milkTitle2": "Cow Milk",
+      "milkDescription": "Starting at",
+
+      "colaSubtitle": "DRINK SALE",
+      "colaTitle": "Water &",
+      "colaTitle2": "Soft Drink",
+
+      "legumesSubtitle": "100% ORGANIC",
+      "legumesTitle": "Quick",
+      "legumesTitle2": "Breakfast",
+
+      "shopNow": "Shop Now"
+    },
+    "DealOfTheMonth": {
+      "bestDeals": "BEST DEALS",
+      "ourSpecialProducts": "Our Special Products",
+      "dealOfTheMonth": "Deal Of The Month",
+      "shopNow": "Shop now",
+      "components": {
+        "CountdownTimer": {
+          "days": "DAYS",
+          "hours": "HOURS",
+          "mins": "MINS",
+          "secs": "SECS"
+        }
+      }
     }
   }
 }
