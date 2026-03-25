@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 export default function AppLayout() {
   return (
@@ -12,10 +13,7 @@ export default function AppLayout() {
         </div>
       </main>
 
-      <footer className="border-t border-gray-200">
-        {/* TODO: Footer */}
-        <div className={`flex h-16 items-center`}>Footer</div>
-      </footer>
+      <Footer />
     </div>
   );
 }

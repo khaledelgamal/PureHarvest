@@ -47,6 +47,10 @@
           "secs": "SECS"
         }
       }
+    },
+    "VideoBanner": {
+      "label": "Vidéo",
+      "title": "Nous sommes la Meilleure Ferme Bio du Monde"
     }
   }
 }

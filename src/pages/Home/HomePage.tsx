@@ -3,6 +3,7 @@ import Hero from './components/Hero/Hero';
 import PromoBanners from './components/PromoBanners/PromoBanners';
 import ServiceFeatures from './components/ServiceFeatures/ServiceFeatures';
 import Testimonials from './components/Testimonials/Testimonials';
+import VideoBanner from './components/VideoBanner/VideoBanner';
 
 const HomePage = () => {
   return (
@@ -12,12 +13,12 @@ const HomePage = () => {
       {/* TODO, ProductShowcase section */}
       <PromoBanners />
       <DealOfTheMonth />
-      <Testimonials />
-      {/* <FeaturedProducts />
+      {/* TODO: <FeaturedProducts /> */}
+
       <Testimonials />
       <VideoBanner />
-      <LatestNews />
-      <Newsletter /> */}
+      {/* TODO: <LatestNews /> */}
+      {/* TODO: <Newsletter /> */}
     </main>
   );
 };

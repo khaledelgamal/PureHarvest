@@ -46,6 +46,10 @@
           "secs": "SECS"
         }
       }
+    },
+    "VideoBanner": {
+      "label": "Video",
+      "title": "We're the Best Organic Farm in the World"
     }
   }
 }

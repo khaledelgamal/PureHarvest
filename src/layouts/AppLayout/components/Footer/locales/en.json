@@ -1,0 +1,49 @@
+{
+  "components": {
+    "SubscribeNewsletter": {
+      "title": "Subscribe to our newsletter",
+      "description": "Get the latest updates on new products and offers",
+      "inputPlaceholder": "Your email address",
+      "subscribeButton": "Subscribe"
+    },
+    "MainFooter": {
+      "myAccount": {
+        "title": "My Account",
+        "links": {
+          "myAccount": "My Account",
+          "orderHistory": "Order History",
+          "shoppingCart": "Shopping Cart",
+          "wishlist": "Wishlist",
+          "settings": "Settings"
+        }
+      },
+      "helps": {
+        "title": "Helps",
+        "links": {
+          "contact": "Contact",
+          "faqs": "Faqs"
+        }
+      },
+      "proxy": {
+        "title": "Proxy",
+        "links": {
+          "about": "About",
+          "shop": "Shop"
+        }
+      },
+      "components": {
+        "FooterAbout": {
+          "title": "About PureHarvest",
+          "description": "Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna congue nec.",
+          "or": "or"
+        },
+        "FooterInstagram": {
+          "title": "Instagram"
+        },
+        "CopyrightBar": {
+          "text": "PureHarvest eCommerce © {{year}}. All Rights Reserved"
+        }
+      }
+    }
+  }
+}
