@@ -22,7 +22,7 @@ const navItems = [
 
 export default function AccountLayout() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto flex gap-6">
         {/* ── Sidebar ── */}
         <aside className="w-64 shrink-0">

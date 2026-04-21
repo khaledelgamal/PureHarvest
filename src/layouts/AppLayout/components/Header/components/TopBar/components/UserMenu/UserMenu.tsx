@@ -50,8 +50,11 @@ const UserMenu = () => {
     : (user?.email?.[0]?.toUpperCase() ?? '?');
 
   const handleSignOut = () => {
-    signOut();
-    setIsOpen(false);
+    signOut(undefined, {
+      onSuccess: () => {
+        setIsOpen(false);
+      },
+    });
   };
 
   return (
