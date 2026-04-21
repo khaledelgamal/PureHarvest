@@ -40,6 +40,7 @@ export const routePaths = {
     // Not nested under /account in the router tree (Guest routes)
     SIGNIN: '/account/signin',
     SIGNUP: '/account/signup',
+    AUTH_CALLBACK: '/account/auth/callback',
   },
 
   BLOGS: {

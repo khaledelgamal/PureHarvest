@@ -1,0 +1,21 @@
+{
+  "SignUp": {
+    "title": "Create Account",
+    "emailPlaceholder": "Email",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "passwordPlaceholder": "Password",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "confirmPasswordPlaceholder": "Confirm Password",
+    "confirmPasswordRequired": "Please confirm your password",
+    "passwordsMismatch": "Passwords do not match",
+    "acceptTermsAriaLabel": "Accept terms and conditions",
+    "acceptTermsLabel": "Accept all terms & Conditions",
+    "acceptTermsRequired": "You must accept the terms",
+    "creatingAccount": "Creating account...",
+    "createAccount": "Create Account",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Login"
+  }
+}

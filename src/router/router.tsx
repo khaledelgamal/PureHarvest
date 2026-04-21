@@ -8,6 +8,12 @@ import ProtectedRoute from '@/layouts/ProtectedRoute/ProtectedRoute';
 // import NotFound from '@/components/NotFound';
 import { routePaths } from '@/router/routePaths';
 import { lazy } from 'react';
+import SignUp from '@/pages/AuthPages/SignUp/SignUp';
+import SignIn from '@/pages/AuthPages/SignIn/SignIn';
+import DashboardPage from '@/pages/AccountPages/Dashboard/DashboardPage';
+import AccountLayout from '@/pages/AccountPages/layouts/AccountLayout';
+import OrderHistoryPage from '@/pages/AccountPages/OrderHistoryPage/OrderHistoryPage';
+import AuthCallback from '@/pages/AuthPages/AuthCallback/AuthCallback';
 
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
@@ -99,7 +105,10 @@ const routes: RouteObject[] = [
         handle: { breadcrumb: 'Contact Us' },
         element: <div>Contact Us</div>,
       },
-
+      {
+        path: routePaths.ACCOUNT.AUTH_CALLBACK,
+        element: <AuthCallback />,
+      },
       // ========================
       // Guest Only
       // ========================
@@ -109,12 +118,12 @@ const routes: RouteObject[] = [
           {
             path: routePaths.ACCOUNT.SIGNIN,
             handle: { breadcrumb: 'Sign In' },
-            element: <div>Sign In</div>,
+            element: <SignIn />,
           },
           {
             path: routePaths.ACCOUNT.SIGNUP,
             handle: { breadcrumb: 'Sign Up' },
-            element: <div>Sign Up</div>,
+            element: <SignUp />,
           },
         ],
       },
@@ -128,6 +137,7 @@ const routes: RouteObject[] = [
           {
             path: routePaths.ACCOUNT.ROOT,
             handle: { breadcrumb: 'Account' },
+            element: <AccountLayout />,
             children: [
               {
                 index: true,
@@ -136,7 +146,7 @@ const routes: RouteObject[] = [
               {
                 path: routePaths.ACCOUNT.DASHBOARD.pathName,
                 handle: { breadcrumb: 'Dashboard' },
-                element: <div>Dashboard</div>,
+                element: <DashboardPage />,
               },
               {
                 path: routePaths.ACCOUNT.ORDER_HISTORY.pathName,
@@ -144,7 +154,7 @@ const routes: RouteObject[] = [
                 children: [
                   {
                     index: true,
-                    element: <div>Order History</div>,
+                    element: <OrderHistoryPage />,
                   },
                   {
                     path: routePaths.ACCOUNT.ORDER_HISTORY.ORDER_DETAILS.pathName,

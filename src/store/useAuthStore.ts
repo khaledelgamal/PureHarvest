@@ -1,34 +1,33 @@
+// store/useAuthStore.ts
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 import type { User } from '@/types/auth.types';
 
 interface AuthStore {
   user: User | null;
   token: string | null;
+  isLoading: boolean;
   setAuth: (user: User, token: string) => void;
   updateUser: (data: Partial<User>) => void;
   logout: () => void;
+  setLoading: (loading: boolean) => void;
+  clearAuth: () => void;
 }
 
-const useAuthStore = create<AuthStore>()(
-  persist(
-    set => ({
-      user: null,
-      token: null,
+const useAuthStore = create<AuthStore>(set => ({
+  user: null,
+  token: null,
+  isLoading: true,
 
-      setAuth: (user, token) => set({ user, token }),
+  setAuth: (user, token) => set({ user, token, isLoading: false }),
+  clearAuth: () => set({ user: null, token: null, isLoading: false }),
+  updateUser: data =>
+    set(state => ({
+      user: state.user ? { ...state.user, ...data } : null,
+    })),
 
-      updateUser: data =>
-        set(state => ({
-          user: state.user ? { ...state.user, ...data } : null,
-        })),
+  logout: () => set({ user: null, token: null }),
 
-      logout: () => set({ user: null, token: null }),
-    }),
-    {
-      name: 'auth-storage',
-    },
-  ),
-);
+  setLoading: isLoading => set({ isLoading }),
+}));
 
 export default useAuthStore;

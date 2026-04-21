@@ -1,13 +1,18 @@
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { routePaths } from '@/router/routePaths';
 import useAuthStore from '@/store/useAuthStore';
-import { Navigate, Outlet } from 'react-router-dom';
 
 export default function GuestRoute() {
   const user = useAuthStore(store => store.user);
+  const isLoading = useAuthStore(store => store.isLoading);
+  const navigate = useNavigate();
 
-  if (user) {
-    return <Navigate to={routePaths.HOME} replace />;
-  }
+  useEffect(() => {
+    if (!isLoading && user) {
+      navigate(routePaths.ACCOUNT.DASHBOARD.path, { replace: true });
+    }
+  }, [isLoading, user, navigate]);
 
   return <Outlet />;
 }

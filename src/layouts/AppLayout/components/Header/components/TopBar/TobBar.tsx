@@ -5,11 +5,15 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { routePaths } from '@/router/routePaths';
 import { sectionContainer } from '@/constants/global.styles';
+import useAuthStore from '@/store/useAuthStore';
+import UserMenu from './components/UserMenu/UserMenu';
 
 const TobBar = () => {
   const { t } = useTranslation();
+  const user = useAuthStore(s => s.user);
+
   return (
-    <div className={`py-3 bg-gray-800 text-gray-300`}>
+    <div className={`py-3 bg-gray-800 text-gray-300 h-16 flex-center`}>
       <div className={` ${sectionContainer} flex justify-between items-center`}>
         <StoreLocation />
         <div className="flex gap-5 items-center">
@@ -17,19 +21,27 @@ const TobBar = () => {
           <CurrencyDropdown />
           <span className="text-gray-300 opacity-70">|</span>
           <div className="flex gap-1 text-xs">
-            <Link
-              to={routePaths.ACCOUNT.SIGNIN}
-              className="text-gray-300 hover:border-gray-300 px-0 py-0 hover:underline"
-            >
-              {t('layouts.AppLayout.components.Header.components.TopBar.signin', 'Sign In')}
-            </Link>
-            /
-            <Link
-              to={routePaths.ACCOUNT.SIGNUP}
-              className="text-gray-300 hover:border-gray-300 px-0 py-0 hover:underline"
-            >
-              {t('layouts.AppLayout.components.Header.components.TopBar.signup', 'Sign Up')}
-            </Link>
+            {user ? (
+              // ── Signed in ──
+              <UserMenu />
+            ) : (
+              // ── Guest ──
+              <>
+                <Link
+                  to={routePaths.ACCOUNT.SIGNIN}
+                  className="text-gray-300 hover:border-gray-300 px-0 py-0 hover:underline"
+                >
+                  {t('layouts.AppLayout.components.Header.components.TopBar.signin', 'Sign In')}
+                </Link>
+                /
+                <Link
+                  to={routePaths.ACCOUNT.SIGNUP}
+                  className="text-gray-300 hover:border-gray-300 px-0 py-0 hover:underline"
+                >
+                  {t('layouts.AppLayout.components.Header.components.TopBar.signup', 'Sign Up')}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

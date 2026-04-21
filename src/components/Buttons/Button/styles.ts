@@ -7,6 +7,7 @@ export const variantStyles: Record<ButtonVariant, string> = {
   border:
     'bg-white text-primary hover:text-primary-hard border-primary hover:border-primary-hard border-2',
   ghost: ' bg-[#56AC59]/10 hover:bg-[#2C742F]/20 text-primary hover:text-primary-hard ',
+  text: 'text-primary hover:text-primary-hard px-0 py-0 rounded-none',
 };
 
 export const sizeStyles: Record<ButtonSize, string> = {

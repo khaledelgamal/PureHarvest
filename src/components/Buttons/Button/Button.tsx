@@ -20,7 +20,7 @@ export const Button = ({
   return (
     <button
       {...props}
-      className={classNames(baseStyles, variantStyles[variant], sizeStyles[size], className)}
+      className={classNames(baseStyles, sizeStyles[size], variantStyles[variant], className)}
     >
       {children}
     </button>

@@ -1,0 +1,21 @@
+{
+  "SignUp": {
+    "title": "Créer un compte",
+    "emailPlaceholder": "E-mail",
+    "emailRequired": "L'e-mail est requis",
+    "emailInvalid": "Adresse e-mail invalide",
+    "passwordPlaceholder": "Mot de passe",
+    "passwordRequired": "Le mot de passe est requis",
+    "passwordMinLength": "Le mot de passe doit contenir au moins 6 caractères",
+    "confirmPasswordPlaceholder": "Confirmer le mot de passe",
+    "confirmPasswordRequired": "Veuillez confirmer votre mot de passe",
+    "passwordsMismatch": "Les mots de passe ne correspondent pas",
+    "acceptTermsAriaLabel": "Accepter les termes et conditions",
+    "acceptTermsLabel": "Accepter tous les termes et conditions",
+    "acceptTermsRequired": "Vous devez accepter les termes",
+    "creatingAccount": "Création du compte...",
+    "createAccount": "Créer un compte",
+    "alreadyHaveAccount": "Vous avez déjà un compte ?",
+    "login": "Se connecter"
+  }
+}

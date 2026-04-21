@@ -8,9 +8,7 @@ export default function AppLayout() {
       <Header />
 
       <main>
-        <div className="min-h-[calc(100vh-8rem)]">
-          <Outlet />
-        </div>
+        <Outlet />
       </main>
 
       <Footer />
