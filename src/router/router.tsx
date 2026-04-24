@@ -10,10 +10,11 @@ import { routePaths } from '@/router/routePaths';
 import { lazy } from 'react';
 import SignUp from '@/pages/AuthPages/SignUp/SignUp';
 import SignIn from '@/pages/AuthPages/SignIn/SignIn';
-import DashboardPage from '@/pages/AccountPages/Dashboard/DashboardPage';
+import DashboardPage from '@/pages/AccountPages/DashboardPage/DashboardPage';
 import AccountLayout from '@/pages/AccountPages/layouts/AccountLayout';
 import OrderHistoryPage from '@/pages/AccountPages/OrderHistoryPage/OrderHistoryPage';
 import AuthCallback from '@/pages/AuthPages/AuthCallback/AuthCallback';
+import OrderDetailsPage from '@/pages/AccountPages/OrderDetailsPage/OrderDetailsPage';
 
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
@@ -161,7 +162,7 @@ const routes: RouteObject[] = [
                     handle: {
                       breadcrumb: (params: Record<string, string>) => `Order #${params.orderId}`,
                     },
-                    element: <div>Order Details</div>,
+                    element: <OrderDetailsPage />,
                   },
                 ],
               },

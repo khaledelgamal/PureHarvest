@@ -23,6 +23,17 @@ export interface OrderItem {
   subtotal: number;
 }
 
+// ── For List Views (minimal data) ──
+export interface OrderListItem {
+  id: string;
+  orderNumber: number;
+  orderDate: string;
+  totalAmount: number;
+  status: OrderStatus;
+  productsCount: number;
+}
+
+// ── For Detail View (full data with products) ──
 export interface Order {
   id: string;
   userId: string;
@@ -37,8 +48,8 @@ export interface Order {
   paymentMethod: PaymentMethod;
   notes: string | null;
   couponId: string | null;
-  itemCount: number; // derived from order_items length
-  items: OrderItem[]; // empty [] when not fetched
+  itemCount: number;
+  items: OrderItem[];
   createdAt: string;
   updatedAt: string;
 }

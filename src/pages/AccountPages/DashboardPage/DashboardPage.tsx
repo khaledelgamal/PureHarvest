@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { MapPin, Mail, Phone } from 'lucide-react';
 import useAuthStore from '@/store/useAuthStore';
 import { profilesAPI } from '@/services/supabase/profiles/api';
 import { profileKeys } from '@/services/supabase/profiles/keys';
@@ -8,6 +7,7 @@ import { orderKeys } from '@/services/supabase/orders/keys';
 import { routePaths } from '@/router/routePaths';
 import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
 import { OrdersTable } from '../components/OrdersTable/OrdersTable';
+import { AddressCard } from './components/AddressCard/AddressCard';
 
 export default function DashboardPage() {
   const user = useAuthStore(s => s.user);
@@ -35,17 +35,6 @@ export default function DashboardPage() {
   });
 
   const fullName = [profile?.firstName, profile?.lastName].filter(Boolean).join(' ');
-  const billingFullName = [profile?.billing?.firstName, profile?.billing?.lastName]
-    .filter(Boolean)
-    .join(' ');
-  const billingAddress = [
-    profile?.billing?.streetAddress,
-    profile?.billing?.state,
-    profile?.billing?.country,
-    profile?.billing?.zipCode,
-  ]
-    .filter(Boolean)
-    .join(', ');
 
   return (
     <div className="space-y-6">
@@ -90,11 +79,8 @@ export default function DashboardPage() {
         </div>
 
         {/* Billing Address Card */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col">
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">
-            Billing Address
-          </p>
 
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col">
           {profileLoading ? (
             <div className="space-y-3 flex-1">
               {[...Array(4)].map((_, i) => (
@@ -102,33 +88,8 @@ export default function DashboardPage() {
               ))}
             </div>
           ) : (
-            <div className="space-y-3 flex-1">
-              <h4 className="font-semibold text-gray-900">{billingFullName || '—'}</h4>
-
-              {billingAddress && (
-                <div className="flex items-start gap-2 text-sm text-gray-600">
-                  <MapPin className="w-4 h-4 shrink-0 mt-0.5 text-gray-400" />
-                  {billingAddress}
-                </div>
-              )}
-
-              {profile?.billing?.email && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Mail className="w-4 h-4 shrink-0 text-gray-400" />
-                  {profile.billing.email}
-                </div>
-              )}
-
-              {profile?.billing?.phone && (
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Phone className="w-4 h-4 shrink-0 text-gray-400" />
-                  {profile.billing.phone}
-                </div>
-              )}
-
-              {!billingFullName && !billingAddress && (
-                <p className="text-sm text-gray-400">No billing address yet.</p>
-              )}
+            <div className="flex-1">
+              <AddressCard title="Billing Address" address={profile?.billing ?? {}} />
             </div>
           )}
 
@@ -154,6 +115,7 @@ export default function DashboardPage() {
           emptyMessage="No orders yet."
           monthFormat="short"
           actionSize="md"
+          className="h-auto!"
         />
       </div>
     </div>

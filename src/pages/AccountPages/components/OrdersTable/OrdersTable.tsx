@@ -5,15 +5,16 @@ import {
   ORDER_STATUS_STYLES,
   ORDER_TABLE_COLUMNS,
 } from './ordersTable.constants';
-import type { Order } from '@/services/supabase/orders/types';
+import type { OrderListItem } from '@/services/supabase/orders/types';
 
 interface OrdersTableProps {
-  orders?: Order[];
+  orders?: OrderListItem[];
   isLoading: boolean;
   skeletonRows?: number;
   emptyMessage?: string;
   monthFormat?: 'short' | 'long';
   actionSize?: 'sm' | 'md';
+  className?: string;
 }
 
 const formatDate = (dateStr: string, month: 'short' | 'long') =>
@@ -30,9 +31,10 @@ export function OrdersTable({
   emptyMessage = 'No orders yet.',
   monthFormat = 'short',
   actionSize = 'md',
+  className = '',
 }: OrdersTableProps) {
   return (
-    <div className="overflow-x-auto h-[500px]">
+    <div className={`overflow-x-auto h-[500px] ${className}`}>
       <table className="w-full">
         <thead>
           <tr className="border-b border-gray-100">
@@ -72,12 +74,12 @@ export function OrdersTable({
                   #{order.orderNumber}
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-600">
-                  {formatDate(order.createdAt, monthFormat)}
+                  {formatDate(order.orderDate, monthFormat)}
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-700">
-                  ${order.total.toFixed(2)}
+                  ${order.totalAmount.toFixed(2)}
                   <span className="text-gray-400 ml-1">
-                    ({order.itemCount} {order.itemCount === 1 ? 'Product' : 'Products'})
+                    ({order.productsCount} {order.productsCount === 1 ? 'Product' : 'Products'})
                   </span>
                 </td>
                 <td className="px-6 py-4 text-sm">

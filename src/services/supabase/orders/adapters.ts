@@ -1,5 +1,16 @@
-import type { Order, OrderItem, OrderStatus, PaymentMethod } from './types';
+import type { Order, OrderItem, OrderListItem, OrderStatus, PaymentMethod } from './types';
 
+// ── List View Interface ──
+interface SupabaseOrderListItem {
+  id: string;
+  order_number: number;
+  created_at: string;
+  total: number;
+  status: OrderStatus;
+  order_items: { count: number }[];
+}
+
+// ── Detail View Interfaces ──
 interface SupabaseOrderItem {
   id: string;
   order_id: string;
@@ -9,6 +20,11 @@ interface SupabaseOrderItem {
   price: number;
   quantity: number;
   subtotal: number;
+  product: {
+    id: string;
+    name: string;
+    image_url: string;
+  };
 }
 
 interface SupabaseOrder {
@@ -44,12 +60,23 @@ interface SupabaseOrder {
   order_items?: SupabaseOrderItem[];
 }
 
+// ── List Mapper (5 fields only) ──
+export const mapSupabaseOrderListItem = (raw: SupabaseOrderListItem): OrderListItem => ({
+  id: raw.id,
+  orderNumber: raw.order_number,
+  orderDate: raw.created_at,
+  totalAmount: Number(raw.total),
+  status: raw.status,
+  productsCount: raw.order_items?.[0]?.count ?? 0,
+});
+
+// ── Detail Mappers (full data with products) ──
 export const mapSupabaseOrderItemToOrderItem = (raw: SupabaseOrderItem): OrderItem => ({
   id: raw.id,
   orderId: raw.order_id,
   productId: raw.product_id,
-  productName: raw.product_name,
-  productImage: raw.product_image,
+  productName: raw.product.name,
+  productImage: raw.product.image_url,
   price: Number(raw.price),
   quantity: raw.quantity,
   subtotal: Number(raw.subtotal),

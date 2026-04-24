@@ -1,4 +1,5 @@
 {
+  "components.PriceDisplay.free": "Gratuit",
   "layouts.AppLayout.components.Footer.components.MainFooter.components.CopyrightBar.text": "PureHarvest eCommerce © {{year}}. Tous droits réservés",
   "layouts.AppLayout.components.Footer.components.MainFooter.components.FooterAbout.description": "Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna congue nec.",
   "layouts.AppLayout.components.Footer.components.MainFooter.components.FooterAbout.or": "ou",
