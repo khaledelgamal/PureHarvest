@@ -47,4 +47,7 @@ export default defineConfig({
       },
     ],
   },
+  optimizeDeps: {
+    exclude: ['country-state-city'],
+  },
 });

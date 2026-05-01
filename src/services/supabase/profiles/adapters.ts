@@ -26,7 +26,7 @@ export const mapSupabaseProfileToProfile = (row: SupabaseProfile): Profile => ({
   firstName: row.first_name,
   lastName: row.last_name,
   phone: row.phone,
-  avatarUrl: row.avatar_url,
+  avatarUrl: row.avatar_url ? row.avatar_url + '?t=' + Date.now() : '',
   billing: {
     firstName: row.billing_first_name,
     lastName: row.billing_last_name,

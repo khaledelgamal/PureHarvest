@@ -62,4 +62,25 @@ export const authAPI = {
       callback(event, rawSession ? mapSupabaseSessionToAuth(rawSession) : null);
     });
   },
+
+  updatePassword: async (
+    currentPassword: string,
+    newPassword: string,
+  ): Promise<{ error: ServiceError | null }> => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user?.email) return { error: { message: 'User not found.' } };
+
+    const { error: verifyError } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password: currentPassword,
+    });
+    if (verifyError) return { error: { message: 'Current password is incorrect.' } };
+
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    if (error) return { error: mapSupabaseErrorToService(error) };
+
+    return { error: null };
+  },
 };

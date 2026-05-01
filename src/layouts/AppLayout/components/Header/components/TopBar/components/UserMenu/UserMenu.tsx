@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import useAuthStore from '@/store/useAuthStore';
 import { useSignOut } from '@/services/supabase/auth/hooks/useSignOut';
-import { profilesAPI } from '@/services/supabase/profiles/api';
-import { profileKeys } from '@/services/supabase/profiles/keys';
+
 import { routePaths } from '@/router/routePaths';
 
 import { Settings as SettingsIcon, LogOut as LogOutIcon } from 'lucide-react';
+import { useProfile } from '@/hooks/useProfile';
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,16 +15,7 @@ const UserMenu = () => {
   const user = useAuthStore(s => s.user);
   const { mutate: signOut, isPending: isSigningOut } = useSignOut();
 
-  const { data: profile } = useQuery({
-    queryKey: profileKeys.profile(user?.id ?? ''),
-    queryFn: async () => {
-      const { data, error } = await profilesAPI.getProfile(user!.id);
-      if (error) throw error;
-      return data;
-    },
-    enabled: !!user?.id,
-    staleTime: 1000 * 60 * 5,
-  });
+  const { data: profile, isLoading: isLoadingProfile } = useProfile();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -66,7 +56,9 @@ const UserMenu = () => {
                    focus:outline-none transition-all duration-300"
         title="Account settings"
       >
-        {profile?.avatarUrl ? (
+        {isLoadingProfile ? (
+          <div className="w-full h-full bg-gray-100 animate-pulse" />
+        ) : profile?.avatarUrl ? (
           <img
             src={profile.avatarUrl}
             alt={fullName || 'User avatar'}

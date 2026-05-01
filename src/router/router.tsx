@@ -15,6 +15,7 @@ import AccountLayout from '@/pages/AccountPages/layouts/AccountLayout';
 import OrderHistoryPage from '@/pages/AccountPages/OrderHistoryPage/OrderHistoryPage';
 import AuthCallback from '@/pages/AuthPages/AuthCallback/AuthCallback';
 import OrderDetailsPage from '@/pages/AccountPages/OrderDetailsPage/OrderDetailsPage';
+import SettingsPage from '@/pages/AccountPages/SettingsPage/SettingsPage';
 
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
@@ -169,7 +170,7 @@ const routes: RouteObject[] = [
               {
                 path: routePaths.ACCOUNT.SETTINGS.pathName,
                 handle: { breadcrumb: 'Settings' },
-                element: <div>Settings</div>,
+                element: <SettingsPage />,
               },
             ],
           },
