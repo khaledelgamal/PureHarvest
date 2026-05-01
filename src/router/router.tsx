@@ -16,6 +16,7 @@ import OrderHistoryPage from '@/pages/AccountPages/OrderHistoryPage/OrderHistory
 import AuthCallback from '@/pages/AuthPages/AuthCallback/AuthCallback';
 import OrderDetailsPage from '@/pages/AccountPages/OrderDetailsPage/OrderDetailsPage';
 import SettingsPage from '@/pages/AccountPages/SettingsPage/SettingsPage';
+import NotFoundPage from '@/pages/NotFound/NotFoundPage';
 
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
@@ -183,7 +184,7 @@ const routes: RouteObject[] = [
       {
         path: '*',
         handle: { breadcrumb: 'Not Found' },
-        element: <>404 Page not found</>,
+        element: <NotFoundPage />,
       },
     ],
   },
