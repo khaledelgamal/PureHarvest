@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -9,6 +8,7 @@ import useAuthStore from '@/store/useAuthStore';
 import { profilesAPI } from '@/services/supabase/profiles/api';
 import { profileKeys } from '@/services/supabase/profiles/keys';
 import type { Profile } from '@/services/supabase/profiles/types';
+import { toast } from 'sonner';
 
 // ─── Data ───────────────────────────────────
 const allCountries = Country.getAllCountries();
@@ -56,7 +56,7 @@ export const useBillingAddress = (profile?: Profile) => {
     },
   });
 
-  const { watch, setValue } = form;
+  const { watch } = form;
 
   // ── Country / State logic ──
   const selectedCountryIso = watch('country');
@@ -68,12 +68,8 @@ export const useBillingAddress = (profile?: Profile) => {
       }))
     : [];
 
-  useEffect(() => {
-    setValue('state', '');
-  }, [selectedCountryIso, setValue]);
-
   // ── Mutation ──
-  const mutation = useMutation({
+  const { mutate: updateBilling, isPending } = useMutation({
     mutationFn: async (values: BillingFormValues) => {
       const countryName = Country.getCountryByCode(values.country)?.name ?? '';
 
@@ -96,6 +92,10 @@ export const useBillingAddress = (profile?: Profile) => {
     },
     onSuccess: data => {
       queryClient.setQueryData(profileKeys.profile(user!.id), data);
+      toast.success('Billing address updated successfully');
+    },
+    onError: () => {
+      toast.error('Failed to update Billing address');
     },
   });
 
@@ -104,7 +104,7 @@ export const useBillingAddress = (profile?: Profile) => {
     stateOptions,
     selectedCountryIso,
     countryOptions,
-    updateBilling: mutation.mutate,
-    isPending: mutation.isPending,
+    updateBilling,
+    isPending,
   };
 };

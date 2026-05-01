@@ -4,6 +4,7 @@ import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 import type { Profile } from '@/services/supabase/profiles/types';
 import { useBillingAddress } from './hooks/useBillingAddress';
 import FormField from '../FormFIeld/FormField';
+import { SettingsSectionLayout } from '../../layouts/SettingsSectionLayout/SettingsSectionLayout';
 
 type Props = { profile: Profile | undefined };
 
@@ -11,7 +12,7 @@ export const BillingAddressSection = ({ profile }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
     stateOptions,
     selectedCountryIso,
     countryOptions,
@@ -20,9 +21,7 @@ export const BillingAddressSection = ({ profile }: Props) => {
   } = useBillingAddress(profile);
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-      <h3 className="font-semibold text-gray-900 text-lg mb-6">Billing Address</h3>
-
+    <SettingsSectionLayout title="Billing Address">
       <form onSubmit={handleSubmit(values => updateBilling(values))} className="space-y-4">
         {/* Row 1: First + Last + Company */}
         <div className="grid grid-cols-3 gap-4">
@@ -40,7 +39,7 @@ export const BillingAddressSection = ({ profile }: Props) => {
               error={errors.lastName}
             />
           </FormField>
-          <FormField label="Company Name (optional)">
+          <FormField label="Company Name" optional>
             <TextFieldInput {...register('companyName')} placeholder="Company name" />
           </FormField>
         </div>
@@ -65,7 +64,7 @@ export const BillingAddressSection = ({ profile }: Props) => {
             />
           </FormField>
 
-          <FormField label="States">
+          <FormField label="State">
             <SelectInput
               {...register('state')}
               options={stateOptions}
@@ -105,10 +104,10 @@ export const BillingAddressSection = ({ profile }: Props) => {
           </FormField>
         </div>
 
-        <Button type="submit" variant="fill" size="md" disabled={isPending}>
+        <Button type="submit" variant="fill" size="md" disabled={isPending || !isDirty}>
           {isPending ? 'Saving...' : 'Save Changes'}
         </Button>
       </form>
-    </div>
+    </SettingsSectionLayout>
   );
 };
