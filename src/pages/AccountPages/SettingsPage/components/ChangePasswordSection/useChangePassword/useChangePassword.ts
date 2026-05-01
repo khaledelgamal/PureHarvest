@@ -27,7 +27,7 @@ export const useChangePassword = () => {
 
   const { reset, setError } = form;
 
-  const mutation = useMutation({
+  const { mutate: changePassword, isPending } = useMutation({
     mutationFn: async (values: PasswordFormValues) => {
       const { error } = await authAPI.updatePassword(values.currentPassword, values.newPassword);
 
@@ -48,7 +48,7 @@ export const useChangePassword = () => {
 
   return {
     ...form,
-    changePassword: mutation.mutate,
-    isPending: mutation.isPending,
+    changePassword,
+    isPending,
   };
 };

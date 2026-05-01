@@ -32,7 +32,7 @@ export const useAccountSettings = (profile?: Profile) => {
     },
   });
 
-  const updateMutation = useMutation({
+  const { mutate: updateProfile, isPending: isUpdatingProfile } = useMutation({
     mutationFn: async (values: AccountFormValues) => {
       const { data, error } = await profilesAPI.updateProfile(user!.id, {
         firstName: values.firstName,
@@ -51,7 +51,7 @@ export const useAccountSettings = (profile?: Profile) => {
     },
   });
 
-  const uploadMutation = useMutation({
+  const { mutate: uploadAvatar, isPending: isUploadingAvatar } = useMutation({
     mutationFn: async (file: File) => {
       const { data: url, error: uploadError } = await profilesAPI.uploadAvatar(user!.id, file);
       if (uploadError) throw uploadError;
@@ -77,7 +77,7 @@ export const useAccountSettings = (profile?: Profile) => {
   const closeCropModal = () => setIsCropModalOpen(false);
 
   const handleCropComplete = async (croppedFile: File) => {
-    uploadMutation.mutate(croppedFile);
+    uploadAvatar(croppedFile);
     setIsCropModalOpen(false);
   };
 
@@ -93,8 +93,8 @@ export const useAccountSettings = (profile?: Profile) => {
     handleCropComplete,
     fullName,
     initials,
-    updateProfile: updateMutation.mutate,
-    isUpdating: updateMutation.isPending,
-    isUploading: uploadMutation.isPending,
+    updateProfile,
+    isUpdatingProfile,
+    isUploadingAvatar,
   };
 };

@@ -25,8 +25,8 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
     fullName,
     initials,
     updateProfile,
-    isUpdating,
-    isUploading,
+    isUpdatingProfile,
+    isUploadingAvatar,
   } = useAccountSettings(profile);
 
   return (
@@ -65,8 +65,8 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
           />
         </FormField>
 
-        <Button type="submit" variant="fill" size="md" disabled={isUpdating || !isDirty}>
-          {isUpdating ? 'Saving...' : 'Save Changes'}
+        <Button type="submit" variant="fill" size="md" disabled={isUpdatingProfile || !isDirty}>
+          {isUpdatingProfile ? 'Saving...' : 'Save Changes'}
         </Button>
       </form>
 
@@ -88,11 +88,11 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
           variant="border"
           size="sm"
           onClick={openCropModal}
-          disabled={isUploading}
+          disabled={isUploadingAvatar}
           className="flex items-center gap-2"
         >
           <Camera className="w-4 h-4" />
-          {isUploading ? 'Uploading...' : 'Choose Image'}
+          {isUploadingAvatar ? 'Uploading...' : 'Choose Image'}
         </Button>
       </div>
 
