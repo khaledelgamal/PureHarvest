@@ -1,23 +1,37 @@
 // pages/Auth/SignUp.tsx
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { useMutation } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import type { ServiceError } from '@/services/supabase/types';
 import TextFieldInput from '@/components/Inputs/TextFieldInput/TextFieldInput';
 import PasswordFieldInput from '@/components/Inputs/PasswordFieldInput/PasswordFieldInput';
 import CheckboxInput from '@/components/Inputs/CheckboxInput/CheckboxInput';
 import AuthLayout from '../layouts/AuthLayout';
 import { routePaths } from '@/router/routePaths';
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/Buttons/Button/Button';
-import { useTranslation } from 'react-i18next';
 import { authAPI } from '@/services/supabase/auth/api';
+import { passwordValidation } from '@/utils/validation/passwordSchema';
 
-interface SignUpFormValues {
-  email: string;
-  password: string;
-  confirmPassword: string;
-  acceptTerms: boolean;
-}
+// ─── Schema ─────────────────────────────────
+const signUpSchema = z
+  .object({
+    email: z.string().min(1, 'Email is required').email('Invalid email address'),
+    password: passwordValidation,
+    confirmPassword: z.string().min(1, 'Please confirm your password'),
+    acceptTerms: z.boolean().refine(val => val === true, {
+      message: 'You must accept the terms',
+    }),
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'],
+  });
+
+type SignUpFormValues = z.infer<typeof signUpSchema>;
 
 const tRoute = 'pages.AuthPages.SignUp';
 
@@ -40,9 +54,9 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm<SignUpFormValues>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -89,45 +103,26 @@ const SignUp = () => {
             placeholder={t(`${tRoute}.emailPlaceholder`, 'Email')}
             type="email"
             error={errors.email}
-            {...register('email', {
-              required: t(`${tRoute}.emailRequired`, 'Email is required'),
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: t(`${tRoute}.emailInvalid`, 'Invalid email address'),
-              },
-            })}
+            {...register('email')}
           />
 
           <PasswordFieldInput
             placeholder={t(`${tRoute}.passwordPlaceholder`, 'Password')}
             error={errors.password}
-            {...register('password', {
-              required: t(`${tRoute}.passwordRequired`, 'Password is required'),
-              minLength: {
-                value: 6,
-                message: t(`${tRoute}.passwordMinLength`, 'Password must be at least 6 characters'),
-              },
-            })}
+            {...register('password')}
           />
 
           <PasswordFieldInput
             placeholder={t(`${tRoute}.confirmPasswordPlaceholder`, 'Confirm Password')}
             error={errors.confirmPassword}
-            {...register('confirmPassword', {
-              required: t(`${tRoute}.confirmPasswordRequired`, 'Please confirm your password'),
-              validate: value =>
-                value === getValues('password') ||
-                t(`${tRoute}.passwordsMismatch`, 'Passwords do not match'),
-            })}
+            {...register('confirmPassword')}
           />
 
           <div>
             <label className="flex items-center gap-2 text-sm text-gray-600">
               <CheckboxInput
                 aria-label={t(`${tRoute}.acceptTermsAriaLabel`, 'Accept terms and conditions')}
-                {...register('acceptTerms', {
-                  required: t(`${tRoute}.acceptTermsRequired`, 'You must accept the terms'),
-                })}
+                {...register('acceptTerms')}
               />
               {t(`${tRoute}.acceptTermsLabel`, 'Accept all terms & Conditions')}
             </label>

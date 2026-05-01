@@ -2,6 +2,7 @@ import { Button } from '@/components/Buttons/Button/Button';
 import PasswordFieldInput from '@/components/Inputs/PasswordFieldInput/PasswordFieldInput';
 import { useChangePassword } from './useChangePassword/useChangePassword';
 import FormField from '../FormFIeld/FormField';
+import { SettingsSectionLayout } from '../../layouts/SettingsSectionLayout/SettingsSectionLayout';
 
 export const ChangePasswordSection = () => {
   const {
@@ -13,9 +14,7 @@ export const ChangePasswordSection = () => {
   } = useChangePassword();
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-      <h3 className="font-semibold text-gray-900 text-lg mb-6">Change Password</h3>
-
+    <SettingsSectionLayout title="Change Password">
       <form
         onSubmit={handleSubmit(values => changePassword(values))}
         className="space-y-4 max-w-lg"
@@ -49,6 +48,6 @@ export const ChangePasswordSection = () => {
           {isPending ? 'Changing...' : 'Change Password'}
         </Button>
       </form>
-    </div>
+    </SettingsSectionLayout>
   );
 };
