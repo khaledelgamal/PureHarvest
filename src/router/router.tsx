@@ -18,6 +18,7 @@ import OrderDetailsPage from '@/pages/AccountPages/OrderDetailsPage/OrderDetails
 import SettingsPage from '@/pages/AccountPages/SettingsPage/SettingsPage';
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage';
 import FAQs from '@/pages/FAQsPage/FAQsPage';
+import ContactUsPage from '@/pages/ContactUsPage/ContactUsPage';
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
 
@@ -106,7 +107,7 @@ const routes: RouteObject[] = [
       {
         path: routePaths.CONTACT_US,
         handle: { breadcrumb: 'Contact Us' },
-        element: <div>Contact Us</div>,
+        element: <ContactUsPage />,
       },
       {
         path: routePaths.ACCOUNT.AUTH_CALLBACK,
