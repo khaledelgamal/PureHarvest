@@ -97,7 +97,7 @@ const FAQsPage = () => {
           <img
             alt="Fresh grocery delivery"
             className="absolute inset-0 w-full h-full object-contain"
-            src="/images/faqs.png"
+            src="/images/happy_man_carrying_organic_food_2.png"
           />
         </div>
       </div>

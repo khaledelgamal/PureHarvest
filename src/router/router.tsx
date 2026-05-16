@@ -19,6 +19,7 @@ import SettingsPage from '@/pages/AccountPages/SettingsPage/SettingsPage';
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage';
 import FAQs from '@/pages/FAQsPage/FAQsPage';
 import ContactUsPage from '@/pages/ContactUsPage/ContactUsPage';
+import AboutUsPage from '@/pages/AboutUsPage/components/AboutUsPage';
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
 
@@ -97,7 +98,7 @@ const routes: RouteObject[] = [
       {
         path: routePaths.ABOUT,
         handle: { breadcrumb: 'About' },
-        element: <div>About</div>,
+        element: <AboutUsPage />,
       },
       {
         path: routePaths.FAQS,
