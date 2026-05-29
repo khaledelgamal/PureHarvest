@@ -20,12 +20,17 @@ import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage';
 import FAQs from '@/pages/FAQsPage/FAQsPage';
 import ContactUsPage from '@/pages/ContactUsPage/ContactUsPage';
 import AboutUsPage from '@/pages/AboutUsPage/components/AboutUsPage';
+import ScrollToTop from './ScrollToTop';
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
 
 const routes: RouteObject[] = [
   {
-    element: <AppLayout />,
+    element: (
+      <ScrollToTop>
+        <AppLayout />
+      </ScrollToTop>
+    ),
     // errorElement: <RootErrorBoundary />,
     children: [
       // ========================
