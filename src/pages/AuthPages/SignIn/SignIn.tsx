@@ -5,7 +5,7 @@ import TextFieldInput from '@/components/Inputs/TextFieldInput/TextFieldInput';
 import PasswordFieldInput from '@/components/Inputs/PasswordFieldInput/PasswordFieldInput';
 import AuthLayout from '../layouts/AuthLayout';
 import { routePaths } from '@/router/routePaths';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/Buttons/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { authAPI } from '@/services/supabase/auth/api';
@@ -21,6 +21,7 @@ const tRoute = 'pages.AuthPages.SignIn';
 const SignIn = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     mutate: signIn,
@@ -33,7 +34,8 @@ const SignIn = () => {
       return data as AuthSession;
     },
     onSuccess: () => {
-      navigate(routePaths.ACCOUNT.DASHBOARD.path);
+      const state = location.state as { from?: string };
+      navigate(state?.from || routePaths.ACCOUNT.DASHBOARD.path);
     },
   });
 

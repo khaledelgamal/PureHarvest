@@ -56,8 +56,10 @@ export const blogAPI = {
     let dbQuery = supabase.from('blog_posts').select(
       `
         *,
-        blog_categories (*),
-        blog_post_tags (tags (*))
+        blog_categories${category ? '!inner' : ''} (*),
+        blog_post_tags${tag ? '!inner' : ''} (
+          blog_tags${tag ? '!inner' : ''} (*)
+        )
       `,
       { count: 'exact' },
     );
@@ -70,7 +72,7 @@ export const blogAPI = {
       dbQuery = dbQuery.eq('blog_categories.slug', category);
     }
     if (tag) {
-      dbQuery = dbQuery.eq('blog_post_tags.tags.slug', tag);
+      dbQuery = dbQuery.eq('blog_post_tags.blog_tags.slug', tag);
     }
     if (search) {
       dbQuery = dbQuery.or(`title.ilike.%${search}%,excerpt.ilike.%${search}%`);
@@ -105,7 +107,7 @@ export const blogAPI = {
         `
         *,
         blog_categories (*),
-        blog_post_tags (tags (*))
+        blog_post_tags (blog_tags (*))
       `,
       )
       .eq('slug', slug)
@@ -124,7 +126,7 @@ export const blogAPI = {
         `
         *,
         blog_categories (*),
-        blog_post_tags (tags (*))
+        blog_post_tags (blog_tags (*))
       `,
       )
       .eq('id', id)

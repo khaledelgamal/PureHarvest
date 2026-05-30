@@ -39,7 +39,7 @@ interface SupabaseBlogPost {
   updated_at: string;
   // joined fields
   blog_categories?: SupabaseBlogCategory | null;
-  blog_post_tags?: { tags: SupabaseBlogTag }[];
+  blog_post_tags?: { blog_tags: SupabaseBlogTag }[];
 }
 
 interface SupabaseBlogComment {
@@ -84,7 +84,7 @@ export const mapSupabasePostToPost = (raw: SupabaseBlogPost): BlogPost => ({
   authorAvatar: raw.author_avatar,
   categoryId: raw.category_id,
   category: raw.blog_categories ? mapSupabaseCategoryToCategory(raw.blog_categories) : undefined,
-  tags: raw.blog_post_tags?.map(link => mapSupabaseTagToTag(link.tags)) ?? [],
+  tags: raw.blog_post_tags?.map(link => mapSupabaseTagToTag(link.blog_tags)) ?? [],
   commentCount: raw.comment_count ?? 0,
   readTime: raw.read_time,
   publishedAt: raw.published_at,

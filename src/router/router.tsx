@@ -21,6 +21,8 @@ import FAQs from '@/pages/FAQsPage/FAQsPage';
 import ContactUsPage from '@/pages/ContactUsPage/ContactUsPage';
 import AboutUsPage from '@/pages/AboutUsPage/components/AboutUsPage';
 import ScrollToTop from './ScrollToTop';
+import BlogPage from '@/pages/BlogPage/BlogPage';
+import BlogDetailsPage from '@/pages/BlogDetailsPage/BlogDetailsPage';
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
 
@@ -89,14 +91,14 @@ const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            element: <div>Blogs</div>,
+            element: <BlogPage />,
           },
           {
             path: routePaths.BLOGS.BLOG_DETAILS.pathName,
             handle: {
               breadcrumb: (params: Record<string, string>) => params.blogId,
             },
-            element: <div>Blog Details</div>,
+            element: <BlogDetailsPage />,
           },
         ],
       },
