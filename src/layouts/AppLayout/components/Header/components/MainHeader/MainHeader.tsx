@@ -13,7 +13,9 @@ const MainHeader = () => {
   return (
     <div className="bg-white py-6 flex items-center">
       <div className={`${sectionContainer} flex justify-between items-center`}>
-        <AppLogo />
+        <Link to={routePaths.HOME}>
+          <AppLogo />
+        </Link>
         <GlobalSearch />
         <div className="flex items-center gap-4">
           <Link
