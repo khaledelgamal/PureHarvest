@@ -75,7 +75,7 @@ export const blogAPI = {
       dbQuery = dbQuery.eq('blog_post_tags.blog_tags.slug', tag);
     }
     if (search) {
-      dbQuery = dbQuery.or(`title.ilike.%${search}%,excerpt.ilike.%${search}%`);
+      dbQuery = dbQuery.or(`title.ilike.%${search}%`);
     }
 
     // Sorting

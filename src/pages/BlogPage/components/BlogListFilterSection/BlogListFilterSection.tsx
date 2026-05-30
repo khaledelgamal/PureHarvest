@@ -5,6 +5,8 @@ import type { BlogCategory, BlogTag, RecentBlogPost } from '@/services/supabase/
 import dayjs from 'dayjs';
 import { routePaths } from '@/router/routePaths';
 import { useNavigate } from 'react-router-dom';
+import useDebounce from '@/hooks/useDebounce';
+import { useEffect, useState } from 'react';
 
 interface BlogListFilterSectionProps {
   // State
@@ -39,7 +41,14 @@ export const BlogListFilterSection = ({
   onFilterChange,
 }: BlogListFilterSectionProps) => {
   const { t } = useTranslation();
+  const [searchState, setSearchState] = useState<string>(search);
   const navigate = useNavigate();
+  const debouncedValue = useDebounce(searchState, 300);
+
+  useEffect(() => {
+    onFilterChange('search', debouncedValue);
+  }, [debouncedValue]);
+
   return (
     <div className="w-[312px] flex-shrink-0 flex flex-col gap-6">
       {/* Search */}
@@ -48,8 +57,8 @@ export const BlogListFilterSection = ({
         <input
           type="text"
           placeholder={t('blog.searchPlaceholder', 'Search...')}
-          value={search}
-          onChange={e => onFilterChange('search', e.target.value)}
+          value={searchState}
+          onChange={e => setSearchState(e.target.value)}
           className="w-full placeholder:text-gray-500 outline-none text-gray-900 bg-transparent"
         />
       </div>
