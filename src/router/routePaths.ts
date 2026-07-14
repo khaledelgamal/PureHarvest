@@ -4,15 +4,15 @@ export const routePaths = {
   SHOP: {
     ROOT: '/shop',
     ITEM_DETAILS: {
-      path: (itemId: string) => `/shop/${itemId}`,
-      pathName: ':itemId',
+      path: (id: string) => `/shop/${id}`,
+      pathName: ':id',
     },
   },
 
   SHOPPING_CART: {
-    ROOT: '/shopping-Cart',
+    ROOT: '/shopping-cart',
     CHECKOUT: {
-      path: '/shopping-Cart/checkout',
+      path: '/shopping-cart/checkout',
       pathName: 'checkout',
     },
   },

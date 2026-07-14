@@ -1,0 +1,137 @@
+/* WishlistTable.module.css */
+.wishlistTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Table Header */
+.wishlistTable thead tr {
+  font-size: 14px;
+  color: #6b7280;
+  letter-spacing: 3%;
+}
+
+.wishlistTable thead th {
+  font-weight: normal;
+  padding: 16px 0;
+  text-align: start;
+}
+
+.wishlistTable thead th:first-child {
+  padding-left: 24px;
+  border: 1px solid #e5e7eb;
+  border-right: 0;
+  border-top-left-radius: 8px;
+}
+
+.wishlistTable thead th:last-child {
+  border: 1px solid #e5e7eb;
+  border-left: 0;
+  border-top-right-radius: 8px;
+}
+
+.wishlistTable thead th:not(:first-child):not(:last-child) {
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Table Body Rows */
+.wishlistTable tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wishlistTable tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Row cells */
+.wishlistTable tbody td {
+  padding: 16px 0;
+  text-align: start;
+}
+
+.wishlistTable tbody td:first-child {
+  padding-left: 24px;
+  border-left: 1px solid #e5e7eb;
+}
+
+.wishlistTable tbody td:last-child {
+  padding-right: 24px;
+  border-right: 1px solid #e5e7eb;
+}
+
+/* Product cell */
+.productCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.productImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.productName {
+  margin: 0;
+}
+
+/* Stock status */
+.stockStatus {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 4px 8px;
+  background-color: color-mix(in srgb, var(--color-primary-soft) 10%, transparent);
+  color: var(--color-primary);
+}
+
+/* Action buttons container */
+.actionButtons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: flex-end;
+}
+
+/* Divider between rows */
+.rowDivider {
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+/* Delete button custom styles */
+.deleteButton {
+  transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+  color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.1);
+  border-color: rgba(220, 38, 38, 0.1);
+}
+
+.deleteButton svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .wishlistTable thead th,
+  .wishlistTable tbody td {
+    padding: 12px 8px;
+  }
+
+  .productImage {
+    width: 60px;
+    height: 60px;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

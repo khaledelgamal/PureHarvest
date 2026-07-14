@@ -19,7 +19,7 @@ const PriceDisplay = ({
 }: PriceDisplayProps) => {
   const formatPrice = useFormatPrice();
   return (
-    <div className="flex-center gap-1">
+    <div className="flex gap-1">
       <span className={classNames(baseStyles, sizeStyles[size], priceStyles, priceClassName)}>
         {formatPrice(price)}
       </span>

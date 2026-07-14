@@ -9,6 +9,7 @@ export const variantStyles: Record<ButtonVariant, string> = {
   ghost:
     ' bg-[#56AC59]/10 hover:bg-[#2C742F]/20 text-primary hover:text-primary-hard disabled:bg-[#56AC59]/10 disabled:text-gray-300 disabled:cursor-not-allowed',
   text: 'text-primary hover:text-primary-hard px-0 py-0 rounded-none disabled:cursor-not-allowed',
+  rounded: 'w-10 h-10 !p-0 min-w-0 flex items-center justify-center bg-white border border-gray-100 !rounded-full text-gray-900 hover:bg-primary hover:text-white hover:border-primary transition-colors disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-200',
 };
 
 export const sizeStyles: Record<ButtonSize, string> = {

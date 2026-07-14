@@ -241,6 +241,15 @@
   select {
     @apply transition-colors duration-300;
   }
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
 }
 
 @keyframes scale-in {
@@ -252,4 +261,8 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.no-scroll {
+  overflow: hidden;
 }

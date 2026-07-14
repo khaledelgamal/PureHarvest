@@ -23,6 +23,10 @@ import AboutUsPage from '@/pages/AboutUsPage/components/AboutUsPage';
 import ScrollToTop from './ScrollToTop';
 import BlogPage from '@/pages/BlogPage/BlogPage';
 import BlogDetailsPage from '@/pages/BlogDetailsPage/BlogDetailsPage';
+import ShopPage from '@/pages/ShopPage/ShopPage';
+import WishlistPage from '@/pages/WishlistPage/WishlistPage';
+import ItemDetailsPage from '@/pages/ItemDetailsPage/ItemDetailsPage';
+import ShoppingCartPage from '@/pages/ShoppingCartPage/ShoppingCartPage';
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
 
@@ -49,14 +53,14 @@ const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            element: <div>Shop</div>,
+            element: <ShopPage />,
           },
           {
             path: routePaths.SHOP.ITEM_DETAILS.pathName,
             handle: {
               breadcrumb: (params: Record<string, string>) => params.itemId,
             },
-            element: <div>Item Details</div>,
+            element: <ItemDetailsPage />,
           },
         ],
       },
@@ -66,7 +70,7 @@ const routes: RouteObject[] = [
         children: [
           {
             index: true,
-            element: <div>Shopping Cart</div>,
+            element: <ShoppingCartPage />,
           },
           {
             element: <ProtectedRoute />,
@@ -83,7 +87,7 @@ const routes: RouteObject[] = [
       {
         path: routePaths.WISHLIST,
         handle: { breadcrumb: 'Wishlist' },
-        element: <div>Wishlist</div>,
+        element: <WishlistPage />,
       },
       {
         path: routePaths.BLOGS.ROOT,

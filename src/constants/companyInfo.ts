@@ -6,3 +6,6 @@ export const companyInfo = {
     fr: 'Lincoln- 344, Illinois, Chicago, États-Unis',
   },
 } as const;
+export const contactSupport = {
+  email: 'support@pureharvest.com',
+};

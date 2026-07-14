@@ -5,12 +5,17 @@ import { useFormatPrice } from '@/hooks/useFormatPrice';
 
 const ShoppingCart = () => {
   const { t } = useTranslation();
-  const totalQuantity = useCartStore(store => store.totalQuantity);
-  const totalPrice = useCartStore(store => store.totalPrice);
+  const cardItems = useCartStore(state => state.items);
   const formatPrice = useFormatPrice();
+  const setIsShoppingCartDrawerOpen = useCartStore(state => state.setIsShoppingCartDrawerOpen);
   const handleShoppingCartClick = () => {
-    // Open shopping Cart modal
+    setIsShoppingCartDrawerOpen(true);
   };
+
+  const totalPrice = cardItems.reduce((total, item) => {
+    const price = item.product.salePrice || item.product.price;
+    return total + price * item.quantity;
+  }, 0);
   return (
     <button
       className="flex gap-2.5 items-center cursor-pointer group hover:text-primary-hard transition-colors"
@@ -19,7 +24,7 @@ const ShoppingCart = () => {
       <div className="relative ">
         <AddToCartIcon className="w-8 h-8" />
         <span className="absolute -top-1 right-0 bg-primary-hard  text-white rounded-full w-4.5 h-4.5 flex items-center justify-center text-[10px] font-medium">
-          {totalQuantity}
+          {cardItems.length}
         </span>
       </div>
       <div className="flex flex-col items-start">
