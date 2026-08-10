@@ -57,11 +57,13 @@ const ShoppingCartTable = () => {
                     />
                   </td>
                   <td>
-                    <QuantityInput 
-                      value={item.quantity}
-                      onIncrease={() => increaseQuantity(item.product.id)}
-                      onDecrease={() => decreaseQuantity(item.product.id)}
-                    />
+                    <div className="max-w-36!">
+                      <QuantityInput
+                        value={item.quantity}
+                        onIncrease={() => increaseQuantity(item.product.id)}
+                        onDecrease={() => decreaseQuantity(item.product.id)}
+                      />
+                    </div>
                   </td>
                   <td>
                     <span className={styles.subtotal}>
