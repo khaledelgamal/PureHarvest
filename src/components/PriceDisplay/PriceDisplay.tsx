@@ -9,6 +9,7 @@ type PriceDisplayProps = {
   oldPrice?: number;
   priceClassName?: string;
   oldPriceClassName?: string;
+  containerClassName?: string;
 };
 const PriceDisplay = ({
   price,
@@ -16,12 +17,13 @@ const PriceDisplay = ({
   oldPrice,
   priceClassName,
   oldPriceClassName,
+  containerClassName = '',
 }: PriceDisplayProps) => {
   const formatPrice = useFormatPrice();
   return (
-    <div className="flex gap-1">
+    <div className={classNames('flex gap-1', containerClassName)}>
       <span className={classNames(baseStyles, sizeStyles[size], priceStyles, priceClassName)}>
-        {formatPrice(price)}
+        {price === 0 ? 'Free' : formatPrice(price)}
       </span>
       {oldPrice && (
         <span

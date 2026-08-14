@@ -19,67 +19,58 @@ const ShoppingCartTable = () => {
       <table className={styles.shoppingCartTable}>
         <thead>
           <tr>
-            <th>PRODUCT</th>
-            <th>PRICE</th>
-            <th>QUANTITY</th>
-            <th>SUBTOTAL</th>
-            <th></th>
+            <th className={styles.thProduct}>PRODUCT</th>
+            <th className={styles.thPrice}>PRICE</th>
+            <th className={styles.thQuantity}>QUANTITY</th>
+            <th className={styles.thSubtotal}>SUBTOTAL</th>
+            <th className={styles.thAction}></th>
           </tr>
         </thead>
         <tbody>
           {items.length > 0 ? (
-            items.map((item, index) => (
-              <React.Fragment key={item.product.id}>
-                {index > 0 && (
-                  <tr key={`divider-${item.product.id}`}>
-                    <td colSpan={5}>
-                      <div className={styles.rowDivider}></div>
-                    </td>
-                  </tr>
-                )}
-                <tr>
-                  <td>
-                    <div className={styles.productCell}>
-                      {item.product.imageUrl && (
-                        <img
-                          src={item.product.imageUrl}
-                          className={styles.productImage}
-                          alt={item.product.name}
-                        />
-                      )}
-                      <p className={styles.productName}>{item.product.name}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <PriceDisplay
-                      price={item.product.salePrice ? item.product.salePrice : item.product.price}
-                      oldPrice={item.product.salePrice ? item.product.price : undefined}
+            items.map(item => (
+              <tr key={item.product.id}>
+                <td>
+                  <div className={styles.productCell}>
+                    {item.product.imageUrl && (
+                      <img
+                        src={item.product.imageUrl}
+                        className={styles.productImage}
+                        alt={item.product.name}
+                      />
+                    )}
+                    <p className={styles.productName}>{item.product.name}</p>
+                  </div>
+                </td>
+                <td>
+                  <PriceDisplay
+                    price={item.product.salePrice ? item.product.salePrice : item.product.price}
+                    oldPrice={item.product.salePrice ? item.product.price : undefined}
+                  />
+                </td>
+                <td>
+                  <div className="max-w-36">
+                    <QuantityInput
+                      value={item.quantity}
+                      onIncrease={() => increaseQuantity(item.product.id)}
+                      onDecrease={() => decreaseQuantity(item.product.id)}
                     />
-                  </td>
-                  <td>
-                    <div className="max-w-36!">
-                      <QuantityInput
-                        value={item.quantity}
-                        onIncrease={() => increaseQuantity(item.product.id)}
-                        onDecrease={() => decreaseQuantity(item.product.id)}
-                      />
-                    </div>
-                  </td>
-                  <td>
-                    <span className={styles.subtotal}>
-                      {formatPrice((item.product.salePrice || item.product.price) * item.quantity)}
-                    </span>
-                  </td>
-                  <td>
-                    <div className="flex flex-col items-end gap-2 flex-shrink-0">
-                      <DeleteButton
-                        title="Remove from Cart"
-                        onClick={() => removeItem(item.product)}
-                      />
-                    </div>
-                  </td>
-                </tr>
-              </React.Fragment>
+                  </div>
+                </td>
+                <td>
+                  <span className={styles.subtotal}>
+                    {formatPrice((item.product.salePrice || item.product.price) * item.quantity)}
+                  </span>
+                </td>
+                <td>
+                  <div className="flex justify-end">
+                    <DeleteButton
+                      title="Remove from Cart"
+                      onClick={() => removeItem(item.product)}
+                    />
+                  </div>
+                </td>
+              </tr>
             ))
           ) : (
             <tr>
