@@ -3,10 +3,17 @@ import { useMutation } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useNavigate } from 'react-router-dom';
+import { Country } from 'country-state-city';
 import useCartStore from '@/store/useCartStore';
 import useAuthStore from '@/store/useAuthStore';
 import { ordersAPI } from '@/services/supabase/orders/api';
 import { routePaths } from '@/router/routePaths';
+import { useProfile } from '@/hooks/useProfile';
+
+const allCountries = Country.getAllCountries();
+
+const getCountryIso = (countryName: string | null) =>
+  allCountries.find(c => c.name === countryName)?.isoCode ?? '';
 
 const checkoutSchema = z.object({
   firstName: z.string().nonempty('First name is required'),
@@ -20,7 +27,7 @@ const checkoutSchema = z.object({
   phone: z.string().nonempty('Phone number is required'),
   shipDifferentAddress: z.boolean(),
   orderNotes: z.string().optional(),
-  paymentMethod: z.enum(['cod', 'paypal', 'amazon']),
+  paymentMethod: z.enum(['cod', 'paypal', 'amazon_pay']),
 });
 
 export type CheckoutFormValues = z.infer<typeof checkoutSchema>;
@@ -29,23 +36,25 @@ export const useCheckoutForm = () => {
   const navigate = useNavigate();
   const { items, clearCart } = useCartStore();
   const user = useAuthStore(state => state.user);
+  const { data: profile } = useProfile();
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutSchema),
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      companyName: '',
-      address: '',
-      country: '',
-      state: '',
-      zipCode: '',
-      email: '',
-      phone: '',
+    values: {
+      firstName: profile?.billing?.firstName ?? '',
+      lastName: profile?.billing?.lastName ?? '',
+      companyName: profile?.billing?.companyName ?? '',
+      address: profile?.billing?.streetAddress ?? '',
+      country: getCountryIso(profile?.billing?.country ?? null),
+      state: profile?.billing?.state ?? '',
+      zipCode: profile?.billing?.zipCode ?? '',
+      email: profile?.billing?.email ?? '',
+      phone: profile?.billing?.phone ?? '',
       shipDifferentAddress: false,
       orderNotes: '',
       paymentMethod: 'cod',
@@ -64,6 +73,7 @@ export const useCheckoutForm = () => {
 
       const shippingCost = 0;
       const total = subtotal + shippingCost;
+      const countryName = Country.getCountryByCode(values.country)?.name ?? '';
 
       const payload = {
         userId: user.id,
@@ -76,7 +86,7 @@ export const useCheckoutForm = () => {
           firstName: values.firstName,
           lastName: values.lastName,
           address: values.address,
-          country: values.country,
+          country: countryName,
           state: values.state,
           zipCode: values.zipCode,
           email: values.email,
@@ -86,7 +96,7 @@ export const useCheckoutForm = () => {
           firstName: values.firstName,
           lastName: values.lastName,
           address: values.address,
-          country: values.country,
+          country: countryName,
           state: values.state,
           zipCode: values.zipCode,
           email: values.email,
@@ -128,6 +138,7 @@ export const useCheckoutForm = () => {
 
   return {
     register,
+    watch,
     errors,
     onSubmit,
     isPending: createOrderMutation.isPending,

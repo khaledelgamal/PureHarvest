@@ -69,7 +69,7 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ register, isPending
             </label>
           </div>
           <div className="flex items-center gap-2">
-            <RadioButtonInput id="amazonPay" value="amazon" {...register('paymentMethod')} />
+            <RadioButtonInput id="amazonPay" value="amazon_pay" {...register('paymentMethod')} />
             <label htmlFor="amazonPay" className="text-sm text-gray-700 cursor-pointer">
               Amazon Pay
             </label>

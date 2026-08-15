@@ -10,7 +10,14 @@ import { routePaths } from '@/router/routePaths';
 import { Button } from '@/components/Buttons/Button/Button';
 
 const CheckoutPage = () => {
-  const { register, errors, onSubmit, isPending, error } = useCheckoutForm();
+  const {
+    register,
+    watch,
+    errors,
+    onSubmit,
+    isPending,
+    error,
+  } = useCheckoutForm();
   const items = useCartStore(state => state.items);
 
   if (items.length === 0) {
@@ -32,7 +39,11 @@ const CheckoutPage = () => {
   return (
     <div className={classNames(sectionContainer, 'py-8')}>
       <form onSubmit={onSubmit} className="flex flex-col xl:flex-row gap-6">
-        <BillingInformation register={register} errors={errors} />
+        <BillingInformation
+          register={register}
+          watch={watch}
+          errors={errors}
+        />
         <OrderSummaryCard register={register} isPending={isPending} error={error} />
       </form>
     </div>

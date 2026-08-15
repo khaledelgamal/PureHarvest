@@ -1,16 +1,36 @@
 import React from 'react';
+import { Country, State } from 'country-state-city';
 import TextFieldInput from '@/components/Inputs/TextFieldInput/TextFieldInput';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 import CheckboxInput from '@/components/Inputs/CheckboxInput/CheckboxInput';
-import type { UseFormRegister, FieldErrors } from 'react-hook-form';
+import type { UseFormRegister, FieldErrors, UseFormWatch } from 'react-hook-form';
 import type { CheckoutFormValues } from '../hooks/useCheckoutForm';
 
 interface BillingInformationProps {
   register: UseFormRegister<CheckoutFormValues>;
   errors: FieldErrors<CheckoutFormValues>;
+  watch: UseFormWatch<CheckoutFormValues>;
 }
 
-const BillingInformation: React.FC<BillingInformationProps> = ({ register, errors }) => {
+const allCountries = Country.getAllCountries();
+const countryOptions = allCountries.map(c => ({
+  label: c.name,
+  value: c.isoCode,
+}));
+
+const BillingInformation: React.FC<BillingInformationProps> = ({
+  register,
+  errors,
+  watch,
+}) => {
+  const selectedCountryIso = watch('country');
+
+  const stateOptions = selectedCountryIso
+    ? State.getStatesOfCountry(selectedCountryIso).map(s => ({
+        label: s.name,
+        value: s.name,
+      }))
+    : [];
   return (
     <div className="flex flex-col gap-6 w-full">
       <h2 className="text-2xl font-medium text-gray-900">Billing Information</h2>
@@ -41,12 +61,8 @@ const BillingInformation: React.FC<BillingInformationProps> = ({ register, error
           <SelectInput
             {...register('country')}
             error={errors.country}
-            options={[
-              { label: 'United States', value: 'us' },
-              { label: 'Canada', value: 'ca' },
-              { label: 'United Kingdom', value: 'uk' },
-            ]}
-            placeholder="Select"
+            options={countryOptions}
+            placeholder="Select country..."
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -54,12 +70,15 @@ const BillingInformation: React.FC<BillingInformationProps> = ({ register, error
           <SelectInput
             {...register('state')}
             error={errors.state}
-            options={[
-              { label: 'California', value: 'ca' },
-              { label: 'New York', value: 'ny' },
-              { label: 'Texas', value: 'tx' },
-            ]}
-            placeholder="Selects"
+            options={stateOptions}
+            placeholder={
+              !selectedCountryIso
+                ? 'Select country first'
+                : stateOptions.length === 0
+                  ? 'No states available'
+                  : 'Select state...'
+            }
+            disabled={!selectedCountryIso || stateOptions.length === 0}
           />
         </div>
         <div className="flex flex-col gap-2">
