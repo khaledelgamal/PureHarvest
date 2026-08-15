@@ -1,21 +1,23 @@
 import { classNames } from '@/utils';
-import type { InputHTMLAttributes } from 'react';
+import { forwardRef, type InputHTMLAttributes } from 'react';
 import { baseStyles } from './styles';
 
 type RadioInputProps = Omit<
   React.DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-  'type'
+  'type' | 'ref'
 >;
 
-const RadioInput = (props: RadioInputProps) => {
+const RadioInput = forwardRef<HTMLInputElement, RadioInputProps>((props, ref) => {
   return (
     <input
       {...props}
+      ref={ref}
       aria-label={props['aria-label'] ?? 'radio'}
       type="radio"
       className={classNames(baseStyles, props.className)}
     />
   );
-};
+});
 
+RadioInput.displayName = 'RadioInput';
 export default RadioInput;

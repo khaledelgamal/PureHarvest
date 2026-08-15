@@ -23,7 +23,7 @@ const PriceDisplay = ({
   return (
     <div className={classNames('flex gap-1', containerClassName)}>
       <span className={classNames(baseStyles, sizeStyles[size], priceStyles, priceClassName)}>
-        {price === 0 ? 'Free' : formatPrice(price)}
+        {formatPrice(price)}
       </span>
       {oldPrice && (
         <span

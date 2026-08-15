@@ -17,6 +17,7 @@ type CartStore = {
   changeQuantity: (productId: string, quantity: number) => void;
   decreaseQuantity: (productId: string) => void;
   removeItem: (product: Product) => void;
+  clearCart: () => void;
 };
 
 const useCartStore = create<CartStore, [['zustand/persist', unknown]]>(
@@ -42,6 +43,7 @@ const useCartStore = create<CartStore, [['zustand/persist', unknown]]>(
         set(state => {
           return { items: state.items.filter(item => item.product.id !== product.id) };
         }),
+      clearCart: () => set({ items: [] }),
       increaseQuantity: (productId: string) =>
         set(state => {
           const existingItem = state.items.find(item => item.product.id === productId);

@@ -27,6 +27,7 @@ import ShopPage from '@/pages/ShopPage/ShopPage';
 import WishlistPage from '@/pages/WishlistPage/WishlistPage';
 import ItemDetailsPage from '@/pages/ItemDetailsPage/ItemDetailsPage';
 import ShoppingCartPage from '@/pages/ShoppingCartPage/ShoppingCartPage';
+import CheckoutPage from '@/pages/CheckoutPage/CheckoutPage';
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
 
@@ -78,7 +79,7 @@ const routes: RouteObject[] = [
               {
                 path: routePaths.SHOPPING_CART.CHECKOUT.pathName,
                 handle: { breadcrumb: 'Checkout' },
-                element: <div>Checkout</div>,
+                element: <CheckoutPage />,
               },
             ],
           },
