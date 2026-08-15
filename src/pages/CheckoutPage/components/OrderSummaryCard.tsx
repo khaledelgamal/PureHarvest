@@ -55,26 +55,26 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ register, isPending
 
       <div className="flex flex-col gap-4 mt-2">
         <h3 className="text-xl font-medium text-gray-900">Payment Method</h3>
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-2">
+        <ul className="flex flex-col gap-3">
+          <li className="flex items-center gap-2">
             <RadioButtonInput id="cashOnDelivery" value="cod" {...register('paymentMethod')} />
             <label htmlFor="cashOnDelivery" className="text-sm text-gray-700 cursor-pointer">
               Cash on Delivery
             </label>
-          </div>
-          <div className="flex items-center gap-2">
+          </li>
+          <li className="flex items-center gap-2">
             <RadioButtonInput id="paypal" value="paypal" {...register('paymentMethod')} />
             <label htmlFor="paypal" className="text-sm text-gray-700 cursor-pointer">
               Paypal
             </label>
-          </div>
-          <div className="flex items-center gap-2">
+          </li>
+          <li className="flex items-center gap-2">
             <RadioButtonInput id="amazonPay" value="amazon_pay" {...register('paymentMethod')} />
             <label htmlFor="amazonPay" className="text-sm text-gray-700 cursor-pointer">
               Amazon Pay
             </label>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
 
       {error && (
