@@ -1,6 +1,7 @@
 // import { useParams } from 'react-router-dom';
 import ProductImages from './components/ProductImages';
 import ProductMainInfo from './components/ProductMainInfo';
+import { ItemAdditionalInfoTabs } from './components/ItemAdditionalInfoTabs/ItemAdditionalInfoTabs';
 import { classNames } from '@/utils';
 import { sectionContainer, sectionPaddingY } from '@/constants/global.styles';
 
@@ -15,7 +16,7 @@ const ItemDetailsPage = () => {
 
       {/* Tabs Placeholder */}
       <div className="mt-16">
-        {/* We will implement ProductSpecifications here in the future */}
+        <ItemAdditionalInfoTabs />
       </div>
     </div>
   );
