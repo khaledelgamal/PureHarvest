@@ -58,6 +58,21 @@ export interface ProductsResponse {
   total: number;
 }
 
+export interface ProductReview {
+  id: string;
+  productId: string;
+  userId: string;
+  rating: number;
+  comment: string | null;
+  createdAt: string;
+  user?: {
+    id: string;
+    firstName: string | null;
+    lastName: string | null;
+    avatarUrl: string | null;
+  };
+}
+
 export interface ProductFilters {
   page?: number;
   limit?: number;

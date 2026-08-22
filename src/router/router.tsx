@@ -25,7 +25,7 @@ import BlogPage from '@/pages/BlogPage/BlogPage';
 import BlogDetailsPage from '@/pages/BlogDetailsPage/BlogDetailsPage';
 import ShopPage from '@/pages/ShopPage/ShopPage';
 import WishlistPage from '@/pages/WishlistPage/WishlistPage';
-import ItemDetailsPage from '@/pages/ItemDetailsPage/ItemDetailsPage';
+import ProductDetailsPage from '@/pages/ProductDetailsPage/ProductDetailsPage';
 import ShoppingCartPage from '@/pages/ShoppingCartPage/ShoppingCartPage';
 import CheckoutPage from '@/pages/CheckoutPage/CheckoutPage';
 // Lazy loaded pages
@@ -59,9 +59,9 @@ const routes: RouteObject[] = [
           {
             path: routePaths.SHOP.ITEM_DETAILS.pathName,
             handle: {
-              breadcrumb: (params: Record<string, string>) => params.itemId,
+              breadcrumb: (params: Record<string, string>) => params.id,
             },
-            element: <ItemDetailsPage />,
+            element: <ProductDetailsPage />,
           },
         ],
       },

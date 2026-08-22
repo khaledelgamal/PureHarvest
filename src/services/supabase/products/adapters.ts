@@ -85,3 +85,60 @@ export const mapSupabaseProductToProduct = (raw: SupabaseProduct): Product => ({
     slug: pt.tags.slug,
   })),
 });
+
+export interface SupabaseProductWithWishlist extends SupabaseProduct {
+  wishlists?: { user_id: string }[] | null;
+}
+
+export const mapSupabaseProductWithWishlistToProduct = (raw: SupabaseProductWithWishlist): Product => {
+  const product = mapSupabaseProductToProduct(raw);
+  if (raw.wishlists !== undefined) {
+    product.inWishlist = Array.isArray(raw.wishlists) && raw.wishlists.length > 0;
+  }
+  return product;
+};
+
+export interface SupabaseReview {
+  id: string;
+  product_id: string;
+  user_id: string;
+  rating: number;
+  comment: string | null;
+  created_at: string;
+  profiles?: {
+    id: string;
+    first_name: string | null;
+    last_name: string | null;
+    avatar_url: string | null;
+    billing_first_name?: string | null;
+    billing_last_name?: string | null;
+  } | {
+    id: string;
+    first_name: string | null;
+    last_name: string | null;
+    avatar_url: string | null;
+    billing_first_name?: string | null;
+    billing_last_name?: string | null;
+  }[] | null;
+}
+
+export const mapSupabaseReviewToProductReview = (raw: SupabaseReview): ProductReview => {
+  const profile = Array.isArray(raw.profiles) ? raw.profiles[0] : raw.profiles;
+  
+  return {
+    id: raw.id,
+    productId: raw.product_id,
+    userId: raw.user_id,
+    rating: raw.rating,
+    comment: raw.comment,
+    createdAt: raw.created_at,
+    user: profile
+      ? {
+          id: profile.id,
+          firstName: profile.first_name || profile.billing_first_name || null,
+          lastName: profile.last_name || profile.billing_last_name || null,
+          avatarUrl: profile.avatar_url,
+        }
+      : undefined,
+  };
+};

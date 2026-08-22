@@ -1,6 +1,6 @@
 import { supabase } from '../client';
-import { mapSupabaseProductToProduct } from './adapters';
-import type { Product, ProductsResponse, ProductFilters } from './types';
+import { mapSupabaseProductToProduct, mapSupabaseProductWithWishlistToProduct, mapSupabaseReviewToProductReview, type SupabaseProductWithWishlist, type SupabaseReview } from './adapters';
+import type { Product, ProductsResponse, ProductFilters, ProductReview } from './types';
 import type { ServiceResponse } from '../types';
 
 const DEFAULT_LIMIT = 12;
@@ -64,12 +64,8 @@ export const productsAPI = {
 
     if (error) return { data: null, error: { message: error.message } };
     
-    const products = data.map((item: any) => {
-      const p = mapSupabaseProductToProduct(item);
-      if (filters.userId) {
-        p.inWishlist = Array.isArray(item.wishlists) && item.wishlists.length > 0;
-      }
-      return p;
+    const products = data.map((item: unknown) => {
+      return mapSupabaseProductWithWishlistToProduct(item as SupabaseProductWithWishlist);
     });
 
     return {
@@ -81,8 +77,8 @@ export const productsAPI = {
     };
   },
 
-  // Get single product by slug
-  getProductBySlug: async (slug: string, userId?: string): Promise<ServiceResponse<Product>> => {
+  // Get single product by id
+  getProductById: async (id: string, userId?: string): Promise<ServiceResponse<Product>> => {
     let query = supabase
       .from('products')
       .select(
@@ -95,7 +91,7 @@ export const productsAPI = {
         ${userId ? ', wishlists (user_id)' : ''}
       `,
       )
-      .eq('slug', slug);
+      .eq('id', id);
 
     if (userId) {
       query = query.eq('wishlists.user_id', userId);
@@ -105,11 +101,7 @@ export const productsAPI = {
 
     if (error) return { data: null, error: { message: error.message } };
     
-    const product = mapSupabaseProductToProduct(data);
-
-    if (userId) {
-      product.inWishlist = Array.isArray((data as any).wishlists) && (data as any).wishlists.length > 0;
-    }
+    const product = mapSupabaseProductWithWishlistToProduct(data as unknown as SupabaseProductWithWishlist);
 
     return { data: product, error: null };
   },
@@ -165,5 +157,46 @@ export const productsAPI = {
 
     if (error) return { data: null, error: { message: error.message } };
     return { data: data.map(mapSupabaseProductToProduct), error: null };
+  },
+
+  // Get product reviews
+  getProductReviews: async (
+    productId: string,
+    page: number = 1,
+    limit: number = 5,
+  ): Promise<ServiceResponse<{ reviews: ProductReview[]; total: number }>> => {
+    const from = (page - 1) * limit;
+    const to = from + limit - 1;
+
+    const { data, error, count } = await supabase
+      .from('reviews')
+      .select(
+        `
+        id,
+        product_id,
+        user_id,
+        rating,
+        comment,
+        created_at,
+        profiles (
+          id,
+          first_name,
+          last_name,
+          avatar_url,
+          billing_first_name,
+          billing_last_name
+        )
+      `,
+        { count: 'exact' },
+      )
+      .eq('product_id', productId)
+      .order('created_at', { ascending: false })
+      .range(from, to);
+
+    if (error) return { data: null, error: { message: error.message } };
+
+    const reviews = data.map((item: unknown) => mapSupabaseReviewToProductReview(item as SupabaseReview));
+
+    return { data: { reviews, total: count ?? 0 }, error: null };
   },
 };

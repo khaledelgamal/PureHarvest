@@ -2,14 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { classNames } from '@/utils';
-
-const dummyImages = [
-  'https://images.unsplash.com/photo-1611105637889-3afd7295bdbf?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?auto=format&fit=crop&w=800&q=80',
-];
+import type { Product } from '@/services/supabase/products/types';
 
 const Magnifier = ({ src }: { src: string }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -24,7 +17,7 @@ const Magnifier = ({ src }: { src: string }) => {
 
   return (
     <div
-      className="relative w-full aspect-square  rounded-lg overflow-hidden cursor-zoom-in flex items-center justify-center"
+      className="relative w-full aspect-square rounded-lg overflow-hidden cursor-zoom-in flex items-center justify-center"
       onMouseEnter={() => setShowMagnifier(true)}
       onMouseLeave={() => setShowMagnifier(false)}
       onMouseMove={handleMouseMove}
@@ -52,7 +45,11 @@ const Magnifier = ({ src }: { src: string }) => {
   );
 };
 
-export const ProductImages = () => {
+export const ProductImages = ({ product }: { product: Product }) => {
+  const images = (product.images && product.images.length > 0)
+    ? [...product.images].sort((a, b) => a.sortOrder - b.sortOrder).map(i => i.imageUrl)
+    : ['https://placehold.co/800x800/eee/ccc?text=No+Image'];
+
   const [activeImage, setActiveImage] = useState(0);
   const [, forceRender] = useReducer(x => x + 1, 0);
 
@@ -92,7 +89,7 @@ export const ProductImages = () => {
 
         <div className="overflow-hidden h-full w-full md:w-24 flex-1" ref={emblaRef}>
           <div className="flex md:flex-col gap-3 h-full">
-            {dummyImages.map((src, index) => (
+            {images.map((src, index) => (
               <div
                 key={index}
                 className={classNames(
@@ -106,7 +103,7 @@ export const ProductImages = () => {
                   emblaApi?.scrollTo(index);
                 }}
               >
-                <img src={src} alt={`Thumbnail ${index}`} className="w-full h-full object-cover" />
+                <img src={src} alt={`${product.name} thumbnail ${index + 1}`} className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
@@ -125,7 +122,7 @@ export const ProductImages = () => {
 
       {/* Main Image */}
       <div className="flex-1">
-        <Magnifier src={dummyImages[activeImage]} />
+        <Magnifier src={images[activeImage]} />
       </div>
     </div>
   );
