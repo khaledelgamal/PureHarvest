@@ -28,6 +28,9 @@ import WishlistPage from '@/pages/WishlistPage/WishlistPage';
 import ProductDetailsPage from '@/pages/ProductDetailsPage/ProductDetailsPage';
 import ShoppingCartPage from '@/pages/ShoppingCartPage/ShoppingCartPage';
 import CheckoutPage from '@/pages/CheckoutPage/CheckoutPage';
+import { ProductName } from '@/layouts/AppLayout/components/BreadCrumb/components/ProductName';
+import { OrderNumber } from '@/layouts/AppLayout/components/BreadCrumb/components/OrderNumber';
+import { BlogTitle } from '@/layouts/AppLayout/components/BreadCrumb/components/BlogTitle';
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
 
@@ -59,7 +62,7 @@ const routes: RouteObject[] = [
           {
             path: routePaths.SHOP.ITEM_DETAILS.pathName,
             handle: {
-              breadcrumb: (params: Record<string, string>) => params.id,
+              breadcrumb: (params: Record<string, string>) => <ProductName id={params.id} />,
             },
             element: <ProductDetailsPage />,
           },
@@ -101,7 +104,7 @@ const routes: RouteObject[] = [
           {
             path: routePaths.BLOGS.BLOG_DETAILS.pathName,
             handle: {
-              breadcrumb: (params: Record<string, string>) => params.blogId,
+              breadcrumb: (params: Record<string, string>) => <BlogTitle blogId={params.blogId} />,
             },
             element: <BlogDetailsPage />,
           },
@@ -176,7 +179,9 @@ const routes: RouteObject[] = [
                   {
                     path: routePaths.ACCOUNT.ORDER_HISTORY.ORDER_DETAILS.pathName,
                     handle: {
-                      breadcrumb: (params: Record<string, string>) => `Order #${params.orderId}`,
+                      breadcrumb: (params: Record<string, string>) => (
+                        <OrderNumber orderId={params.orderId} />
+                      ),
                     },
                     element: <OrderDetailsPage />,
                   },
