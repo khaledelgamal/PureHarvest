@@ -1,12 +1,15 @@
 import Star from '@/pages/ShopPage/components/Star/Star';
 import type { Product } from '@/services/supabase/products/types';
 import { classNames } from '@/utils';
+import { useTranslation } from 'react-i18next';
 
 interface ProductHeaderProps {
   product: Product;
 }
 
 export const ProductHeader = ({ product }: ProductHeaderProps) => {
+  const { t } = useTranslation('pages/ProductDetailsPage');
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center gap-4">
@@ -19,7 +22,9 @@ export const ProductHeader = ({ product }: ProductHeaderProps) => {
               : 'bg-danger/10 text-danger',
           )}
         >
-          {product.stockStatus === 'in_stock' ? 'In Stock' : 'Out of Stock'}
+          {product.stockStatus === 'in_stock'
+            ? t('inStock', 'In Stock')
+            : t('outOfStock', 'Out of Stock')}
         </span>
       </div>
 
@@ -34,12 +39,17 @@ export const ProductHeader = ({ product }: ProductHeaderProps) => {
             ))}
           </div>
           <span className="text-gray-900 font-medium">
-            {product.ratingCount || 0} Review{product.ratingCount !== 1 ? 's' : ''}
+            {product.ratingCount === 1
+              ? t('review', '{{count}} Review', { count: product.ratingCount })
+              : t('reviews', '{{count}} Reviews', { count: product.ratingCount || 0 })}
           </span>
         </div>
         <span>•</span>
         <span>
-          SKU: <span className="text-gray-900 font-medium">{product.sku || 'N/A'}</span>
+          {t('sku', 'SKU:')}{' '}
+          <span className="text-gray-900 font-medium">
+            {product.sku || t('na', 'N/A')}
+          </span>
         </span>
       </div>
     </div>

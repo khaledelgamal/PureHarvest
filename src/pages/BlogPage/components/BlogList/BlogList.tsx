@@ -25,12 +25,12 @@ export const BlogList = ({
   onFilterChange,
   onPageChange,
 }: BlogListProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/BlogPage');
 
   const sortOptions = [
-    { label: t('blog.sort.latest', 'Latest'), value: 'published_at' },
-    { label: t('blog.sort.oldest', 'Oldest'), value: 'created_at' },
-    { label: t('blog.sort.title', 'Title (A-Z)'), value: 'title' },
+    { label: t('sortLatest', 'Latest'), value: 'published_at' },
+    { label: t('sortOldest', 'Oldest'), value: 'created_at' },
+    { label: t('sortTitle', 'Title (A-Z)'), value: 'title' },
   ];
 
   return (
@@ -39,7 +39,7 @@ export const BlogList = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="text-gray-600 text-sm">{t('blog.sortBy', 'Sort by:')}</span>
+          <span className="text-gray-600 text-sm">{t('sortBy', 'Sort by:')}</span>
           <div className="w-[180px]">
             <SelectInput
               options={sortOptions}
@@ -52,7 +52,7 @@ export const BlogList = ({
         
         <div className="text-sm">
           <span className="font-semibold text-gray-900">{totalPosts}</span>
-          <span className="text-gray-500 ml-1">{t('blog.resultsFound', 'Results Found')}</span>
+          <span className="text-gray-500 ml-1">{t('resultsFound', 'Results Found')}</span>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ export const BlogList = ({
             ))}
             {posts.length === 0 && (
               <div className="col-span-full py-12 flex flex-col items-center justify-center text-gray-500">
-                <p>No posts found matching your filters.</p>
+                <p>{t('noPostsFound', 'No posts found matching your filters.')}</p>
               </div>
             )}
           </>

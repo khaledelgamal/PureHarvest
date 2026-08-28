@@ -7,8 +7,10 @@ import useCartStore from '@/store/useCartStore';
 import { Link } from 'react-router-dom';
 import { routePaths } from '@/router/routePaths';
 import { Button } from '@/components/Buttons/Button/Button';
+import { useTranslation } from 'react-i18next';
 
 const CheckoutPage = () => {
+  const { t } = useTranslation('pages/CheckoutPage');
   const { register, watch, errors, onSubmit, isPending, error } = useCheckoutForm();
   const items = useCartStore(state => state.items);
 
@@ -20,9 +22,9 @@ const CheckoutPage = () => {
           'py-16 flex flex-col items-center justify-center min-h-[50vh]',
         )}
       >
-        <h2 className="text-2xl font-medium text-gray-900 mb-6">No added items</h2>
+        <h2 className="text-2xl font-medium text-gray-900 mb-6">{t('noAddedItems', 'No added items')}</h2>
         <Link to={routePaths.SHOP.ROOT}>
-          <Button size="lg">Go To Shop</Button>
+          <Button size="lg">{t('goToShop', 'Go To Shop')}</Button>
         </Link>
       </div>
     );

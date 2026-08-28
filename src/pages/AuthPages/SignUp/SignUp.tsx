@@ -33,10 +33,8 @@ const signUpSchema = z
 
 type SignUpFormValues = z.infer<typeof signUpSchema>;
 
-const tRoute = 'pages.AuthPages.SignUp';
-
 const SignUp = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/AuthPages');
 
   const {
     mutate: signUp,
@@ -68,11 +66,11 @@ const SignUp = () => {
   if (confirmedEmail) {
     return (
       <div className="py-[80px] flex-center">
-        <AuthLayout title={t(`${tRoute}.checkEmail`, 'Check Your Email')}>
+        <AuthLayout title={t('checkEmail', 'Check Your Email')}>
           <div className="flex flex-col items-center gap-4 text-center">
             <p className="text-sm text-gray-600">
               {t(
-                `${tRoute}.confirmationSent`,
+                'confirmationSent',
                 "We've sent a confirmation link to {{email}}. Please activate your account then login.",
                 { email: confirmedEmail },
               )}
@@ -81,7 +79,7 @@ const SignUp = () => {
               to={routePaths.ACCOUNT.SIGNIN}
               className="text-sm font-medium text-gray-900 hover:underline"
             >
-              {t(`${tRoute}.backToLogin`, 'Back to Login')}
+              {t('backToLogin', 'Back to Login')}
             </Link>
           </div>
         </AuthLayout>
@@ -91,7 +89,7 @@ const SignUp = () => {
 
   return (
     <div className="py-[80px] flex-center">
-      <AuthLayout title={t(`${tRoute}.title`, 'Create Account')}>
+      <AuthLayout title={t('title', 'Create Account')}>
         <form onSubmit={handleSubmit(data => signUp(data))} className="flex flex-col gap-4">
           {serverError && (
             <p className="rounded-md bg-red-50 p-3 text-center text-sm text-red-600">
@@ -100,20 +98,20 @@ const SignUp = () => {
           )}
 
           <TextFieldInput
-            placeholder={t(`${tRoute}.emailPlaceholder`, 'Email')}
+            placeholder={t('emailPlaceholder', 'Email')}
             type="email"
             error={errors.email}
             {...register('email')}
           />
 
           <PasswordFieldInput
-            placeholder={t(`${tRoute}.passwordPlaceholder`, 'Password')}
+            placeholder={t('passwordPlaceholder', 'Password')}
             error={errors.password}
             {...register('password')}
           />
 
           <PasswordFieldInput
-            placeholder={t(`${tRoute}.confirmPasswordPlaceholder`, 'Confirm Password')}
+            placeholder={t('confirmPasswordPlaceholder', 'Confirm Password')}
             error={errors.confirmPassword}
             {...register('confirmPassword')}
           />
@@ -121,10 +119,10 @@ const SignUp = () => {
           <div>
             <label className="flex items-center gap-2 text-sm text-gray-600">
               <CheckboxInput
-                aria-label={t(`${tRoute}.acceptTermsAriaLabel`, 'Accept terms and conditions')}
+                aria-label={t('acceptTermsAriaLabel', 'Accept terms and conditions')}
                 {...register('acceptTerms')}
               />
-              {t(`${tRoute}.acceptTermsLabel`, 'Accept all terms & Conditions')}
+              {t('acceptTermsLabel', 'Accept all terms & Conditions')}
             </label>
             {errors.acceptTerms && (
               <p className="mt-1 text-xs text-red-500">{errors.acceptTerms.message}</p>
@@ -133,18 +131,18 @@ const SignUp = () => {
 
           <Button disabled={isPending} variant="fill" type="submit" size="lg">
             {isPending
-              ? t(`${tRoute}.creatingAccount`, 'Creating account...')
-              : t(`${tRoute}.createAccount`, 'Create Account')}
+              ? t('creatingAccount', 'Creating account...')
+              : t('createAccount', 'Create Account')}
           </Button>
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          {t(`${tRoute}.alreadyHaveAccount`, 'Already have an account?')}{' '}
+          {t('alreadyHaveAccount', 'Already have an account?')}{' '}
           <Link
             to={routePaths.ACCOUNT.SIGNIN}
             className="font-medium text-gray-900 hover:underline"
           >
-            {t(`${tRoute}.login`, 'Login')}
+            {t('login', 'Login')}
           </Link>
         </p>
       </AuthLayout>

@@ -5,10 +5,12 @@ import type { Profile } from '@/services/supabase/profiles/types';
 import { useBillingAddress } from './hooks/useBillingAddress';
 import FormField from '../FormFIeld/FormField';
 import { SettingsSectionLayout } from '../../layouts/SettingsSectionLayout/SettingsSectionLayout';
+import { useTranslation } from 'react-i18next';
 
 type Props = { profile: Profile | undefined };
 
 export const BillingAddressSection = ({ profile }: Props) => {
+  const { t } = useTranslation('pages/AccountPages/SettingsPage');
   const {
     register,
     handleSubmit,
@@ -21,69 +23,72 @@ export const BillingAddressSection = ({ profile }: Props) => {
   } = useBillingAddress(profile);
 
   return (
-    <SettingsSectionLayout title="Billing Address">
+    <SettingsSectionLayout title={t('billingAddress', 'Billing Address')}>
       <form onSubmit={handleSubmit(values => updateBilling(values))} className="space-y-4">
         {/* Row 1: First + Last + Company */}
         <div className="grid grid-cols-3 gap-4">
-          <FormField label="First name">
+          <FormField label={t('firstName', 'First name')}>
             <TextFieldInput
               {...register('firstName')}
-              placeholder="First name"
+              placeholder={t('firstName', 'First name')}
               error={errors.firstName}
             />
           </FormField>
-          <FormField label="Last name">
+          <FormField label={t('lastName', 'Last Name')}>
             <TextFieldInput
               {...register('lastName')}
-              placeholder="Last name"
+              placeholder={t('lastName', 'Last Name')}
               error={errors.lastName}
             />
           </FormField>
-          <FormField label="Company Name" optional>
-            <TextFieldInput {...register('companyName')} placeholder="Company name" />
+          <FormField label={t('companyName', 'Company Name')} optional>
+            <TextFieldInput
+              {...register('companyName')}
+              placeholder={t('companyNamePlaceholder', 'Company name')}
+            />
           </FormField>
         </div>
 
         {/* Row 2: Street Address */}
-        <FormField label="Street Address">
+        <FormField label={t('streetAddress', 'Street Address')}>
           <TextFieldInput
             {...register('streetAddress')}
-            placeholder="Street address"
+            placeholder={t('streetAddressPlaceholder', 'Street address')}
             error={errors.streetAddress}
           />
         </FormField>
 
         {/* Row 3: Country + State + Zip */}
         <div className="grid grid-cols-3 gap-4">
-          <FormField label="Country / Region">
+          <FormField label={t('countryRegion', 'Country / Region')}>
             <SelectInput
               {...register('country')}
               options={countryOptions}
-              placeholder="Select country..."
+              placeholder={t('selectCountry', 'Select country...')}
               error={errors.country}
             />
           </FormField>
 
-          <FormField label="State">
+          <FormField label={t('state', 'State')}>
             <SelectInput
               {...register('state')}
               options={stateOptions}
               placeholder={
                 !selectedCountryIso
-                  ? 'Select country first'
+                  ? t('selectCountryFirst', 'Select country first')
                   : stateOptions.length === 0
-                    ? 'No states available'
-                    : 'Select state...'
+                    ? t('noStatesAvailable', 'No states available')
+                    : t('selectState', 'Select state...')
               }
               disabled={!selectedCountryIso || stateOptions.length === 0}
               error={errors.state}
             />
           </FormField>
 
-          <FormField label="Zip Code">
+          <FormField label={t('zipCode', 'Zip Code')}>
             <TextFieldInput
               {...register('zipCode')}
-              placeholder="Zip code"
+              placeholder={t('zipCodePlaceholder', 'Zip code')}
               error={errors.zipCode}
             />
           </FormField>
@@ -91,21 +96,25 @@ export const BillingAddressSection = ({ profile }: Props) => {
 
         {/* Row 4: Email + Phone */}
         <div className="grid grid-cols-2 gap-4">
-          <FormField label="Email">
+          <FormField label={t('email', 'Email')}>
             <TextFieldInput
               {...register('email')}
-              placeholder="email@example.com"
+              placeholder={t('emailPlaceholder', 'email@example.com')}
               type="email"
               error={errors.email}
             />
           </FormField>
-          <FormField label="Phone">
-            <TextFieldInput {...register('phone')} placeholder="(xxx) xxx-xxxx" type="tel" />
+          <FormField label={t('phone', 'Phone')}>
+            <TextFieldInput
+              {...register('phone')}
+              placeholder={t('phonePlaceholder', '(xxx) xxx-xxxx')}
+              type="tel"
+            />
           </FormField>
         </div>
 
         <Button type="submit" variant="fill" size="md" disabled={isPending || !isDirty}>
-          {isPending ? 'Saving...' : 'Save Changes'}
+          {isPending ? t('saving', 'Saving...') : t('saveChanges', 'Save Changes')}
         </Button>
       </form>
     </SettingsSectionLayout>

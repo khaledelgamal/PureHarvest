@@ -6,8 +6,10 @@ import { classNames } from '@/utils';
 import { sectionContainer, sectionPaddingY } from '@/constants/global.styles';
 import { useProductDetails } from './hooks/useProductDetails';
 import { ProductDetailsPageSkeleton } from './components/ProductDetailsPageSkeleton/ProductDetailsPageSkeleton';
+import { useTranslation } from 'react-i18next';
 
 const ProductDetailsPage = () => {
+  const { t } = useTranslation('pages/ProductDetailsPage');
   const { id } = useParams<{ id: string }>();
 
   const { data: product, isLoading, error } = useProductDetails(id || '');
@@ -19,7 +21,7 @@ const ProductDetailsPage = () => {
   if (error || !product) {
     return (
       <div className="w-full min-h-[500px] flex items-center justify-center">
-        <p className="text-gray-500">Product not found.</p>
+        <p className="text-gray-500">{t('productNotFound', 'Product not found.')}</p>
       </div>
     );
   }

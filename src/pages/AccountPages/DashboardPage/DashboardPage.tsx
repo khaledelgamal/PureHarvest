@@ -8,8 +8,10 @@ import { routePaths } from '@/router/routePaths';
 import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
 import { OrdersTable } from '../components/OrdersTable/OrdersTable';
 import { AddressCard } from './components/AddressCard/AddressCard';
+import { useTranslation } from 'react-i18next';
 
 export default function DashboardPage() {
+  const { t } = useTranslation('pages/AccountPages/DashboardPage');
   const user = useAuthStore(s => s.user);
 
   const { data: profile, isLoading: profileLoading } = useQuery({
@@ -70,11 +72,11 @@ export default function DashboardPage() {
                 fullName || 'Your Name'
               )}
             </h3>
-            <p className="text-gray-500 text-sm mt-1">Customer</p>
+            <p className="text-gray-500 text-sm mt-1">{t('customer', 'Customer')}</p>
           </div>
 
           <ButtonLink to={routePaths.ACCOUNT.SETTINGS.path} variant="text" size="md">
-            Edit Profile
+            {t('editProfile', 'Edit Profile')}
           </ButtonLink>
         </div>
 
@@ -89,12 +91,15 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="flex-1">
-              <AddressCard title="Billing Address" address={profile?.billing ?? {}} />
+              <AddressCard
+                title={t('billingAddress', 'Billing Address')}
+                address={profile?.billing ?? {}}
+              />
             </div>
           )}
 
           <ButtonLink to={routePaths.ACCOUNT.SETTINGS.path} variant="text" size="md">
-            Edit Address
+            {t('editAddress', 'Edit Address')}
           </ButtonLink>
         </div>
       </div>
@@ -102,9 +107,9 @@ export default function DashboardPage() {
       {/* ── Recent Orders ── */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-          <h3 className="font-semibold text-gray-900">Recent Order History</h3>
+          <h3 className="font-semibold text-gray-900">{t('recentOrderHistory', 'Recent Order History')}</h3>
           <ButtonLink to={routePaths.ACCOUNT.ORDER_HISTORY.path} variant="text" size="md">
-            View All
+            {t('viewAll', 'View All')}
           </ButtonLink>
         </div>
 
@@ -112,7 +117,7 @@ export default function DashboardPage() {
           orders={recentOrders}
           isLoading={ordersLoading}
           skeletonRows={5}
-          emptyMessage="No orders yet."
+          emptyMessage={t('noOrdersYet', 'No orders yet.')}
           monthFormat="short"
           actionSize="md"
           className="h-auto!"

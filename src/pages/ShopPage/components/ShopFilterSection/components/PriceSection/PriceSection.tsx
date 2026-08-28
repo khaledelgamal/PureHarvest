@@ -2,6 +2,7 @@ import { ChevronDown } from 'lucide-react';
 import { classNames } from '@/utils';
 import RangeInput from '@/components/Inputs/RangeInput/RangeInput';
 import { usePriceSection } from './hooks/usePriceSection';
+import { useTranslation } from 'react-i18next';
 
 interface PriceSectionProps {
   initialMinPrice?: number;
@@ -14,6 +15,7 @@ export const PriceSection = ({
   initialMaxPrice = 50,
   onPriceChange,
 }: PriceSectionProps) => {
+  const { t } = useTranslation('pages/ShopPage');
   const { isVisible, toggleVisibility, localMinPrice, localMaxPrice, handlePriceChange } =
     usePriceSection(initialMinPrice, initialMaxPrice, onPriceChange);
 
@@ -23,7 +25,7 @@ export const PriceSection = ({
         className="w-full flex justify-between cursor-pointer border-t border-gray-100 py-5"
         onClick={toggleVisibility}
       >
-        <h4 className="text-xl font-medium text-gray-900">Price</h4>
+        <h4 className="text-xl font-medium text-gray-900">{t('price', 'Price')}</h4>
         <ChevronDown
           width={25}
           height={25}
@@ -45,7 +47,7 @@ export const PriceSection = ({
           onChange={handlePriceChange}
         />
         <p className="mt-4 text-sm text-gray-700">
-          Price: <span className="font-medium">${localMinPrice.toFixed(2)}</span> -{' '}
+          {t('priceLabel', 'Price:')} <span className="font-medium">${localMinPrice.toFixed(2)}</span> -{' '}
           <span className="font-medium">${localMaxPrice.toFixed(2)}</span>
         </p>
       </div>

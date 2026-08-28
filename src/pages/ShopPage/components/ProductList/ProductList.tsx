@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 import { ProductCard, ProductCardSkeleton } from './components/ProductCard/ProductCard';
 import type { Product } from '@/services/supabase/products/types';
+import { useTranslation } from 'react-i18next';
 
 interface ProductListProps {
   products: Product[];
@@ -15,15 +16,6 @@ interface ProductListProps {
   onSortChange: (value: string) => void;
 }
 
-const sortOptions = [
-  { label: 'Latest', value: 'created_at-desc' },
-  { label: 'Oldest', value: 'created_at-asc' },
-  { label: 'Price: Low to High', value: 'price-asc' },
-  { label: 'Price: High to Low', value: 'price-desc' },
-  { label: 'Top Rated', value: 'rating_avg-desc' },
-  { label: 'Name (A-Z)', value: 'name-asc' },
-];
-
 export const ProductList = ({
   products,
   totalProducts,
@@ -35,7 +27,17 @@ export const ProductList = ({
   onPageChange,
   onSortChange,
 }: ProductListProps) => {
+  const { t } = useTranslation('pages/ShopPage');
   const currentSort = `${sortBy}-${sortOrder}`;
+
+  const sortOptions = [
+    { label: t('sortLatest', 'Latest'), value: 'created_at-desc' },
+    { label: t('sortOldest', 'Oldest'), value: 'created_at-asc' },
+    { label: t('sortPriceLowHigh', 'Price: Low to High'), value: 'price-asc' },
+    { label: t('sortPriceHighLow', 'Price: High to Low'), value: 'price-desc' },
+    { label: t('sortTopRated', 'Top Rated'), value: 'rating_avg-desc' },
+    { label: t('sortNameAZ', 'Name (A-Z)'), value: 'name-asc' },
+  ];
 
   const handleSortChange = async (value: string) => {
     onSortChange(value);
@@ -46,7 +48,7 @@ export const ProductList = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="text-gray-600 text-sm">Sort by:</span>
+          <span className="text-gray-600 text-sm">{t('sortBy', 'Sort by:')}</span>
           <div className="w-[200px]">
             <SelectInput
               options={sortOptions}
@@ -59,7 +61,7 @@ export const ProductList = ({
 
         <div className="text-sm">
           <span className="font-semibold text-gray-900">{totalProducts}</span>
-          <span className="text-gray-500 ml-1">Results Found</span>
+          <span className="text-gray-500 ml-1">{t('resultsFound', 'Results Found')}</span>
         </div>
       </div>
 
@@ -78,7 +80,7 @@ export const ProductList = ({
             ))}
             {products.length === 0 && (
               <div className="col-span-full py-16 flex flex-col items-center justify-center text-gray-500">
-                <p>No products found matching your filters.</p>
+                <p>{t('noProductsFound', 'No products found matching your filters.')}</p>
               </div>
             )}
           </>

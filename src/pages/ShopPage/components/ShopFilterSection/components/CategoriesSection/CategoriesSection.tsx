@@ -2,6 +2,7 @@ import { ChevronDown } from 'lucide-react';
 import { classNames } from '@/utils';
 import RadioButtonInput from '@/components/Inputs/RadioButtonInput/RadioButtonInput';
 import { useCategoriesSection } from './hooks/useCategoriesSection';
+import { useTranslation } from 'react-i18next';
 
 interface CategoriesSectionProps {
   categories: { id: string; name: string; slug: string; count: number }[];
@@ -16,6 +17,7 @@ export const CategoriesSection = ({
   isLoading,
   onCategoryChange,
 }: CategoriesSectionProps) => {
+  const { t } = useTranslation('pages/ShopPage');
   const { isVisible, toggleVisibility, handleCategoryChange, handleClearCategory } =
     useCategoriesSection(currentCategory, onCategoryChange);
 
@@ -24,7 +26,7 @@ export const CategoriesSection = ({
   return (
     <div className="flex flex-col gap-4">
       <div className="w-full flex justify-between cursor-pointer" onClick={toggleVisibility}>
-        <h4 className="text-xl font-medium text-gray-900">All Categories</h4>
+        <h4 className="text-xl font-medium text-gray-900">{t('allCategories', 'All Categories')}</h4>
         <ChevronDown
           width={25}
           height={25}
@@ -50,7 +52,7 @@ export const CategoriesSection = ({
               <label className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer">
                 <RadioButtonInput onChange={handleClearCategory} checked={currentCategory === ''} />
                 <p>
-                  <span className="text-gray-900">All </span>({totalCount})
+                  <span className="text-gray-900">{t('all', 'All')} </span>({totalCount})
                 </p>
               </label>
             </li>

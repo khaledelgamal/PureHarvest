@@ -1,0 +1,13 @@
+{
+  "filterBtn": "Filter",
+  "searchPlaceholder": "Search...",
+  "topCategories": "Top Categories",
+  "popularTag": "Popular Tag",
+  "recentlyAdded": "Recently Added",
+  "sortBy": "Sort by:",
+  "resultsFound": "Results Found",
+  "noPostsFound": "No posts found matching your filters.",
+  "sortLatest": "Latest",
+  "sortOldest": "Oldest",
+  "sortTitle": "Title (A-Z)"
+}

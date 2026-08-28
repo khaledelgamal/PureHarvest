@@ -3,8 +3,6 @@ import type { Comment } from './components/CommentCard/types';
 import CommentCard from './components/CommentCard/CommentCard';
 import { sectionContainer } from '@/constants/global.styles';
 
-const tRoute = 'pages.Home.components.Testimonials';
-
 const Testimonials = () => {
   const comments: Comment[] = [
     {
@@ -29,13 +27,13 @@ const Testimonials = () => {
         'Nam sed odio diam. Mauris sagittis sapien sed convallis cursus. Proin mattis ultrices urna ac eleifend. Cras vel nisi nec lectus sagittis venenatis. Curabitur laoreet leo sed lorem pulvina',
     },
   ];
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/Home');
 
   return (
     <section className="bg-green-gray-50  py-[100px] overflow-hidden relative">
       <div className={`${sectionContainer} flex flex-col gap-11 justify-center items-center`}>
         <h3 className="text-[40px] font-semibold">
-          {t(`${tRoute}.title`, 'What our Clients Says')}
+          {t('testimonialsTitle', 'What our Clients Says')}
         </h3>
         <div className="flex gap-6">
           {comments.map(comment => {

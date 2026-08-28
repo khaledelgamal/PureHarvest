@@ -5,8 +5,10 @@ import CartItem from './components/CartItem/CartItem';
 import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
 import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
 import { routePaths } from '@/router/routePaths';
+import { useTranslation } from 'react-i18next';
 
 export default function ShoppingCartDrawer() {
+  const { t } = useTranslation('layouts/AppLayout');
   const isShoppingCartDrawerOpen = useCartStore(state => state.isShoppingCartDrawerOpen);
   const cardItems = useCartStore(state => state.items);
   const setIsShoppingCartDrawerOpen = useCartStore(state => state.setIsShoppingCartDrawerOpen);
@@ -45,14 +47,16 @@ export default function ShoppingCartDrawer() {
         }`}
       >
         <div className="flex justify-between items-center pb-4 mb-4">
-          <h2 className="text-xl font-medium">Shopping Cart ({cardItems.length})</h2>
+          <h2 className="text-xl font-medium">
+            {t('shoppingCartWithCount', 'Shopping Cart ({{count}})', { count: cardItems.length })}
+          </h2>
           <CloseButton onClick={() => setIsShoppingCartDrawerOpen(false)} />
         </div>
         <div className="overflow-y-auto flex-1">
           {/* Cart items */}
           <div className="flex flex-col items-center justify-start h-full text-gray-500">
             {cardItems.length === 0 ? (
-              <p>Your cart is empty.</p>
+              <p>{t('emptyCart', 'Your cart is empty.')}</p>
             ) : (
               cardItems.map(item => {
                 return <CartItem key={item.product.id} item={item} />;
@@ -62,7 +66,9 @@ export default function ShoppingCartDrawer() {
         </div>
         <div className="flex flex-col gap-6 mt-6">
           <div className="flex justify-between">
-            <span>{cardItems.length} Products</span>
+            <span>
+              {t('productsCount', '{{count}} Products', { count: cardItems.length })}
+            </span>
             <PriceDisplay price={totalPrice} priceClassName="font-medium" size="sm" />
           </div>
           <div className="flex flex-col gap-3">
@@ -73,7 +79,7 @@ export default function ShoppingCartDrawer() {
               onClick={() => setIsShoppingCartDrawerOpen(false)}
               className="text-center"
             >
-              Checkout
+              {t('checkout', 'Checkout')}
             </ButtonLink>
             <ButtonLink
               variant="ghost"
@@ -82,7 +88,7 @@ export default function ShoppingCartDrawer() {
               onClick={() => setIsShoppingCartDrawerOpen(false)}
               className="text-center"
             >
-              Go To Cart
+              {t('goToCart', 'Go To Cart')}
             </ButtonLink>
           </div>
         </div>

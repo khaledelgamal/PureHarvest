@@ -1,6 +1,7 @@
 import { ChevronDown } from 'lucide-react';
 import { classNames } from '@/utils';
 import { useTagsSection } from './hooks/useTagsSection';
+import { useTranslation } from 'react-i18next';
 
 interface TagsSectionProps {
   tags: { id: string; name: string; slug: string }[];
@@ -10,6 +11,7 @@ interface TagsSectionProps {
 }
 
 export const TagsSection = ({ tags, currentTag, isLoading, onTagChange }: TagsSectionProps) => {
+  const { t } = useTranslation('pages/ShopPage');
   const { isVisible, toggleVisibility, handleTagChange } = useTagsSection(currentTag, onTagChange);
 
   return (
@@ -18,7 +20,7 @@ export const TagsSection = ({ tags, currentTag, isLoading, onTagChange }: TagsSe
         className="w-full flex justify-between cursor-pointer border-t border-gray-100 py-5"
         onClick={toggleVisibility}
       >
-        <h4 className="text-xl font-medium text-gray-900">Popular Tag</h4>
+        <h4 className="text-xl font-medium text-gray-900">{t('popularTag', 'Popular Tag')}</h4>
         <ChevronDown
           width={25}
           height={25}

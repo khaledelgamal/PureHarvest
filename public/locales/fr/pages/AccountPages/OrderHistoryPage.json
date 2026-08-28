@@ -1,0 +1,17 @@
+{
+  "orderHistory": "Historique des commandes",
+  "noOrdersPlaced": "Vous n'avez pas encore passé de commande.",
+  "thOrder": "COMMANDE",
+  "thDate": "DATE",
+  "thTotal": "TOTAL",
+  "thStatus": "STATUT",
+  "thAction": "ACTION",
+  "product": "{{count}} Produit",
+  "products": "{{count}} Produits",
+  "viewDetails": "Voir les détails",
+  "statusReceived": "Reçu",
+  "statusProcessing": "En traitement",
+  "statusOnTheWay": "En cours de livraison",
+  "statusDelivered": "Livré",
+  "statusCancelled": "Annulé"
+}

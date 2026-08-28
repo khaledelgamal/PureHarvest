@@ -1,0 +1,15 @@
+{
+  "title": "Mon Panier",
+  "thProduct": "PRODUIT",
+  "thPrice": "PRIX",
+  "thQuantity": "QUANTITÉ",
+  "thSubtotal": "SOUS-TOTAL",
+  "emptyCart": "Votre panier est vide.",
+  "removeFromCart": "Retirer du panier",
+  "cartTotal": "Total du panier",
+  "proceedToCheckout": "Passer à la caisse",
+  "subtotal": "Sous-total :",
+  "shipping": "Livraison :",
+  "free": "Gratuit",
+  "total": "Total :"
+}

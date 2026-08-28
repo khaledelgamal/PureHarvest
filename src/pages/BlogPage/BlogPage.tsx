@@ -8,7 +8,7 @@ import { useBlogs } from './hooks/useBlogs';
 import { classNames } from '@/utils';
 
 export default function BlogPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/BlogPage');
   const [isFilterOpen, setIsFilterOpen] = useState(true);
 
   const {
@@ -44,7 +44,7 @@ export default function BlogPage() {
               : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:text-primary',
           )}
         >
-          <span>{t('blog.filterBtn', 'Filter')}</span>
+          <span>{t('filterBtn', 'Filter')}</span>
           <Filter className="w-4 h-4" />
         </Button>
       </div>

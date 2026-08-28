@@ -16,10 +16,8 @@ interface SignInFormValues {
   password: string;
 }
 
-const tRoute = 'pages.AuthPages.SignIn';
-
 const SignIn = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/AuthPages');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -52,7 +50,7 @@ const SignIn = () => {
 
   return (
     <div className="py-[80px] flex-center">
-      <AuthLayout title={t(`${tRoute}.title`, 'Sign In')}>
+      <AuthLayout title={t('signInTitle', 'Sign In')}>
         <form onSubmit={handleSubmit(data => signIn(data))} className="flex flex-col gap-4">
           {serverError && (
             <p className="rounded-md bg-red-50 p-3 text-center text-sm text-red-600">
@@ -61,38 +59,38 @@ const SignIn = () => {
           )}
 
           <TextFieldInput
-            placeholder={t(`${tRoute}.emailPlaceholder`, 'Email')}
+            placeholder={t('emailPlaceholder', 'Email')}
             type="email"
             error={errors.email}
             {...register('email', {
-              required: t(`${tRoute}.emailRequired`, 'Email is required'),
+              required: t('emailRequired', 'Email is required'),
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: t(`${tRoute}.emailInvalid`, 'Invalid email address'),
+                message: t('emailInvalid', 'Invalid email address'),
               },
             })}
           />
 
           <PasswordFieldInput
-            placeholder={t(`${tRoute}.passwordPlaceholder`, 'Password')}
+            placeholder={t('passwordPlaceholder', 'Password')}
             error={errors.password}
             {...register('password', {
-              required: t(`${tRoute}.passwordRequired`, 'Password is required'),
+              required: t('passwordRequired', 'Password is required'),
             })}
           />
 
           <Button disabled={isPending} variant="fill" type="submit" size="lg" className="mt-2">
-            {isPending ? t(`${tRoute}.loggingIn`, 'Logging in...') : t(`${tRoute}.login`, 'Login')}
+            {isPending ? t('loggingIn', 'Logging in...') : t('login', 'Login')}
           </Button>
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          {t(`${tRoute}.noAccount`, "Don't have account?")}{' '}
+          {t('noAccount', "Don't have account?")}{' '}
           <Link
             to={routePaths.ACCOUNT.SIGNUP}
             className="font-medium text-gray-900 hover:underline"
           >
-            {t(`${tRoute}.register`, 'Register')}
+            {t('register', 'Register')}
           </Link>
         </p>
       </AuthLayout>

@@ -1,11 +1,8 @@
 import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
 import { routePaths } from '@/router/routePaths';
-import {
-  ORDER_STATUS_LABELS,
-  ORDER_STATUS_STYLES,
-  ORDER_TABLE_COLUMNS,
-} from './ordersTable.constants';
-import type { OrderListItem } from '@/services/supabase/orders/types';
+import { ORDER_STATUS_STYLES } from './ordersTable.constants';
+import type { OrderListItem, OrderStatus } from '@/services/supabase/orders/types';
+import { useTranslation } from 'react-i18next';
 
 interface OrdersTableProps {
   orders?: OrderListItem[];
@@ -15,6 +12,7 @@ interface OrdersTableProps {
   monthFormat?: 'short' | 'long';
   actionSize?: 'sm' | 'md';
   className?: string;
+  namespace?: string;
 }
 
 const formatDate = (dateStr: string, month: 'short' | 'long') =>
@@ -32,13 +30,39 @@ export function OrdersTable({
   monthFormat = 'short',
   actionSize = 'md',
   className = '',
+  namespace = 'pages/AccountPages/DashboardPage',
 }: OrdersTableProps) {
+  const { t } = useTranslation(namespace);
+
+  const columns = [
+    t('thOrder', 'ORDER'),
+    t('thDate', 'DATE'),
+    t('thTotal', 'TOTAL'),
+    t('thStatus', 'STATUS'),
+    t('thAction', 'ACTION'),
+  ];
+
+  const getStatusLabel = (status: OrderStatus) => {
+    switch (status) {
+      case 'received':
+        return t('statusReceived', 'Received');
+      case 'processing':
+        return t('statusProcessing', 'Processing');
+      case 'on_the_way':
+        return t('statusOnTheWay', 'On the way');
+      case 'delivered':
+        return t('statusDelivered', 'Delivered');
+      default:
+        return status;
+    }
+  };
+
   return (
     <div className={`overflow-x-auto h-[500px] ${className}`}>
       <table className="w-full">
         <thead>
           <tr className="border-b border-gray-100">
-            {ORDER_TABLE_COLUMNS.map(col => (
+            {columns.map(col => (
               <th
                 key={col}
                 className="px-6 py-3 text-left text-xs font-semibold
@@ -79,12 +103,16 @@ export function OrdersTable({
                 <td className="px-6 py-4 text-sm text-gray-700">
                   ${order.totalAmount.toFixed(2)}
                   <span className="text-gray-400 ml-1">
-                    ({order.productsCount} {order.productsCount === 1 ? 'Product' : 'Products'})
+                    (
+                    {order.productsCount === 1
+                      ? t('product', '1 Product', { count: 1 })
+                      : t('products', '{{count}} Products', { count: order.productsCount })}
+                    )
                   </span>
                 </td>
                 <td className="px-6 py-4 text-sm">
                   <span className={ORDER_STATUS_STYLES[order.status]}>
-                    {ORDER_STATUS_LABELS[order.status]}
+                    {getStatusLabel(order.status)}
                   </span>
                 </td>
                 <td className="px-6 py-4 text-right">
@@ -93,7 +121,7 @@ export function OrdersTable({
                     variant="text"
                     size={actionSize}
                   >
-                    View Details
+                    {t('viewDetails', 'View Details')}
                   </ButtonLink>
                 </td>
               </tr>

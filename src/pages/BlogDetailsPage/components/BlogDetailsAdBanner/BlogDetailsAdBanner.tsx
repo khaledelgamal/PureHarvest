@@ -5,7 +5,7 @@ import { routePaths } from '@/router/routePaths';
 import { Button } from '@/components/Buttons/Button/Button';
 
 export const BlogDetailsAdBanner = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/BlogDetailsPage');
 
   return (
     <div className="w-full relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl overflow-hidden mt-8 mb-4 min-h-[200px] md:min-h-[240px] flex items-center shadow-xl group">
@@ -30,17 +30,17 @@ export const BlogDetailsAdBanner = () => {
         {/* Text Content */}
         <div className="flex-1 text-center md:text-left">
           <span className="inline-block text-xs sm:text-sm font-semibold tracking-wider text-primary-soft uppercase mb-2 px-3 py-1 bg-primary/10 rounded-full backdrop-blur-sm">
-            {t('blog.adBanner.subtitle', 'Summer Sales')}
+            {t('adSubtitle', 'Summer Sales')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
-            {t('blog.adBanner.title', 'Fresh Fruit')}
+            {t('adTitle', 'Fresh Fruit')}
             <span className="block text-primary-400 text-xl sm:text-2xl md:text-3xl mt-1">
-              {t('blog.adBanner.subtitle2', 'Up to 56% OFF')}
+              {t('adSubtitle2', 'Up to 56% OFF')}
             </span>
           </h2>
           <Link to={routePaths.SHOP.ROOT} className="inline-block mt-4 md:mt-6">
             <Button className="rounded-full px-5 sm:px-6 py-2 sm:py-2.5 flex items-center gap-2">
-              <span>{t('blog.adBanner.shopBtn', 'Shop Now')}</span>
+              <span>{t('shopBtn', 'Shop Now')}</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
             </Button>
           </Link>

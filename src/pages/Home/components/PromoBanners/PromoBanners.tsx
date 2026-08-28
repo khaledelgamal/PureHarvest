@@ -7,11 +7,9 @@ import { routePaths } from '@/router/routePaths';
 import { useTranslation } from 'react-i18next';
 import type { MouseEventHandler } from 'react';
 
-const tRoute = 'pages.Home.components.PromoBanners';
-
 const PromoBanners = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/Home');
 
   const handleShopNow = () => navigate(routePaths.SHOP.ROOT);
 
@@ -27,12 +25,12 @@ const PromoBanners = () => {
           />
           <div className="relative z-10 flex flex-col items-start justify-center h-full p-8">
             <h3 className="text-[32px] font-semibold leading-tight text-white mb-3">
-              {t(`${tRoute}.milkTitle`, '100% Fresh')}
+              {t('milkTitle', '100% Fresh')}
               <br />
-              {t(`${tRoute}.milkTitle2`, 'Cow Milk')}
+              {t('milkTitle2', 'Cow Milk')}
             </h3>
             <div className="flex items-center gap-1.5 mb-4 text-white/80">
-              <span className="text-sm">{t(`${tRoute}.milkDescription`, 'Starting at')}</span>
+              <span className="text-sm">{t('milkDescription', 'Starting at')}</span>
               <PriceDisplay price={14.99} size="lg" priceClassName="text-white" />
             </div>
             <ShopNowButton onClick={handleShopNow} />
@@ -48,12 +46,12 @@ const PromoBanners = () => {
           />
           <div className="relative z-10 flex flex-col items-end text-right justify-center h-full p-8 ml-auto">
             <span className="text-xs font-medium uppercase tracking-wider mb-2 text-green-gray-900/60">
-              {t(`${tRoute}.colaSubtitle`, 'DRINK SALE')}
+              {t('colaSubtitle', 'DRINK SALE')}
             </span>
             <h3 className="text-[32px] font-semibold leading-tight text-green-gray-900 mb-3">
-              {t(`${tRoute}.colaTitle`, 'Water &')}
+              {t('colaTitle', 'Water &')}
               <br />
-              {t(`${tRoute}.colaTitle2`, 'Soft Drink')}
+              {t('colaTitle2', 'Soft Drink')}
             </h3>
             <ShopNowButton onClick={handleShopNow} />
           </div>
@@ -68,12 +66,12 @@ const PromoBanners = () => {
           />
           <div className="relative z-10 flex flex-col items-start justify-center h-full p-8">
             <span className="text-xs font-medium uppercase tracking-wider mb-2 text-green-gray-900/60">
-              {t(`${tRoute}.legumesSubtitle`, '100% ORGANIC')}
+              {t('legumesSubtitle', '100% ORGANIC')}
             </span>
             <h3 className="text-[32px] font-semibold leading-tight text-green-gray-900 mb-3">
-              {t(`${tRoute}.legumesTitle`, 'Quick')}
+              {t('legumesTitle', 'Quick')}
               <br />
-              {t(`${tRoute}.legumesTitle2`, 'Breakfast')}
+              {t('legumesTitle2', 'Breakfast')}
             </h3>
             <ShopNowButton onClick={handleShopNow} />
           </div>
@@ -90,7 +88,7 @@ const ShopNowButton = ({
 }: {
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/Home');
 
   return (
     <Button
@@ -98,7 +96,7 @@ const ShopNowButton = ({
         rounded-full px-6 py-3 hover:text-white transition-colors duration-300"
       onClick={onClick}
     >
-      <span>{t(`${tRoute}.shopNow`, 'Shop Now')}</span>
+      <span>{t('shopNow', 'Shop Now')}</span>
       <ArrowIcon />
     </Button>
   );

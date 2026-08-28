@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const tRoute = 'pages.Home.components.DealOfTheMonth.components.CountdownTimer';
-
 interface TimeLeft {
   days: number;
   hours: number;
@@ -32,7 +30,7 @@ const calculateTimeLeft = (targetDate: Date | string): TimeLeft => {
 const padWithZero = (num: number): string => String(num).padStart(2, '0');
 
 const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/Home');
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => calculateTimeLeft(targetDate));
 
   const isExpired = useCallback(
@@ -65,10 +63,10 @@ const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   }, [targetDate, isExpired]);
 
   const timeUnits = [
-    { value: timeLeft.days, label: t(`${tRoute}.days`, 'DAYS') },
-    { value: timeLeft.hours, label: t(`${tRoute}.hours`, 'HOURS') },
-    { value: timeLeft.minutes, label: t(`${tRoute}.mins`, 'MINS') },
-    { value: timeLeft.seconds, label: t(`${tRoute}.secs`, 'SECS') },
+    { value: timeLeft.days, label: t('days', 'DAYS') },
+    { value: timeLeft.hours, label: t('hours', 'HOURS') },
+    { value: timeLeft.minutes, label: t('mins', 'MINS') },
+    { value: timeLeft.seconds, label: t('secs', 'SECS') },
   ];
 
   return (

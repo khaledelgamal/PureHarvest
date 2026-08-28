@@ -1,5 +1,6 @@
 import { SearchIcon } from 'lucide-react';
 import { useSearchFilter } from './hooks/useSearchFilter';
+import { useTranslation } from 'react-i18next';
 
 interface SearchInputProps {
   initialSearch: string;
@@ -7,6 +8,7 @@ interface SearchInputProps {
 }
 
 export const SearchInput = ({ initialSearch, onSearchChange }: SearchInputProps) => {
+  const { t } = useTranslation('pages/ShopPage');
   const { searchState, setSearchState } = useSearchFilter(initialSearch, onSearchChange);
 
   return (
@@ -14,7 +16,7 @@ export const SearchInput = ({ initialSearch, onSearchChange }: SearchInputProps)
       <SearchIcon className="text-gray-900 w-5 h-5 shrink-0" />
       <input
         type="text"
-        placeholder="Search products..."
+        placeholder={t('searchPlaceholder', 'Search products...')}
         value={searchState}
         onChange={e => setSearchState(e.target.value)}
         className="w-full placeholder:text-gray-500 outline-none text-gray-900 bg-transparent"

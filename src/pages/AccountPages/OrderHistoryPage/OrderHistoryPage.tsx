@@ -5,10 +5,12 @@ import useAuthStore from '@/store/useAuthStore';
 import { ordersAPI } from '@/services/supabase/orders/api';
 import { orderKeys } from '@/services/supabase/orders/keys';
 import { OrdersTable } from '../components/OrdersTable/OrdersTable';
+import { useTranslation } from 'react-i18next';
 
 const ORDERS_PER_PAGE = 10;
 
 export default function OrderHistoryPage() {
+  const { t } = useTranslation('pages/AccountPages/OrderHistoryPage');
   const [page, setPage] = useState(1);
   const user = useAuthStore(s => s.user);
 
@@ -29,7 +31,9 @@ export default function OrderHistoryPage() {
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
       {/* ── Header ── */}
       <div className="px-6 py-5 border-b border-gray-100">
-        <h3 className="font-semibold text-gray-900 text-lg">Order History</h3>
+        <h3 className="font-semibold text-gray-900 text-lg">
+          {t('orderHistory', 'Order History')}
+        </h3>
       </div>
 
       {/* ── Table ── */}
@@ -37,9 +41,10 @@ export default function OrderHistoryPage() {
         orders={data?.orders}
         isLoading={isLoading}
         skeletonRows={ORDERS_PER_PAGE}
-        emptyMessage="You haven't placed any orders yet."
+        emptyMessage={t('noOrdersPlaced', "You haven't placed any orders yet.")}
         monthFormat="long"
         actionSize="sm"
+        namespace="pages/AccountPages/OrderHistoryPage"
       />
 
       {/* ── Pagination ── */}

@@ -1,4 +1,5 @@
 import type { OrderItem } from '@/services/supabase/orders/types';
+import { useTranslation } from 'react-i18next';
 
 const PLACEHOLDER_IMAGE = '/images/placeholder-product.png';
 
@@ -7,12 +8,21 @@ type OrderProductsTableProps = {
 };
 
 export const OrderProductsTable = ({ items }: OrderProductsTableProps) => {
+  const { t } = useTranslation('pages/AccountPages/OrderDetailsPage');
+
+  const headers = [
+    t('thProduct', 'Product'),
+    t('thPrice', 'Price'),
+    t('thQuantity', 'Quantity'),
+    t('thSubtotal', 'Subtotal'),
+  ];
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full">
         <thead>
           <tr className="bg-gray-100 border-y border-gray-100">
-            {['Product', 'Price', 'Quantity', 'Subtotal'].map(col => (
+            {headers.map(col => (
               <th
                 key={col}
                 className="px-6 py-3 text-left text-xs font-medium

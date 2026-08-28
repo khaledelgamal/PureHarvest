@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "format": "prettier --write .",
-    "locales": "tsx src/utils/mergeLocales.ts",
     "lint": "eslint .",
-    "dev": "pnpm run locales && vite",
-    "build": "pnpm run locales && tsc -b && vite build",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

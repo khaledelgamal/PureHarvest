@@ -3,37 +3,49 @@ import { Plus, Minus } from 'lucide-react';
 import clsx from 'clsx';
 import { Button } from '@/components/Buttons/Button/Button';
 import { sectionContainer } from '@/constants/global.styles';
-
-const faqsData = [
-  {
-    question: 'How long does it take for my fresh food to be delivered?',
-    answer:
-      'Orders placed before 2 PM are typically delivered the same day. For orders placed after 2 PM, we guarantee delivery by the next morning to ensure maximum freshness.',
-  },
-  {
-    question: 'How do you ensure the freshness of produce?',
-    answer:
-      'Our fruits and vegetables are sourced directly from local farms. We use temperature-controlled vehicles to maintain the cold chain from the farm directly to your doorstep.',
-  },
-  {
-    question: 'What is your return and refund policy for perishable items?',
-    answer:
-      'If you are unsatisfied with the quality of any perishable item, please contact our support team within 24 hours of delivery with a photo. We will gladly issue a refund or a replacement.',
-  },
-  {
-    question: 'Are your products certified organic?',
-    answer:
-      'We partner with farmers who follow sustainable and organic farming practices. While not all items carry an official organic certification, they are grown without synthetic pesticides or harmful chemicals.',
-  },
-  {
-    question: 'Can I schedule a specific delivery time?',
-    answer:
-      'Yes! During checkout, you can select a delivery window that works best for you. Our delivery partners will do their best to arrive within that designated timeframe.',
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const FAQsPage = () => {
+  const { t } = useTranslation('pages/FAQsPage');
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const faqsData = [
+    {
+      question: t('faq1Q', 'How long does it take for my fresh food to be delivered?'),
+      answer: t(
+        'faq1A',
+        'Orders placed before 2 PM are typically delivered the same day. For orders placed after 2 PM, we guarantee delivery by the next morning to ensure maximum freshness.',
+      ),
+    },
+    {
+      question: t('faq2Q', 'How do you ensure the freshness of produce?'),
+      answer: t(
+        'faq2A',
+        'Our fruits and vegetables are sourced directly from local farms. We use temperature-controlled vehicles to maintain the cold chain from the farm directly to your doorstep.',
+      ),
+    },
+    {
+      question: t('faq3Q', 'What is your return and refund policy for perishable items?'),
+      answer: t(
+        'faq3A',
+        'If you are unsatisfied with the quality of any perishable item, please contact our support team within 24 hours of delivery with a photo. We will gladly issue a refund or a replacement.',
+      ),
+    },
+    {
+      question: t('faq4Q', 'Are your products certified organic?'),
+      answer: t(
+        'faq4A',
+        'We partner with farmers who follow sustainable and organic farming practices. While not all items carry an official organic certification, they are grown without synthetic pesticides or harmful chemicals.',
+      ),
+    },
+    {
+      question: t('faq5Q', 'Can I schedule a specific delivery time?'),
+      answer: t(
+        'faq5A',
+        'Yes! During checkout, you can select a delivery window that works best for you. Our delivery partners will do their best to arrive within that designated timeframe.',
+      ),
+    },
+  ];
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -45,7 +57,7 @@ const FAQsPage = () => {
         {/* Left Side: FAQs */}
         <div className="flex-1 w-full max-w-2xl mb-4">
           <h1 className="text-4xl font-semibold text-gray-900 mb-8 leading-tight">
-            Welcome, Let’s Talk About Our PureHarvest
+            {t('title', 'Welcome, Let’s Talk About Our PureHarvest')}
           </h1>
           <div className="flex flex-col gap-4">
             {faqsData.map((faq, index) => {

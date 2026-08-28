@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 type Address = {
   firstName?: string | null;
   lastName?: string | null;
@@ -15,6 +17,7 @@ type AddressCardProps = {
 };
 
 export const AddressCard = ({ title, address }: AddressCardProps) => {
+  const { t } = useTranslation('pages/AccountPages/OrderDetailsPage');
   const fullName = [address.firstName, address.lastName].filter(Boolean).join(' ');
 
   const fullAddress = [address.streetAddress, address.state, address.country, address.zipCode]
@@ -36,20 +39,26 @@ export const AddressCard = ({ title, address }: AddressCardProps) => {
         <div className="flex flex-col gap-4">
           {address.email && (
             <div className="flex flex-col gap-1">
-              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">Email</p>
+              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">
+                {t('email', 'Email')}
+              </p>
               <p className="text-sm text-gray-900">{address.email}</p>
             </div>
           )}
 
           {address.phone && (
             <div className="flex flex-col gap-1">
-              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">Phone</p>
+              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">
+                {t('phone', 'Phone')}
+              </p>
               <p className="text-sm text-gray-900">{address.phone}</p>
             </div>
           )}
         </div>
 
-        {!fullName && !fullAddress && <p className="text-sm text-gray-400">No address provided.</p>}
+        {!fullName && !fullAddress && (
+          <p className="text-sm text-gray-400">{t('noAddressProvided', 'No address provided.')}</p>
+        )}
       </div>
     </div>
   );

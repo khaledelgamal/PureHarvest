@@ -40,7 +40,7 @@ export const BlogListFilterSection = ({
   isLoadingRecentPosts,
   onFilterChange,
 }: BlogListFilterSectionProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/BlogPage');
   const [searchState, setSearchState] = useState<string>(search);
   const navigate = useNavigate();
   const debouncedValue = useDebounce(searchState, 300);
@@ -56,7 +56,7 @@ export const BlogListFilterSection = ({
         <SearchIcon className="text-gray-900 w-5 h-5 flex-shrink-0" />
         <input
           type="text"
-          placeholder={t('blog.searchPlaceholder', 'Search...')}
+          placeholder={t('searchPlaceholder', 'Search...')}
           value={searchState}
           onChange={e => setSearchState(e.target.value)}
           className="w-full placeholder:text-gray-500 outline-none text-gray-900 bg-transparent"
@@ -65,7 +65,9 @@ export const BlogListFilterSection = ({
 
       {/* Top Categories */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-xl font-medium text-gray-900">Top Categories</h4>
+        <h4 className="text-xl font-medium text-gray-900">
+          {t('topCategories', 'Top Categories')}
+        </h4>
         {isLoadingCategories ? (
           <div className="flex flex-col gap-3">
             {[1, 2, 3, 4, 5].map(i => (
@@ -95,7 +97,9 @@ export const BlogListFilterSection = ({
 
       {/* Popular Tag */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-xl font-medium text-gray-900">Popular Tag</h4>
+        <h4 className="text-xl font-medium text-gray-900">
+          {t('popularTag', 'Popular Tag')}
+        </h4>
         {isLoadingTags ? (
           <div className="flex flex-wrap gap-2">
             {[1, 2, 3, 4, 5].map(i => (
@@ -124,7 +128,9 @@ export const BlogListFilterSection = ({
 
       {/* Recently Added */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-xl font-medium text-gray-900">Recently Added</h4>
+        <h4 className="text-xl font-medium text-gray-900">
+          {t('recentlyAdded', 'Recently Added')}
+        </h4>
         {isLoadingRecentPosts ? (
           <div className="flex flex-col gap-4">
             {[1, 2, 3].map(i => (

@@ -1,0 +1,17 @@
+{
+  "title": "Ma Liste d'envies",
+  "share": "Partager :",
+  "thProduct": "PRODUIT",
+  "thPrice": "PRIX",
+  "thStockStatus": "DISPONIBILITÉ",
+  "inStock": "En stock",
+  "outOfStock": "Rupture de stock",
+  "emptyWishlist": "Votre liste d'envies est vide.",
+  "alreadyInCart": "Déjà dans le panier",
+  "addToCart": "Ajouter au panier",
+  "addedToCart": "Ajouté au panier",
+  "removeFromWishlist": "Retirer de la liste d'envies",
+  "removedFromWishlist": "{{name}} a été retiré de la liste d'envies.",
+  "failedToRemove": "Échec du retrait de {{name}} de la liste d'envies. Veuillez réessayer.",
+  "errorRequestingProduct": "Erreur lors de la demande de ce produit. Veuillez contacter le support à ({{email}})."
+}

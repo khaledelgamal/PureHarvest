@@ -13,12 +13,14 @@ import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
 import WishlistIcon from '@/icons/WishlistIcon';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useCartStore from '@/store/useCartStore';
+import { useTranslation } from 'react-i18next';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export const ProductCard = ({ product }: ProductCardProps) => {
+  const { t } = useTranslation('pages/ShopPage');
   const user = useAuthStore(state => state.user!);
   const [inWishlist, setInWishlist] = useState<boolean>(product.inWishlist || false);
   const [isUpdatingWishlist, setIsUpdatingWishlist] = useState<boolean>(false);
@@ -37,14 +39,20 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     },
 
     onSuccess: () => {
-      toast.message(`${product.name} removed from wishlist.`);
+      toast.message(
+        t('removedFromWishlist', '{{name}} removed from wishlist.', { name: product.name }),
+      );
       queryClient.invalidateQueries({ queryKey: wishlistKeys.list(user?.id) });
       setInWishlist(false);
     },
 
     onError: error => {
       console.log(error);
-      toast.error(`Failed to remove ${product.name} from wishlist. Please try again.`);
+      toast.error(
+        t('failedToRemoveWishlist', 'Failed to remove {{name}} from wishlist. Please try again.', {
+          name: product.name,
+        }),
+      );
     },
 
     onSettled: () => {
@@ -53,7 +61,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   });
   const addToWishlistMutation = useMutation({
     mutationFn: async () => {
-      if (!user) throw new Error('You must be logged in to modify your wishlist.');
+      if (!user) throw new Error(t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'));
       await wishlistsAPI.addToWishlist(user.id, product.id);
     },
     onMutate: () => {
@@ -61,14 +69,20 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     },
 
     onSuccess: () => {
-      toast.success(`${product.name} added to wishlist.`);
+      toast.success(
+        t('addedToWishlist', '{{name}} added to wishlist.', { name: product.name }),
+      );
       queryClient.invalidateQueries({ queryKey: wishlistKeys.list(user?.id) });
       setInWishlist(true);
     },
 
     onError: error => {
       console.log(error);
-      toast.error(`Failed to add ${product.name} to wishlist. Please try again.`);
+      toast.error(
+        t('failedToAddWishlist', 'Failed to add {{name}} to wishlist. Please try again.', {
+          name: product.name,
+        }),
+      );
     },
 
     onSettled: () => {
@@ -85,7 +99,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error('Failed to update wishlist. Please try again.');
+      toast.error(t('failedToUpdateWishlist', 'Failed to update wishlist. Please try again.'));
     } finally {
       setIsUpdatingWishlist(false);
     }
@@ -104,11 +118,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       {/* Badges */}
       <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
         {product.salePrice && (
-          <span className="bg-danger text-white text-xs font-semibold px-2 py-1 rounded">Sale</span>
+          <span className="bg-danger text-white text-xs font-semibold px-2 py-1 rounded">
+            {t('sale', 'Sale')}
+          </span>
         )}
         {product.stockStatus === 'out_of_stock' && (
           <span className="bg-gray-800 text-white text-xs font-semibold px-2 py-1 rounded">
-            Out of Stock
+            {t('outOfStock', 'Out of Stock')}
           </span>
         )}
       </div>
@@ -120,7 +136,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <Button
           variant="rounded"
           className="group/wishlist bg-white!"
-          title={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+          title={
+            inWishlist
+              ? t('removeFromWishlist', 'Remove from wishlist')
+              : t('addToWishlist', 'Add to wishlist')
+          }
           onClick={handleWishlist}
           disabled={isUpdatingWishlist}
         >
@@ -147,7 +167,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           />
         ) : (
           <div className="w-full h-full bg-gray-50 flex cardItems-center justify-center text-gray-400">
-            No Image
+            {t('noImage', 'No Image')}
           </div>
         )}
       </Link>
@@ -183,7 +203,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <Button
             className={`flex-center py-0 px-0 w-10 h-10 rounded-full bg-gray-50 group-hover:bg-primary relative ${isItemInCart ? 'bg-primary' : ''}`}
             title={
-              cardItems.some(item => item.product.id === product.id) ? 'View Cart' : 'Add to Cart'
+              cardItems.some(item => item.product.id === product.id)
+                ? t('viewCart', 'View Cart')
+                : t('addToCart', 'Add to Cart')
             }
             onClick={handleClickAddToCart}
           >

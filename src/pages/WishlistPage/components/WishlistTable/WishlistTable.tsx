@@ -1,20 +1,22 @@
 import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
 import useWishlist from './hooks/useWishlist';
+import { useTranslation } from 'react-i18next';
 
 import styles from './WishlistTable.module.css';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
 import WishlistTableActions from './components/WishlistTableActions/WishlistTableActions';
 
 const WishlistTable = () => {
+  const { t } = useTranslation('pages/WishlistPage');
   const { data, isFetching: isLoading, error } = useWishlist();
 
   return (
     <table className={styles.wishlistTable}>
       <thead>
         <tr>
-          <th>PRODUCT</th>
-          <th>PRICE</th>
-          <th>STOCK STATUS</th>
+          <th>{t('thProduct', 'PRODUCT')}</th>
+          <th>{t('thPrice', 'PRICE')}</th>
+          <th>{t('thStockStatus', 'STOCK STATUS')}</th>
           <th></th>
         </tr>
       </thead>
@@ -68,9 +70,9 @@ const WishlistTable = () => {
                 </td>
                 <td>
                   {item.product?.stockQuantity || 0 > 0 ? (
-                    <span className={styles.stockStatus}>In Stock</span>
+                    <span className={styles.stockStatus}>{t('inStock', 'In Stock')}</span>
                   ) : (
-                    <span className={styles.stockStatus}>Out of Stock</span>
+                    <span className={styles.stockStatus}>{t('outOfStock', 'Out of Stock')}</span>
                   )}
                 </td>
                 <td>
@@ -82,7 +84,9 @@ const WishlistTable = () => {
         ) : (
           <tr>
             <td colSpan={4}>
-              <div className="text-gray-900 py-8 text-center text-lg">Your wishlist is empty.</div>
+              <div className="text-gray-900 py-8 text-center text-lg">
+                {t('emptyWishlist', 'Your wishlist is empty.')}
+              </div>
             </td>
           </tr>
         )}

@@ -11,8 +11,11 @@ import { productKeys } from '@/services/supabase/products';
 import useAuthStore from '@/store/useAuthStore';
 import useCartStore from '@/store/useCartStore';
 import { contactSupport } from '@/constants/companyInfo';
+import { useTranslation } from 'react-i18next';
+
 type ItemAdditionState = 'in-cart' | 'not-in-cart' | 'added-to-cart';
 const WishlistTableActions = ({ item }: { item: WishlistItem }) => {
+  const { t } = useTranslation('pages/WishlistPage');
   const [isUpdatingWishlist, setIsUpdatingWishlist] = useState<boolean>(false);
   const queryClient = useQueryClient();
   const userId = useAuthStore(state => state.user?.id);
@@ -29,7 +32,11 @@ const WishlistTableActions = ({ item }: { item: WishlistItem }) => {
     },
 
     onSuccess: () => {
-      toast.message(`${item.product?.name} removed from wishlist.`);
+      toast.message(
+        t('removedFromWishlist', '{{name}} removed from wishlist.', {
+          name: item.product?.name || 'Product',
+        }),
+      );
       queryClient.setQueryData(wishlistKeys.list(userId || ''), (oldData: Wishlists) => {
         if (!oldData || (oldData && oldData.total <= 1)) return { items: [], total: 0 };
         return {
@@ -42,7 +49,11 @@ const WishlistTableActions = ({ item }: { item: WishlistItem }) => {
 
     onError: error => {
       console.log(error);
-      toast.error(`Failed to remove ${item.product?.name} from wishlist. Please try again.`);
+      toast.error(
+        t('failedToRemove', 'Failed to remove {{name}} from wishlist. Please try again.', {
+          name: item.product?.name || 'Product',
+        }),
+      );
     },
 
     onSettled: () => {
@@ -55,7 +66,11 @@ const WishlistTableActions = ({ item }: { item: WishlistItem }) => {
       addToCart(item.product);
     } else {
       toast.error(
-        'error requesting this product. Please contact support at (' + contactSupport.email + ').',
+        t(
+          'errorRequestingProduct',
+          'Error requesting this product. Please contact support at ({{email}}).',
+          { email: contactSupport.email },
+        ),
       );
     }
   };
@@ -72,16 +87,16 @@ const WishlistTableActions = ({ item }: { item: WishlistItem }) => {
         disabled={(['in-cart', 'added-to-cart'] as ItemAdditionState[]).includes(itemAdditionState)}
       >
         {itemAdditionState === 'in-cart'
-          ? 'Already In Cart'
+          ? t('alreadyInCart', 'Already In Cart')
           : itemAdditionState === 'not-in-cart'
-            ? 'Add to Cart'
-            : 'Added to Cart'}
+            ? t('addToCart', 'Add to Cart')
+            : t('addedToCart', 'Added to Cart')}
       </Button>
       <Button
         variant="rounded"
         className={styles.deleteButton}
         size="sm"
-        title="Remove from wishlist"
+        title={t('removeFromWishlist', 'Remove from wishlist')}
         onClick={() => mutation.mutate()}
         disabled={isUpdatingWishlist}
       >

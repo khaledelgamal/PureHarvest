@@ -19,7 +19,7 @@ import SettingsPage from '@/pages/AccountPages/SettingsPage/SettingsPage';
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage';
 import FAQs from '@/pages/FAQsPage/FAQsPage';
 import ContactUsPage from '@/pages/ContactUsPage/ContactUsPage';
-import AboutUsPage from '@/pages/AboutUsPage/components/AboutUsPage';
+import AboutUsPage from '@/pages/AboutUsPage/AboutUsPage';
 import ScrollToTop from './ScrollToTop';
 import BlogPage from '@/pages/BlogPage/BlogPage';
 import BlogDetailsPage from '@/pages/BlogDetailsPage/BlogDetailsPage';

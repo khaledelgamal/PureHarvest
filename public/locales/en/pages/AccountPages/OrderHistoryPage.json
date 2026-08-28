@@ -1,0 +1,17 @@
+{
+  "orderHistory": "Order History",
+  "noOrdersPlaced": "You haven't placed any orders yet.",
+  "thOrder": "ORDER",
+  "thDate": "DATE",
+  "thTotal": "TOTAL",
+  "thStatus": "STATUS",
+  "thAction": "ACTION",
+  "product": "{{count}} Product",
+  "products": "{{count}} Products",
+  "viewDetails": "View Details",
+  "statusReceived": "Received",
+  "statusProcessing": "Processing",
+  "statusOnTheWay": "On the way",
+  "statusDelivered": "Delivered",
+  "statusCancelled": "Cancelled"
+}

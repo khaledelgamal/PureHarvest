@@ -9,7 +9,7 @@ interface BlogCommentsProps {
 }
 
 export const BlogComments = ({ postId }: BlogCommentsProps) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/BlogDetailsPage');
   const [message, setMessage] = useState('');
   const {
     comments,
@@ -34,7 +34,7 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
   return (
     <div className="flex flex-col gap-8 mt-8">
       <h3 className="text-2xl font-semibold text-gray-900">
-        {t('blog.comments.title', 'Leave a Comment')}
+        {t('commentsTitle', 'Leave a Comment')}
       </h3>
 
       {/* Comment Form / Sign In Prompt */}
@@ -42,7 +42,7 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-1.5">
             <label htmlFor="message" className="text-sm font-medium text-gray-700">
-              {t('blog.comments.messageLabel', 'Message')}
+              {t('messageLabel', 'Message')}
             </label>
             <textarea
               id="message"
@@ -50,7 +50,7 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
               value={message}
               onChange={e => setMessage(e.target.value)}
               className="w-full px-4 py-3 rounded-md border border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
-              placeholder={t('blog.comments.messagePlaceholder', 'Write your comment here...')}
+              placeholder={t('messagePlaceholder', 'Write your comment here...')}
               required
             />
           </div>
@@ -61,18 +61,18 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
               className="px-8 py-2.5 rounded-full"
             >
               {isAddingComment
-                ? t('blog.comments.posting', 'Posting...')
-                : t('blog.comments.postBtn', 'Post Comment')}
+                ? t('posting', 'Posting...')
+                : t('postBtn', 'Post Comment')}
             </Button>
           </div>
         </form>
       ) : (
         <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-xl border border-gray-100 text-center gap-4">
           <p className="text-gray-600">
-            {t('blog.comments.loginPrompt', 'You must be signed in to post a comment.')}
+            {t('loginPrompt', 'You must be signed in to post a comment.')}
           </p>
           <Button onClick={handleSignInRedirect} className="px-6 py-2 rounded-full">
-            {t('blog.comments.signInBtn', 'Sign In to Comment')}
+            {t('signInBtn', 'Sign In to Comment')}
           </Button>
         </div>
       )}
@@ -80,7 +80,7 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
       {/* Comments List */}
       <div className="flex flex-col gap-6 mt-4">
         <h4 className="text-xl font-medium text-gray-900">
-          {t('blog.comments.allComments', 'Comments')} ({comments.length})
+          {t('allComments', 'Comments')} ({comments.length})
         </h4>
 
         {isLoading ? (
@@ -142,15 +142,15 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
                   className="rounded-full px-8"
                 >
                   {isFetchingNextPage
-                    ? t('blog.comments.loadingMore', 'Loading...')
-                    : t('blog.comments.loadMore', 'Load More')}
+                    ? t('loadingMore', 'Loading...')
+                    : t('loadMore', 'Load More')}
                 </Button>
               </div>
             )}
           </div>
         ) : (
           <div className="py-8 text-center text-gray-500">
-            {t('blog.comments.noComments', 'No comments yet. Be the first to share your thoughts!')}
+            {t('noComments', 'No comments yet. Be the first to share your thoughts!')}
           </div>
         )}
       </div>

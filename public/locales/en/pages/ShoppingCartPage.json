@@ -1,0 +1,15 @@
+{
+  "title": "My Shopping Cart",
+  "thProduct": "PRODUCT",
+  "thPrice": "PRICE",
+  "thQuantity": "QUANTITY",
+  "thSubtotal": "SUBTOTAL",
+  "emptyCart": "Your shopping cart is empty.",
+  "removeFromCart": "Remove from Cart",
+  "cartTotal": "Cart Total",
+  "proceedToCheckout": "Proceed to checkout",
+  "subtotal": "Subtotal:",
+  "shipping": "Shipping:",
+  "free": "Free",
+  "total": "Total:"
+}

@@ -1,0 +1,12 @@
+{
+  "getInTouch": "Contactez-nous",
+  "getInTouchDesc": "Vous avez une question sur nos produits biologiques, votre commande récente, ou vous souhaitez simplement nous faire part de vos remarques ? Notre équipe PureHarvest est là pour vous aider. Laissez-nous un message ci-dessous !",
+  "messageSent": "Votre message a été envoyé ! Nous vous répondrons dans les plus brefs délais.",
+  "somethingWentWrong": "Une erreur est survenue. Veuillez réessayer.",
+  "namePlaceholder": "Votre nom",
+  "emailPlaceholder": "Adresse e-mail",
+  "subjectPlaceholder": "Sujet",
+  "messagePlaceholder": "Message",
+  "sending": "Envoi en cours...",
+  "sendMessage": "Envoyer le message"
+}

@@ -7,36 +7,34 @@ import FooterLinkColumn from './components/FooterLinkColumn/FooterLinkColumn';
 import FooterInstagram from './components/FooterInstagram/FooterInstagram';
 import CopyrightBar from './components/CopyrightBar/CopyrightBar';
 
-const tRoute = 'layouts.AppLayout.components.Footer.components.MainFooter';
-
 const MainFooter = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('layouts/AppLayout');
 
   const myAccountLinks: FooterLink[] = [
-    { label: t(`${tRoute}.myAccount.links.myAccount`, 'My Account'), to: routePaths.ACCOUNT.ROOT },
+    { label: t('myAccount', 'My Account'), to: routePaths.ACCOUNT.ROOT },
     {
-      label: t(`${tRoute}.myAccount.links.orderHistory`, 'Order History'),
+      label: t('orderHistory', 'Order History'),
       to: routePaths.ACCOUNT.ORDER_HISTORY.path,
     },
     {
-      label: t(`${tRoute}.myAccount.links.shoppingCart`, 'Shopping Cart'),
+      label: t('shoppingCart', 'Shopping Cart'),
       to: routePaths.SHOPPING_CART.ROOT,
     },
-    { label: t(`${tRoute}.myAccount.links.wishlist`, 'Wishlist'), to: routePaths.WISHLIST },
+    { label: t('wishlist', 'Wishlist'), to: routePaths.WISHLIST },
     {
-      label: t(`${tRoute}.myAccount.links.settings`, 'Settings'),
+      label: t('settings', 'Settings'),
       to: routePaths.ACCOUNT.SETTINGS.path,
     },
   ];
 
   const helpsLinks: FooterLink[] = [
-    { label: t(`${tRoute}.helps.links.contact`, 'Contact'), to: routePaths.CONTACT_US },
-    { label: t(`${tRoute}.helps.links.faqs`, 'Faqs'), to: routePaths.FAQS },
+    { label: t('contact', 'Contact'), to: routePaths.CONTACT_US },
+    { label: t('faqs', 'Faqs'), to: routePaths.FAQS },
   ];
 
   const proxyLinks: FooterLink[] = [
-    { label: t(`${tRoute}.proxy.links.about`, 'About'), to: routePaths.ABOUT },
-    { label: t(`${tRoute}.proxy.links.shop`, 'Shop'), to: routePaths.SHOP.ROOT },
+    { label: t('about', 'About'), to: routePaths.ABOUT },
+    { label: t('shop', 'Shop'), to: routePaths.SHOP.ROOT },
   ];
 
   return (
@@ -56,11 +54,11 @@ const MainFooter = () => {
         <div className="flex flex-wrap justify-between gap-8">
           <FooterAbout />
           <FooterLinkColumn
-            title={t(`${tRoute}.myAccount.title`, 'My Account')}
+            title={t('myAccount', 'My Account')}
             links={myAccountLinks}
           />
-          <FooterLinkColumn title={t(`${tRoute}.helps.title`, 'Helps')} links={helpsLinks} />
-          <FooterLinkColumn title={t(`${tRoute}.proxy.title`, 'Proxy')} links={proxyLinks} />
+          <FooterLinkColumn title={t('helps', 'Helps')} links={helpsLinks} />
+          <FooterLinkColumn title={t('proxy', 'Proxy')} links={proxyLinks} />
           <FooterInstagram />
         </div>
       </div>

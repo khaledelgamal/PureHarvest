@@ -16,7 +16,7 @@ import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
 const SEARCH_LIMIT = 6;
 
 const GlobalSearch = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('layouts/AppLayout');
   const navigate = useNavigate();
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -79,10 +79,7 @@ const GlobalSearch = () => {
           }}
           onFocus={() => setIsOpen(true)}
           onKeyDown={e => e.key === 'Enter' && handleSearchButtonClick()}
-          placeholder={t(
-            'layouts.AppLayout.components.Header.components.MainHeader.GlobalSearch.placeholder',
-            'Search',
-          )}
+          placeholder={t('searchPlaceholder', 'Search')}
           className="w-full placeholder:text-gray-500 outline-none text-sm"
         />
         {isFetching && <Loader2 className="w-4 h-4 text-gray-400 animate-spin shrink-0" />}
@@ -95,10 +92,7 @@ const GlobalSearch = () => {
         className="rounded-r-md rounded-l-none font-semibold text-sm"
         onClick={handleSearchButtonClick}
       >
-        {t(
-          'layouts.AppLayout.components.Header.components.MainHeader.GlobalSearch.search',
-          'Search',
-        )}
+        {t('search', 'Search')}
       </Button>
 
       {/* Results dropdown */}

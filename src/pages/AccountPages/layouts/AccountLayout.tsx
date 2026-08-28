@@ -1,26 +1,29 @@
 import { LayoutDashboard, History, Settings } from 'lucide-react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { routePaths } from '@/router/routePaths';
-
-const navItems = [
-  {
-    label: 'Dashboard',
-    path: routePaths.ACCOUNT.DASHBOARD.path,
-    icon: LayoutDashboard,
-  },
-  {
-    label: 'Order History',
-    path: routePaths.ACCOUNT.ORDER_HISTORY.path,
-    icon: History,
-  },
-  {
-    label: 'Settings',
-    path: routePaths.ACCOUNT.SETTINGS.path,
-    icon: Settings,
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 export default function AccountLayout() {
+  const { t } = useTranslation('pages/AccountPages/DashboardPage');
+
+  const navItems = [
+    {
+      label: t('dashboard', 'Dashboard'),
+      path: routePaths.ACCOUNT.DASHBOARD.path,
+      icon: LayoutDashboard,
+    },
+    {
+      label: t('orderHistory', 'Order History'),
+      path: routePaths.ACCOUNT.ORDER_HISTORY.path,
+      icon: History,
+    },
+    {
+      label: t('settings', 'Settings'),
+      path: routePaths.ACCOUNT.SETTINGS.path,
+      icon: Settings,
+    },
+  ];
+
   return (
     <div className="bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto flex gap-6">
@@ -28,7 +31,9 @@ export default function AccountLayout() {
         <aside className="w-64 shrink-0">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="px-6 py-5 border-b border-gray-100">
-              <h2 className="font-semibold text-gray-900 text-lg">Navigation</h2>
+              <h2 className="font-semibold text-gray-900 text-lg">
+                {t('navigation', 'Navigation')}
+              </h2>
             </div>
 
             <nav className="py-3">

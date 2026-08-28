@@ -7,7 +7,10 @@ import { useProducts } from './hooks/useProducts';
 import { classNames } from '@/utils';
 import { sectionContainer } from '@/constants/global.styles';
 
+import { useTranslation } from 'react-i18next';
+
 export default function ShopPage() {
+  const { t } = useTranslation('pages/ShopPage');
   const [isFilterOpen, setIsFilterOpen] = useState(true);
 
   const {
@@ -48,7 +51,7 @@ export default function ShopPage() {
               : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:text-primary',
           )}
         >
-          <span>Filter</span>
+          <span>{t('filterBtn', 'Filter')}</span>
           <Settings2 className="w-5 h-5" />
         </Button>
       </div>

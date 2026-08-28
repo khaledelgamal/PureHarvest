@@ -5,29 +5,27 @@ import { routePaths } from '@/router/routePaths';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-const tRoute = 'layouts.AppLayout.components.Header.components.Navbar.tabs.';
-
 const Navbar = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('layouts/AppLayout');
   const tabs = [
     {
-      title: t(`${tRoute}home`, 'Home'),
+      title: t('home', 'Home'),
       route: routePaths.HOME,
     },
     {
-      title: t(`${tRoute}shop`, 'Shop'),
+      title: t('shop', 'Shop'),
       route: routePaths.SHOP.ROOT,
     },
     {
-      title: t(`${tRoute}blog`, 'Blog'),
+      title: t('blog', 'Blog'),
       route: routePaths.BLOGS.ROOT,
     },
     {
-      title: t(`${tRoute}aboutUs`, 'About Us'),
+      title: t('aboutUs', 'About Us'),
       route: routePaths.ABOUT,
     },
     {
-      title: t(`${tRoute}contactUs`, 'Contact Us'),
+      title: t('contactUs', 'Contact Us'),
       route: routePaths.CONTACT_US,
     },
   ];

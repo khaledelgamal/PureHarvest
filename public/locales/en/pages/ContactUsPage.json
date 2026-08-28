@@ -1,0 +1,12 @@
+{
+  "getInTouch": "Get in Touch",
+  "getInTouchDesc": "Have a question about our organic products, your recent order, or just want to share your thoughts? Our team at PureHarvest is always here to help you. Drop us a message below!",
+  "messageSent": "Your message has been sent! We'll get back to you soon.",
+  "somethingWentWrong": "Something went wrong. Please try again.",
+  "namePlaceholder": "Your Name",
+  "emailPlaceholder": "Email Address",
+  "subjectPlaceholder": "Subject",
+  "messagePlaceholder": "Message",
+  "sending": "Sending...",
+  "sendMessage": "Send Message"
+}

@@ -7,8 +7,6 @@ import {
 import { sectionContainer } from '@/constants/global.styles';
 import { useTranslation } from 'react-i18next';
 
-const tRoute = 'layouts.AppLayout.components.Footer.components.MainFooter.components.CopyrightBar';
-
 const paymentMethods = [
   '/images/ApplePay.png',
   '/images/visa-logo.png',
@@ -18,7 +16,7 @@ const paymentMethods = [
 ];
 
 const CopyrightBar = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('layouts/AppLayout');
 
   return (
     <div className="relative z-10">
@@ -33,7 +31,7 @@ const CopyrightBar = () => {
         </div>
 
         <p className="text-gray-500 text-sm">
-          {t(`${tRoute}.text`, 'PureHarvest eCommerce © {{year}}. All Rights Reserved', {
+          {t('copyrightText', 'PureHarvest eCommerce © {{year}}. All Rights Reserved', {
             year: new Date().getFullYear(),
           })}
         </p>

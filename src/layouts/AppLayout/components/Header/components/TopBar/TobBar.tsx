@@ -9,7 +9,7 @@ import useAuthStore from '@/store/useAuthStore';
 import UserMenu from './components/UserMenu/UserMenu';
 
 const TobBar = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('layouts/AppLayout');
   const user = useAuthStore(s => s.user);
 
   return (
@@ -31,14 +31,14 @@ const TobBar = () => {
                   to={routePaths.ACCOUNT.SIGNIN}
                   className="text-gray-300 hover:border-gray-300 px-0 py-0 hover:underline"
                 >
-                  {t('layouts.AppLayout.components.Header.components.TopBar.signin', 'Sign In')}
+                  {t('signin', 'Sign In')}
                 </Link>
                 /
                 <Link
                   to={routePaths.ACCOUNT.SIGNUP}
                   className="text-gray-300 hover:border-gray-300 px-0 py-0 hover:underline"
                 >
-                  {t('layouts.AppLayout.components.Header.components.TopBar.signup', 'Sign Up')}
+                  {t('signup', 'Sign Up')}
                 </Link>
               </>
             )}

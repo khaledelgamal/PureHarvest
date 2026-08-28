@@ -2,18 +2,22 @@ import { CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/Buttons/Button/Button';
 import TextFieldInput from '@/components/Inputs/TextFieldInput/TextFieldInput';
 import { useContactForm } from './hooks/useContactForm';
+import { useTranslation } from 'react-i18next';
 
 export const ContactForm = () => {
+  const { t } = useTranslation('pages/ContactUsPage');
   const { register, errors, onSubmit, isPending, isSuccess, isError } = useContactForm();
 
   return (
     <div className="flex-1 border border-gray-100 rounded-lg p-8 md:p-10 flex flex-col bg-white">
       {/* ── Header ── */}
       <div className="mb-8">
-        <h2 className="text-[32px] font-semibold text-gray-900 mb-3">Get in Touch</h2>
+        <h2 className="text-[32px] font-semibold text-gray-900 mb-3">{t('getInTouch', 'Get in Touch')}</h2>
         <p className="text-gray-500 text-sm leading-relaxed max-w-2xl">
-          Have a question about our organic products, your recent order, or just want to share your
-          thoughts? Our team at PureHarvest is always here to help you. Drop us a message below!
+          {t(
+            'getInTouchDesc',
+            'Have a question about our organic products, your recent order, or just want to share your thoughts? Our team at PureHarvest is always here to help you. Drop us a message below!',
+          )}
         </p>
       </div>
 
@@ -24,7 +28,7 @@ export const ContactForm = () => {
                         rounded-lg px-4 py-3 mb-6 text-sm font-medium"
         >
           <CheckCircle className="w-5 h-5 shrink-0" />
-          Your message has been sent! We'll get back to you soon.
+          {t("messageSent", "Your message has been sent! We'll get back to you soon.")}
         </div>
       )}
 
@@ -35,7 +39,7 @@ export const ContactForm = () => {
                         rounded-lg px-4 py-3 mb-6 text-sm font-medium"
         >
           <AlertCircle className="w-5 h-5 shrink-0" />
-          Something went wrong. Please try again.
+          {t('somethingWentWrong', 'Something went wrong. Please try again.')}
         </div>
       )}
 
@@ -46,13 +50,13 @@ export const ContactForm = () => {
           <TextFieldInput
             {...register('name')}
             type="text"
-            placeholder="Your Name"
+            placeholder={t('namePlaceholder', 'Your Name')}
             error={errors.name}
           />
           <TextFieldInput
             {...register('email')}
             type="email"
-            placeholder="Email Address"
+            placeholder={t('emailPlaceholder', 'Email Address')}
             error={errors.email}
           />
         </div>
@@ -61,7 +65,7 @@ export const ContactForm = () => {
         <TextFieldInput
           {...register('subject')}
           type="text"
-          placeholder="Subject"
+          placeholder={t('subjectPlaceholder', 'Subject')}
           error={errors.subject}
         />
 
@@ -70,7 +74,7 @@ export const ContactForm = () => {
           <textarea
             {...register('message')}
             rows={6}
-            placeholder="Message"
+            placeholder={t('messagePlaceholder', 'Message')}
             className={`
               w-full h-full border placeholder-gray-400 rounded-md px-4 py-3.5
               text-gray-900 focus:border-primary focus:outline-none resize-none
@@ -86,7 +90,7 @@ export const ContactForm = () => {
         {/* Submit */}
         <div>
           <Button type="submit" size="md" variant="fill" disabled={isPending}>
-            {isPending ? 'Sending...' : 'Send Message'}
+            {isPending ? t('sending', 'Sending...') : t('sendMessage', 'Send Message')}
           </Button>
         </div>
       </form>

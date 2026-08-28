@@ -9,6 +9,7 @@ import { OrderProductsTable } from './components/OrderProductsTable/OrderProduct
 import { OrderSummaryCard } from './components/OrderSummaryCard/OrderSummaryCard';
 import { AddressCard } from './components/AddressCard/AddressCard';
 import OrderDetailsPageSkeleton from './OrderDetailsPageSekeleton/OrderDetailsPageSekeleton';
+import { useTranslation } from 'react-i18next';
 
 const formatDate = (dateStr: string) =>
   new Date(dateStr).toLocaleDateString('en-US', {
@@ -18,6 +19,7 @@ const formatDate = (dateStr: string) =>
   });
 
 export default function OrderDetailsPage() {
+  const { t } = useTranslation('pages/AccountPages/OrderDetailsPage');
   const { orderId } = useParams<{ orderId: string }>();
 
   const { data: order, isLoading } = useQuery({
@@ -41,7 +43,7 @@ export default function OrderDetailsPage() {
         className="bg-white rounded-2xl border border-gray-100 shadow-sm
                       p-16 text-center text-gray-400"
       >
-        Order not found.
+        {t('orderNotFound', 'Order not found.')}
       </div>
     );
   }
@@ -51,17 +53,19 @@ export default function OrderDetailsPage() {
       {/* ── Header ── */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
         <div className="flex items-center gap-3 flex-wrap">
-          <h2 className="font-medium text-gray-900 text-xl">Order Details</h2>
+          <h2 className="font-medium text-gray-900 text-xl">{t('orderDetails', 'Order Details')}</h2>
           <span className="text-gray-700">•</span>
           <span className="text-gray-700 text-sm">{formatDate(order.createdAt)}</span>
           <span className="text-gray-700">•</span>
           <span className="text-gray-700 text-sm">
-            {order.itemCount} {order.itemCount === 1 ? 'Product' : 'Products'}
+            {order.itemCount === 1
+              ? t('product', '1 Product', { count: 1 })
+              : t('products', '{{count}} Products', { count: order.itemCount })}
           </span>
         </div>
 
         <ButtonLink to={routePaths.ACCOUNT.ORDER_HISTORY.path} variant="text" size="md">
-          Back to List
+          {t('backToList', 'Back to List')}
         </ButtonLink>
       </div>
 
@@ -69,10 +73,10 @@ export default function OrderDetailsPage() {
       <div className="bg-white flex gap-6 px-6 pt-6">
         <div className="rounded-md border border-gray-100 w-full flex divide-x divide-gray-100">
           {/* Billing Address */}
-          <AddressCard title="Billing Address" address={order.billing} />
+          <AddressCard title={t('billingAddress', 'Billing Address')} address={order.billing} />
 
           {/* Shipping Address */}
-          <AddressCard title="Shipping Address" address={order.shipping} />
+          <AddressCard title={t('shippingAddress', 'Shipping Address')} address={order.shipping} />
         </div>
         {/* Order Summary */}
         <OrderSummaryCard

@@ -1,0 +1,13 @@
+{
+  "filterBtn": "Filtrer",
+  "searchPlaceholder": "Rechercher...",
+  "topCategories": "Top Catégories",
+  "popularTag": "Tags Populaires",
+  "recentlyAdded": "Récemment Ajouté",
+  "sortBy": "Trier par :",
+  "resultsFound": "Résultats trouvés",
+  "noPostsFound": "Aucun article trouvé correspondant à vos filtres.",
+  "sortLatest": "Plus récents",
+  "sortOldest": "Plus anciens",
+  "sortTitle": "Titre (A-Z)"
+}

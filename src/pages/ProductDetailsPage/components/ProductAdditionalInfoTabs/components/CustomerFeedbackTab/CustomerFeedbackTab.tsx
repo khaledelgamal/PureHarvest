@@ -5,6 +5,7 @@ import useProductReviews from './hooks/useProductReviews';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import CustomerFeedbackSkeleton from './components/CustomerFeedbackSkeleton/CustomerFeedbackSkeleton';
+import { useTranslation } from 'react-i18next';
 
 dayjs.extend(relativeTime);
 
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export const CustomerFeedbackTab = ({ product }: Props) => {
+  const { t } = useTranslation('pages/ProductDetailsPage');
   const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useProductReviews(product.id);
 
@@ -23,13 +25,17 @@ export const CustomerFeedbackTab = ({ product }: Props) => {
   }
 
   if (isError) {
-    return <div className="py-8 text-center text-danger">Failed to load reviews.</div>;
+    return (
+      <div className="py-8 text-center text-danger">
+        {t('failedLoadReviews', 'Failed to load reviews.')}
+      </div>
+    );
   }
 
   if (reviews.length === 0) {
     return (
       <div className="py-8 text-center text-gray-500">
-        No comments yet. Be the first to share your thoughts!
+        {t('noCommentsYet', 'No comments yet. Be the first to share your thoughts!')}
       </div>
     );
   }
@@ -87,7 +93,7 @@ export const CustomerFeedbackTab = ({ product }: Props) => {
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
           >
-            {isFetchingNextPage ? 'Loading...' : 'Load More'}
+            {isFetchingNextPage ? t('loading', 'Loading...') : t('loadMore', 'Load More')}
           </Button>
         </div>
       )}

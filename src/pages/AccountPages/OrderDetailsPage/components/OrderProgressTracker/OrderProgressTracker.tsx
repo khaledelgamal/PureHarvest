@@ -1,12 +1,6 @@
 import { Check } from 'lucide-react';
 import type { OrderStatus } from '@/services/supabase/orders/types';
-
-const steps: { status: OrderStatus; label: string }[] = [
-  { status: 'received', label: 'Order received' },
-  { status: 'processing', label: 'Processing' },
-  { status: 'on_the_way', label: 'On the way' },
-  { status: 'delivered', label: 'Delivered' },
-];
+import { useTranslation } from 'react-i18next';
 
 const statusOrder: OrderStatus[] = ['received', 'processing', 'on_the_way', 'delivered'];
 
@@ -23,7 +17,15 @@ type OrderProgressTrackerProps = {
 };
 
 export const OrderProgressTracker = ({ status }: OrderProgressTrackerProps) => {
+  const { t } = useTranslation('pages/AccountPages/OrderDetailsPage');
   const currentIndex = statusOrder.indexOf(status);
+
+  const steps: { status: OrderStatus; label: string }[] = [
+    { status: 'received', label: t('orderReceived', 'Order received') },
+    { status: 'processing', label: t('processing', 'Processing') },
+    { status: 'on_the_way', label: t('onTheWay', 'On the way') },
+    { status: 'delivered', label: t('delivered', 'Delivered') },
+  ];
 
   return (
     <div className="flex items-center w-full">

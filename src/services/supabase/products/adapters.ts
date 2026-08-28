@@ -1,4 +1,4 @@
-import type { Product, StockStatus } from './types';
+import type { Product, ProductReview, StockStatus } from './types';
 
 interface SupabaseProductImage {
   id: string;

@@ -3,8 +3,10 @@ import { routePaths } from '@/router/routePaths';
 import useCartStore from '@/store/useCartStore';
 import { useNavigate } from 'react-router-dom';
 import CartTotalsList from '@/components/CartTotalsList/CartTotalsList';
+import { useTranslation } from 'react-i18next';
 
 const CartTotals = () => {
+  const { t } = useTranslation('pages/ShoppingCartPage');
   const navigate = useNavigate();
   const items = useCartStore(state => state.items);
   const subtotal = items.reduce((acc, item) => {
@@ -21,10 +23,10 @@ const CartTotals = () => {
 
   return (
     <div className="w-full xl:max-w-[424px] h-fit border border-gray-100 rounded-lg p-6 flex flex-col gap-2">
-      <h4 className="text-xl text-gray-900 font-medium">Cart Total</h4>
+      <h4 className="text-xl text-gray-900 font-medium">{t('cartTotal', 'Cart Total')}</h4>
       <CartTotalsList subtotal={subtotal} shippingCost={shippingCost} total={total} />
       <Button className="py-3" onClick={handleCheckout} disabled={items.length === 0}>
-        Proceed to checkout
+        {t('proceedToCheckout', 'Proceed to checkout')}
       </Button>
     </div>
   );

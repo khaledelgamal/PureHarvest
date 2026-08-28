@@ -1,13 +1,14 @@
-import React from 'react';
 import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
 import useCartStore from '@/store/useCartStore';
 import QuantityInput from '@/components/Inputs/QuantityInput/QuantityInput';
 import { useFormatPrice } from '@/hooks/useFormatPrice';
+import { useTranslation } from 'react-i18next';
 
 import styles from './ShoppingCartTable.module.css';
 import DeleteButton from '@/components/Buttons/DeleteButton/DeleteButton';
 
 const ShoppingCartTable = () => {
+  const { t } = useTranslation('pages/ShoppingCartPage');
   const items = useCartStore(state => state.items);
   const removeItem = useCartStore(state => state.removeItem);
   const increaseQuantity = useCartStore(state => state.increaseQuantity);
@@ -19,10 +20,10 @@ const ShoppingCartTable = () => {
       <table className={styles.shoppingCartTable}>
         <thead>
           <tr>
-            <th className={styles.thProduct}>PRODUCT</th>
-            <th className={styles.thPrice}>PRICE</th>
-            <th className={styles.thQuantity}>QUANTITY</th>
-            <th className={styles.thSubtotal}>SUBTOTAL</th>
+            <th className={styles.thProduct}>{t('thProduct', 'PRODUCT')}</th>
+            <th className={styles.thPrice}>{t('thPrice', 'PRICE')}</th>
+            <th className={styles.thQuantity}>{t('thQuantity', 'QUANTITY')}</th>
+            <th className={styles.thSubtotal}>{t('thSubtotal', 'SUBTOTAL')}</th>
             <th className={styles.thAction}></th>
           </tr>
         </thead>
@@ -65,7 +66,7 @@ const ShoppingCartTable = () => {
                 <td>
                   <div className="flex justify-end">
                     <DeleteButton
-                      title="Remove from Cart"
+                      title={t('removeFromCart', 'Remove from Cart')}
                       onClick={() => removeItem(item.product)}
                     />
                   </div>
@@ -76,7 +77,7 @@ const ShoppingCartTable = () => {
             <tr>
               <td colSpan={5}>
                 <div className="text-gray-900 py-8 text-center text-lg">
-                  Your shopping cart is empty.
+                  {t('emptyCart', 'Your shopping cart is empty.')}
                 </div>
               </td>
             </tr>

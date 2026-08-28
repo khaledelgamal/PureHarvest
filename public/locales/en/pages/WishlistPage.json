@@ -1,0 +1,17 @@
+{
+  "title": "My Wishlist",
+  "share": "Share:",
+  "thProduct": "PRODUCT",
+  "thPrice": "PRICE",
+  "thStockStatus": "STOCK STATUS",
+  "inStock": "In Stock",
+  "outOfStock": "Out of Stock",
+  "emptyWishlist": "Your wishlist is empty.",
+  "alreadyInCart": "Already In Cart",
+  "addToCart": "Add to Cart",
+  "addedToCart": "Added to Cart",
+  "removeFromWishlist": "Remove from wishlist",
+  "removedFromWishlist": "{{name}} removed from wishlist.",
+  "failedToRemove": "Failed to remove {{name}} from wishlist. Please try again.",
+  "errorRequestingProduct": "Error requesting this product. Please contact support at ({{email}})."
+}

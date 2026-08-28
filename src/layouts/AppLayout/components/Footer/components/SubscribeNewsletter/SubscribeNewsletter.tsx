@@ -4,10 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Button } from '@/components/Buttons/Button/Button';
 
-const tRoute = 'layouts.AppLayout.components.Footer.components.SubscribeNewsletter';
-
 const SubscribeNewsletter = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('layouts/AppLayout');
   const [email, setEmail] = useState('');
 
   const handleSubscribe = () => {
@@ -24,10 +22,10 @@ const SubscribeNewsletter = () => {
         {/* Title & Description */}
         <div className="flex flex-col gap-1 shrink-0">
           <h3 className="text-green-gray-900 font-medium leading-[38px] tracking-[-3%] text-2xl">
-            {t(`${tRoute}.title`, 'Subscribe to our newsletter')}
+            {t('newsletterTitle', 'Subscribe to our newsletter')}
           </h3>
           <p className="text-green-gray-400 text-sm leading-[150%]">
-            {t(`${tRoute}.description`, 'Get the latest updates on new products and offers')}
+            {t('newsletterDescription', 'Get the latest updates on new products and offers')}
           </p>
         </div>
 
@@ -37,7 +35,7 @@ const SubscribeNewsletter = () => {
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            placeholder={t(`${tRoute}.inputPlaceholder`, 'Your email address')}
+            placeholder={t('newsletterPlaceholder', 'Your email address')}
             className="
               flex-1
               max-w-[400px]
@@ -56,7 +54,7 @@ const SubscribeNewsletter = () => {
             "
           />
           <Button size="md" className="-ml-20" onClick={handleSubscribe}>
-            {t(`${tRoute}.subscribeButton`, 'Subscribe')}
+            {t('subscribeButton', 'Subscribe')}
           </Button>
         </div>
       </div>

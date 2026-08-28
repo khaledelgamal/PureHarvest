@@ -3,14 +3,12 @@ import { sectionContainer } from '@/constants/global.styles';
 import { useTranslation } from 'react-i18next';
 import PlayTriangleIcon from '@/icons/PlayTriangleIcon';
 
-const tRoute = 'pages.Home.components.VideoBanner';
-
 // Temp video from YouTube (Big Buck Bunny - free to use)
 const TEMP_VIDEO_URL = 'https://www.youtube.com/embed/hqAKFSnFYow?si=zY8O9U0JibgWjUlU&autoplay=1';
 const TEMP_THUMBNAIL = 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200&q=80';
 
 const VideoBanner = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/Home');
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
@@ -37,11 +35,11 @@ const VideoBanner = () => {
 
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-white">
                 <span className="text-xs font-semibold tracking-[0.25em] uppercase opacity-90">
-                  {t(`${tRoute}.label`, 'Video')}
+                  {t('videoLabel', 'Video')}
                 </span>
 
                 <h2 className="text-3xl md:text-4xl font-bold text-center leading-snug max-w-md">
-                  {t(`${tRoute}.title`, "We're the Best Organic Farm in the World")}
+                  {t('videoTitle', "We're the Best Organic Farm in the World")}
                 </h2>
 
                 <button

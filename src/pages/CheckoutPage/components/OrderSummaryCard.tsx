@@ -6,6 +6,7 @@ import RadioButtonInput from '@/components/Inputs/RadioButtonInput/RadioButtonIn
 import CartTotalsList from '@/components/CartTotalsList/CartTotalsList';
 import type { UseFormRegister } from 'react-hook-form';
 import type { CheckoutFormValues } from '../hooks/useCheckoutForm';
+import { useTranslation } from 'react-i18next';
 
 interface OrderSummaryCardProps {
   register: UseFormRegister<CheckoutFormValues>;
@@ -14,6 +15,7 @@ interface OrderSummaryCardProps {
 }
 
 const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ register, isPending, error }) => {
+  const { t } = useTranslation('pages/CheckoutPage');
   const items = useCartStore(state => state.items);
 
   const subtotal = items.reduce((acc, item) => {
@@ -26,7 +28,7 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ register, isPending
 
   return (
     <div className="w-full xl:max-w-[424px] border border-gray-100 rounded-lg p-6 flex flex-col gap-6">
-      <h3 className="text-xl font-medium text-gray-900">Order Summary</h3>
+      <h3 className="text-xl font-medium text-gray-900">{t('orderSummary', 'Order Summary')}</h3>
 
       <div className="flex flex-col gap-4 max-h-[320px] overflow-y-auto pr-2">
         {items.map(item => (
@@ -51,27 +53,32 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ register, isPending
         ))}
       </div>
 
-      <CartTotalsList subtotal={subtotal} shippingCost={shippingCost} total={total} />
+      <CartTotalsList
+        subtotal={subtotal}
+        shippingCost={shippingCost}
+        total={total}
+        namespace="pages/CheckoutPage"
+      />
 
       <div className="flex flex-col gap-4 mt-2">
-        <h3 className="text-xl font-medium text-gray-900">Payment Method</h3>
+        <h3 className="text-xl font-medium text-gray-900">{t('paymentMethod', 'Payment Method')}</h3>
         <ul className="flex flex-col gap-3">
           <li className="flex items-center gap-2">
             <RadioButtonInput id="cashOnDelivery" value="cod" {...register('paymentMethod')} />
             <label htmlFor="cashOnDelivery" className="text-sm text-gray-700 cursor-pointer">
-              Cash on Delivery
+              {t('cashOnDelivery', 'Cash on Delivery')}
             </label>
           </li>
           <li className="flex items-center gap-2">
             <RadioButtonInput id="paypal" value="paypal" {...register('paymentMethod')} />
             <label htmlFor="paypal" className="text-sm text-gray-700 cursor-pointer">
-              Paypal
+              {t('paypal', 'Paypal')}
             </label>
           </li>
           <li className="flex items-center gap-2">
             <RadioButtonInput id="amazonPay" value="amazon_pay" {...register('paymentMethod')} />
             <label htmlFor="amazonPay" className="text-sm text-gray-700 cursor-pointer">
-              Amazon Pay
+              {t('amazonPay', 'Amazon Pay')}
             </label>
           </li>
         </ul>
@@ -84,7 +91,7 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ register, isPending
       )}
 
       <Button type="submit" className="w-full mt-4 py-3" size="lg" disabled={isPending}>
-        {isPending ? 'Placing Order...' : 'Place Order'}
+        {isPending ? t('placingOrder', 'Placing Order...') : t('placeOrder', 'Place Order')}
       </Button>
     </div>
   );

@@ -1,8 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-const tRoute =
-  'layouts.AppLayout.components.Footer.components.MainFooter.components.FooterInstagram';
-
 const instaImages = [
   '/images/instagram/insta-1.png',
   '/images/instagram/insta-2.png',
@@ -13,11 +10,11 @@ const instaImages = [
 ];
 
 const FooterInstagram = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('layouts/AppLayout');
 
   return (
     <div>
-      <h3 className="text-white text-lg font-semibold mb-4">{t(`${tRoute}.title`, 'Instagram')}</h3>
+      <h3 className="text-white text-lg font-semibold mb-4">{t('instagram', 'Instagram')}</h3>
       <div className="grid grid-cols-3 gap-2">
         {instaImages.map((img, i) => (
           <a href="#" key={i} className="overflow-hidden rounded">

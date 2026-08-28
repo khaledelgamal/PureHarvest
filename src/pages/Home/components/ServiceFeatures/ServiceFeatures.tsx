@@ -6,9 +6,8 @@ import PackageIcon from '@/icons/PackageIcon';
 import ShoppingBagIcon from '@/icons/ShoppingBagIcon';
 import { useTranslation } from 'react-i18next';
 
-const tRoute = 'pages.Home.components.ServiceFeatures';
 const ServiceFeatures = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('pages/Home');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   // If nothing is hovered, default to first item
@@ -17,23 +16,23 @@ const ServiceFeatures = () => {
   const serviceFeatures = [
     {
       icon: <DeliveryTruckIcon className="w-10 h-10" />,
-      title: t(`${tRoute}.freeShipping`, 'Free Shipping'),
-      description: t(`${tRoute}.freeShippingDescription`, 'Free shipping with discount'),
+      title: t('freeShippingTitle', 'Free Shipping'),
+      description: t('freeShippingDescription', 'Free shipping with discount'),
     },
     {
       icon: <HeadphonesIcon className="w-10 h-10" />,
-      title: t(`${tRoute}.greatSupport`, 'Great Support 24/7'),
-      description: t(`${tRoute}.greatSupportDescription`, 'Instant access to Contact'),
+      title: t('greatSupport', 'Great Support 24/7'),
+      description: t('greatSupportDescription', 'Instant access to Contact'),
     },
     {
       icon: <ShoppingBagIcon className="w-10 h-10" />,
-      title: t(`${tRoute}.securePayment`, '100% Secure Payment'),
-      description: t(`${tRoute}.securePaymentDescription`, 'We ensure your money is save'),
+      title: t('securePayment', '100% Secure Payment'),
+      description: t('securePaymentDescription', 'We ensure your money is save'),
     },
     {
       icon: <PackageIcon className="w-10 h-10" />,
-      title: t(`${tRoute}.moneyBack`, 'Money-Back Guarantee'),
-      description: t(`${tRoute}.moneyBackDescription`, '30 days money-back guarantee'),
+      title: t('moneyBack', 'Money-Back Guarantee'),
+      description: t('moneyBackDescription', '30 days money-back guarantee'),
     },
   ];
 

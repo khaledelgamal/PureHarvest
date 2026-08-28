@@ -3,7 +3,7 @@ import { languages } from '@/i18n/languages';
 import { useTranslation } from 'react-i18next';
 
 const LangDropdown = () => {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation('layouts/AppLayout');
 
   const handleChange = (value: string) => {
     i18n.changeLanguage(value);

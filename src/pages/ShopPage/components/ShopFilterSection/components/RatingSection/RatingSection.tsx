@@ -3,6 +3,7 @@ import { classNames } from '@/utils';
 import RadioButtonInput from '@/components/Inputs/RadioButtonInput/RadioButtonInput';
 import { useRatingSection } from './hooks/useRatingSection';
 import Star from '../../../Star/Star';
+import { useTranslation } from 'react-i18next';
 
 interface RatingSectionProps {
   currentRating?: number;
@@ -10,6 +11,7 @@ interface RatingSectionProps {
 }
 
 export const RatingSection = ({ currentRating, onRatingChange }: RatingSectionProps) => {
+  const { t } = useTranslation('pages/ShopPage');
   const { isVisible, toggleVisibility, handleRatingChange } = useRatingSection(
     currentRating,
     onRatingChange,
@@ -21,7 +23,7 @@ export const RatingSection = ({ currentRating, onRatingChange }: RatingSectionPr
         className="w-full flex justify-between cursor-pointer border-t border-gray-100 py-5"
         onClick={toggleVisibility}
       >
-        <h4 className="text-xl font-medium text-gray-900">Rating</h4>
+        <h4 className="text-xl font-medium text-gray-900">{t('rating', 'Rating')}</h4>
         <ChevronDown
           width={25}
           height={25}
@@ -54,7 +56,7 @@ export const RatingSection = ({ currentRating, onRatingChange }: RatingSectionPr
                 <Star key={i} fillPercentage={0} />
               ))}
               <p className="text-gray-900 pl-1 text-[14px]">
-                {number.toFixed(1)} {number !== 5 && '& up'}
+                {number.toFixed(1)} {number !== 5 && t('andUp', '& up')}
               </p>
             </label>
           </li>

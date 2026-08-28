@@ -1,4 +1,6 @@
 import { MapPin, Mail, Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
 type Address = {
   firstName?: string | null;
   lastName?: string | null;
@@ -16,6 +18,7 @@ type AddressCardProps = {
 };
 
 export const AddressCard = ({ title, address }: AddressCardProps) => {
+  const { t } = useTranslation('pages/AccountPages/DashboardPage');
   const fullName = [address.firstName, address.lastName].filter(Boolean).join(' ');
 
   const fullAddress = [address.streetAddress, address.state, address.country, address.zipCode]
@@ -49,7 +52,9 @@ export const AddressCard = ({ title, address }: AddressCardProps) => {
         </div>
       )}
 
-      {!fullName && !fullAddress && <p className="text-sm text-gray-900">No address provided.</p>}
+      {!fullName && !fullAddress && (
+        <p className="text-sm text-gray-900">{t('noAddressProvided', 'No address provided.')}</p>
+      )}
     </div>
   );
 };

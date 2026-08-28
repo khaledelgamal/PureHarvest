@@ -1,6 +1,6 @@
 import { supabase } from '../client';
 import { mapSupabaseOrderListItem, mapSupabaseOrderToOrder } from './adapters';
-import type { Order, OrderListItem } from './types';
+import type { Order, OrderListItem, PaymentMethod } from './types';
 import type { ServiceResponse } from '../types';
 
 const ORDERS_PER_PAGE = 10;

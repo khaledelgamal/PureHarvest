@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import QuantityInput from '@/components/Inputs/QuantityInput/QuantityInput';
 import { Button } from '@/components/Buttons/Button/Button';
 import { AddToWishlistButton } from '@/components/Buttons/AddToWishlistButton/AddToWishlistButton';
@@ -8,12 +8,14 @@ import useCartStore from '@/store/useCartStore';
 import type { Product } from '@/services/supabase/products/types';
 import { useProductWishlist } from './hooks/useProductWishlist';
 import { classNames } from '@/utils';
+import { useTranslation } from 'react-i18next';
 
 interface ProductActionsProps {
   product: Product;
 }
 
 export const ProductActions = ({ product }: ProductActionsProps) => {
+  const { t } = useTranslation('pages/ProductDetailsPage');
   const cartItems = useCartStore(state => state.items);
   const addItemToCart = useCartStore(state => state.addItem);
   const changeQuantity = useCartStore(state => state.changeQuantity);
@@ -71,11 +73,11 @@ export const ProductActions = ({ product }: ProductActionsProps) => {
       >
         {isItemInCart ? (
           <>
-            Added to Cart <Check className="w-5 h-5" />
+            {t('addedToCart', 'Added to Cart')} <Check className="w-5 h-5" />
           </>
         ) : (
           <>
-            Add to Cart <ShoppingBagIcon className="w-5 h-5" />
+            {t('addToCart', 'Add to Cart')} <ShoppingBagIcon className="w-5 h-5" />
           </>
         )}
       </Button>

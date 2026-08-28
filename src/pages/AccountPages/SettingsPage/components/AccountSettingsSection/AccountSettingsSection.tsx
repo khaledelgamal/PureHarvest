@@ -6,6 +6,7 @@ import { useAccountSettings } from './hooks/useAccountSettings';
 import FormField from '../FormFIeld/FormField';
 import ImageCropModal from '@/components/ImageCropModal/ImageCropModal';
 import { SettingsSectionLayout } from '../../layouts/SettingsSectionLayout/SettingsSectionLayout';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   profile: Profile | undefined;
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => {
+  const { t } = useTranslation('pages/AccountPages/SettingsPage');
   const {
     register,
     handleSubmit,
@@ -30,24 +32,24 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
   } = useAccountSettings(profile);
 
   return (
-    <SettingsSectionLayout title="Account Settings">
+    <SettingsSectionLayout title={t('accountSettings', 'Account Settings')}>
       <form onSubmit={handleSubmit(values => updateProfile(values))} className="flex-1 space-y-4">
-        <FormField label="First name">
+        <FormField label={t('firstName', 'First name')}>
           <TextFieldInput
             {...register('firstName')}
-            placeholder="First name"
+            placeholder={t('firstName', 'First name')}
             error={errors.firstName}
           />
         </FormField>
-        <FormField label="Last Name">
+        <FormField label={t('lastName', 'Last Name')}>
           <TextFieldInput
             {...register('lastName')}
-            placeholder="Last name"
+            placeholder={t('lastName', 'Last Name')}
             error={errors.lastName}
           />
         </FormField>
 
-        <FormField label="Email">
+        <FormField label={t('email', 'Email')}>
           <TextFieldInput
             value={user?.email ?? ''}
             disabled
@@ -56,17 +58,17 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
           />
         </FormField>
 
-        <FormField label="Phone Number">
+        <FormField label={t('phoneNumber', 'Phone Number')}>
           <TextFieldInput
             {...register('phone')}
-            placeholder="(xxx) xxx-xxxx"
+            placeholder={t('phonePlaceholder', '(xxx) xxx-xxxx')}
             type="tel"
             error={errors.phone}
           />
         </FormField>
 
         <Button type="submit" variant="fill" size="md" disabled={isUpdatingProfile || !isDirty}>
-          {isUpdatingProfile ? 'Saving...' : 'Save Changes'}
+          {isUpdatingProfile ? t('saving', 'Saving...') : t('saveChanges', 'Save Changes')}
         </Button>
       </form>
 
@@ -92,7 +94,7 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
           className="flex items-center gap-2"
         >
           <Camera className="w-4 h-4" />
-          {isUploadingAvatar ? 'Uploading...' : 'Choose Image'}
+          {isUploadingAvatar ? t('uploading', 'Uploading...') : t('chooseImage', 'Choose Image')}
         </Button>
       </div>
 

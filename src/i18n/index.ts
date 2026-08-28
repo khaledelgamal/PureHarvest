@@ -8,11 +8,13 @@ i18n
   .init({
     fallbackLng: 'en',
     supportedLngs: ['en', 'fr'],
+    ns: [],
+    defaultNS: false,
     interpolation: {
       escapeValue: false,
     },
     backend: {
-      loadPath: '/locales/{{lng}}.json',
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
   });
 
