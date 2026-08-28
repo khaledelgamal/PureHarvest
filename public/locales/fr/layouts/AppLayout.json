@@ -36,5 +36,8 @@
   "subtotal": "Sous-total :",
   "shipping": "Livraison :",
   "free": "Gratuit",
-  "total": "Total :"
+  "total": "Total :",
+  "subscribeAlready": "Vous êtes déjà abonné à la newsletter.",
+  "subscribeError": "Échec de l'abonnement. Veuillez réessayer.",
+  "subscribeSuccess": "Abonnement à la newsletter réussi !"
 }

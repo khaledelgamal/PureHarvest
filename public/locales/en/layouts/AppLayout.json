@@ -36,5 +36,8 @@
   "subtotal": "Subtotal:",
   "shipping": "Shipping:",
   "free": "Free",
-  "total": "Total:"
+  "total": "Total:",
+  "subscribeAlready": "You are already subscribed to the newsletter.",
+  "subscribeError": "Failed to subscribe. Please try again.",
+  "subscribeSuccess": "Successfully subscribed to the newsletter!"
 }
