@@ -9,7 +9,7 @@ const CommentCard = ({ comment }: CommentCardProps) => {
   return (
     <div className="flex flex-col items-center max-w-sm mx-auto">
       {/* Speech Bubble Card */}
-      <div className="relative bg-white rounded-2xl p-8 shadow-md w-full h-[252px]">
+      <div className="relative bg-white rounded-2xl p-8 shadow-md w-full h-fit">
         {/* Quote Icon */}
         <div className="flex justify-center mb-4">
           <CommaIcon className="w-10 h-8 text-primary" />

@@ -39,7 +39,7 @@ const ServiceFeatures = () => {
   return (
     <section className="bg-linear-to-b from-white from-50% to-green-gray-50 to-50% py-[50px]">
       <div className={`${sectionContainer}`}>
-        <ul className="flex rounded-lg overflow-hidden">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 rounded-lg overflow-hidden shadow-sm">
           {serviceFeatures.map(({ icon, description, title }, index) => {
             const isActive = index === activeIndex;
 
@@ -48,10 +48,9 @@ const ServiceFeatures = () => {
                 key={index}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`h-[222px] w-[330px] p-10 border
-                  flex flex-col items-start justify-center 
+                className={`h-[222px] w-full p-8 lg:p-10 border
+                  flex flex-col items-center md:items-start justify-center text-center md:text-left
                   transition-all duration-300 cursor-pointer
-                  ${index === 0 ? 'rounded-l-lg' : index === serviceFeatures.length - 1 ? 'rounded-r-lg' : ''}
                   ${isActive ? 'bg-primary border-primary' : 'bg-white border-gray-100'}`}
               >
                 {/* Icon Circle */}

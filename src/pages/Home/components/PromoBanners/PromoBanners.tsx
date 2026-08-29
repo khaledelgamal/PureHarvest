@@ -1,4 +1,4 @@
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import ArrowIcon from '@/icons/ArrowIcon';
 import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
 import { useTranslation } from 'react-i18next';
@@ -9,10 +9,12 @@ const PromoBanners = () => {
   const { t } = useTranslation('pages/Home');
 
   return (
-    <section className="bg-white py-[100px]">
-      <div className={`${sectionContainer} flex items-center gap-4.5`}>
+    <section className="bg-white py-12 lg:py-[100px]">
+      <div
+        className={`${sectionContainer} ${sectionPaddingX} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-4.5`}
+      >
         {/* Milk Banner */}
-        <div className="relative flex-1 h-[255px] rounded-lg overflow-hidden">
+        <div className="relative h-[255px] rounded-lg overflow-hidden">
           <img
             src="/images/promo-milk.png"
             alt="Fresh Cow Milk"
@@ -33,7 +35,7 @@ const PromoBanners = () => {
         </div>
 
         {/* Cola Banner */}
-        <div className="relative flex-1 h-[255px] rounded-lg overflow-hidden">
+        <div className="relative h-[255px] rounded-lg overflow-hidden">
           <img
             src="/images/promo-cola.png"
             alt="Water & Soft Drink"
@@ -53,7 +55,7 @@ const PromoBanners = () => {
         </div>
 
         {/* Legumes Banner */}
-        <div className="relative flex-1 h-[255px] rounded-lg overflow-hidden">
+        <div className="relative h-[255px] rounded-lg overflow-hidden">
           <img
             src="/images/promo-legumes.png"
             alt="Quick Breakfast"

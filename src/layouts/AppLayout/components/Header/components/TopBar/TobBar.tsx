@@ -1,10 +1,10 @@
-import CurrencyDropdown from './components/CurrencyDropdown/CurrencyDropdown';
+// import CurrencyDropdown from './components/CurrencyDropdown/CurrencyDropdown';
 import LangDropdown from './components/LangDropdown/LangDropdown';
 import StoreLocation from './components/StoreLocation/StoreLocation';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { routePaths } from '@/router/routePaths';
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import useAuthStore from '@/store/useAuthStore';
 import UserMenu from './components/UserMenu/UserMenu';
 
@@ -13,12 +13,14 @@ const TobBar = () => {
   const user = useAuthStore(s => s.user);
 
   return (
-    <div className={`py-3 bg-gray-800 text-gray-300 h-16 flex-center`}>
-      <div className={` ${sectionContainer} flex justify-between items-center`}>
+    <div className={`py-3 bg-gray-800 text-gray-300 min-h-16 flex-center`}>
+      <div
+        className={` ${sectionContainer} ${sectionPaddingX} flex gap-2 md:gap-0 flex-wrap justify-center md:justify-between   items-center`}
+      >
         <StoreLocation />
         <div className="flex gap-5 items-center">
           <LangDropdown />
-          <CurrencyDropdown />
+          {/* <CurrencyDropdown /> */}
           <span className="text-gray-300 opacity-70">|</span>
           <div className="flex gap-1 text-xs">
             {user ? (

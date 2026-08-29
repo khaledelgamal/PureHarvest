@@ -34,15 +34,19 @@ const SubscribeNewsletter = () => {
   }
 
   return (
-    <div className={`py-[50px] bg-green-gray-50 border-t border-green-gray-200 relative`}>
-      <CloseButton className="absolute top-4 right-4" onClick={handleClose} />
-      <div className={`${sectionContainer} flex items-center gap-24`}>
+    <div className={`py-10 md:py-[50px] bg-green-gray-50 border-t border-green-gray-200 relative`}>
+      <CloseButton className="absolute top-1 right-1" onClick={handleClose} />
+      <div
+        className={`${sectionContainer} flex flex-col xl:flex-row items-center justify-between gap-6 md:gap-8 xl:gap-24 text-center xl:text-left`}
+      >
         {/* Logo */}
-        <AppLogo />
+        <div className="shrink-0">
+          <AppLogo />
+        </div>
 
         {/* Title & Description */}
         <div className="flex flex-col gap-1 shrink-0">
-          <h3 className="text-green-gray-900 font-medium leading-[38px] tracking-[-3%] text-2xl">
+          <h3 className="text-green-gray-900 font-medium leading-tight md:leading-[38px] tracking-[-3%] text-xl md:text-2xl">
             {t('newsletterTitle', 'Subscribe to our newsletter')}
           </h3>
           <p className="text-green-gray-400 text-sm leading-[150%]">
@@ -51,7 +55,10 @@ const SubscribeNewsletter = () => {
         </div>
 
         {/* Email Input & Subscribe Button */}
-        <form onSubmit={handleSubscribe} className="flex items-center flex-1 justify-end">
+        <form
+          onSubmit={handleSubscribe}
+          className="relative flex items-center w-full max-w-md xl:max-w-[400px] xl:ml-auto"
+        >
           <input
             type="email"
             value={email}
@@ -59,11 +66,11 @@ const SubscribeNewsletter = () => {
             placeholder={t('newsletterPlaceholder', 'Your email address')}
             required
             className="
-              flex-1
-              max-w-[400px]
+              w-full
               pl-6
-              pr-20
-              py-3
+              pr-[140px]
+              py-3.5
+              md:py-3
               rounded-full
               border
               border-green-gray-200
@@ -76,15 +83,17 @@ const SubscribeNewsletter = () => {
               disabled:opacity-70
             "
           />
-          <Button
-            size="md"
-            className="-ml-20 flex-center gap-1 w-40"
-            type="submit"
-            disabled={isPending}
-          >
-            {t('subscribeButton', 'Subscribe')}
-            {isPending && <LoadingSpinner color="#FFF" radiusInPx={15} borderWidth={2} />}
-          </Button>
+          <div className="absolute right-1 md:right-1.5">
+            <Button
+              size="md"
+              className="flex items-center justify-center gap-1 w-[120px] py-2 md:py-2"
+              type="submit"
+              disabled={isPending}
+            >
+              {t('subscribeButton', 'Subscribe')}
+              {isPending && <LoadingSpinner color="#FFF" radiusInPx={15} borderWidth={2} />}
+            </Button>
+          </div>
         </form>
       </div>
     </div>

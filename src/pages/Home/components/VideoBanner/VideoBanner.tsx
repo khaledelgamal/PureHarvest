@@ -12,9 +12,9 @@ const VideoBanner = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <section className="bg-linear-to-b from-green-gray-50 from-50% to-white to-50% py-[50px]">
+    <section className="bg-linear-to-b from-green-gray-50 from-50% to-white to-50% py-8 md:py-[50px]">
       <div className={sectionContainer}>
-        <div className="relative w-full rounded-2xl overflow-hidden shadow-xl aspect-video">
+        <div className="relative w-full rounded-xl md:rounded-2xl overflow-hidden shadow-xl aspect-[4/3] sm:aspect-video min-h-[320px]">
           {isPlaying ? (
             <iframe
               src={TEMP_VIDEO_URL}
@@ -33,12 +33,12 @@ const VideoBanner = () => {
 
               <div className="absolute inset-0 bg-primary/60" />
 
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-white">
-                <span className="text-xs font-semibold tracking-[0.25em] uppercase opacity-90">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 md:gap-4 text-white px-4">
+                <span className="text-[10px] md:text-xs font-semibold tracking-[0.25em] uppercase opacity-90">
                   {t('videoLabel', 'Video')}
                 </span>
 
-                <h2 className="text-3xl md:text-4xl font-bold text-center leading-snug max-w-md">
+                <h2 className="text-2xl md:text-4xl font-bold text-center leading-snug max-w-xs md:max-w-md">
                   {t('videoTitle', "We're the Best Organic Farm in the World")}
                 </h2>
 

@@ -77,7 +77,7 @@ const UserMenu = () => {
       {/* ── Dropdown Menu ── */}
       <div
         className={`
-          absolute right-0 top-[calc(100%+0.75rem)] w-64 z-50
+          absolute -right-6 top-[calc(100%+0.75rem)] w-64 z-50
           bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden
           transition-all duration-300
           ${

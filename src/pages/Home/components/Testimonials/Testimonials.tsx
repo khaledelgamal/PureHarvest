@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import type { Comment } from './components/CommentCard/types';
 import CommentCard from './components/CommentCard/CommentCard';
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 
 const Testimonials = () => {
   const comments: Comment[] = [
@@ -30,14 +30,16 @@ const Testimonials = () => {
   const { t } = useTranslation('pages/Home');
 
   return (
-    <section className="bg-green-gray-50  py-[100px] overflow-hidden relative">
-      <div className={`${sectionContainer} flex flex-col gap-11 justify-center items-center`}>
-        <h3 className="text-[40px] font-semibold">
+    <section className="bg-green-gray-50 py-12 lg:py-[100px] overflow-hidden relative">
+      <div
+        className={`${sectionContainer} ${sectionPaddingX} flex flex-col gap-8 lg:gap-11 justify-center items-center`}
+      >
+        <h3 className="text-3xl md:text-[40px] font-semibold text-center">
           {t('testimonialsTitle', 'What our Clients Says')}
         </h3>
-        <div className="flex gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {comments.map(comment => {
-            return <CommentCard comment={comment} />;
+            return <CommentCard key={comment.name} comment={comment} />;
           })}
         </div>
       </div>
