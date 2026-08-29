@@ -11,5 +11,7 @@
   "subtotal": "Subtotal:",
   "shipping": "Shipping:",
   "free": "Free",
-  "total": "Total:"
+  "total": "Total:",
+  "update": "Update",
+  "cartUpdatedToast": "Updated {{name}} — now {{count}} in your cart"
 }

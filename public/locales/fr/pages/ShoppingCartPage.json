@@ -11,5 +11,7 @@
   "subtotal": "Sous-total :",
   "shipping": "Livraison :",
   "free": "Gratuit",
-  "total": "Total :"
+  "total": "Total :",
+  "update": "Mettre à jour",
+  "cartUpdatedToast": "{{name}} mis à jour — maintenant {{count}} dans votre panier"
 }

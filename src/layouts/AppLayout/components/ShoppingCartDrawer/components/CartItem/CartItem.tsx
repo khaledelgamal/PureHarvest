@@ -2,27 +2,61 @@ import DeleteButton from '@/components/Buttons/DeleteButton/DeleteButton';
 import type { Product } from '@/services/supabase/products/types';
 import useCartStore from '@/store/useCartStore';
 import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
+import QuantityInput from '@/components/Inputs/QuantityInput/QuantityInput';
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/Buttons/Button/Button';
+import { useTranslation } from 'react-i18next';
+import { Check } from 'lucide-react';
+import { toast } from 'sonner';
 
-type CartItem = {
+type CartItemType = {
   product: Product;
   quantity: number;
 };
 interface CartItemProps {
-  item: CartItem;
+  item: CartItemType;
 }
 
 const CartItem = ({ item }: CartItemProps) => {
+  const { t } = useTranslation('pages/ShoppingCartPage');
   const removeItem = useCartStore(state => state.removeItem);
+  const changeQuantity = useCartStore(state => state.changeQuantity);
+
+  const [draftQuantity, setDraftQuantity] = useState(item.quantity);
+
+  useEffect(() => {
+    setDraftQuantity(item.quantity);
+  }, [item.quantity]);
 
   const handleDeleteItemFromCart = () => {
     removeItem(item.product);
   };
 
+  const handleIncrease = () => {
+    setDraftQuantity(prev => prev + 1);
+  };
+
+  const handleDecrease = () => {
+    setDraftQuantity(prev => Math.max(1, prev - 1));
+  };
+
+  const handleConfirmUpdate = () => {
+    changeQuantity(item.product.id, draftQuantity);
+    toast.success(
+      t('cartUpdatedToast', 'Updated {{name}} — now {{count}} in your cart', {
+        name: item.product.name,
+        count: draftQuantity,
+      }),
+    );
+  };
+
+  const hasChanges = draftQuantity !== item.quantity;
+
   return (
-    <div className="w-full flex justify-between items-center gap-4 py-4 hover:bg-gray-50 transition-colors px-2 rounded-lg group">
-      <div className="flex gap-4 items-center justify-start flex-1 min-w-0">
+    <div className="w-full flex justify-between items-start gap-4 py-4 hover:bg-gray-50 transition-colors px-2 rounded-lg group">
+      <div className="flex gap-4 items-start justify-start flex-1 min-w-0">
         {/* Product Image */}
-        <div className="w-20 h-20 bg-white rounded-lg overflow-hidden flex-shrink-0 border border-gray-100 flex items-center justify-center p-1">
+        <div className="w-20 h-20 bg-white rounded-lg overflow-hidden flex-shrink-0 border border-gray-100 flex items-center justify-center p-1 mt-1">
           {item.product.imageUrl ? (
             <img
               src={item.product.imageUrl}
@@ -35,30 +69,42 @@ const CartItem = ({ item }: CartItemProps) => {
         </div>
 
         {/* Product Info */}
-        <div className="flex flex-col items-start justify-start flex-1 min-w-0">
+        <div className="flex flex-col items-start justify-start flex-1 min-w-0 gap-1.5">
           <p
             title={item.product.name}
-            className="text-gray-900 font-medium text-base leading-tight line-clamp-2 mb-1"
+            className="text-gray-900 font-medium text-base leading-tight line-clamp-2"
           >
             {item.product.name}
           </p>
 
-          <div className="flex items-center gap-2 mt-1">
-            <PriceDisplay price={item.product.salePrice || item.product.price} />
-            <span className="text-gray-400 text-sm mx-1">×</span>
-            <span className=" none font-semibold text-gray-700 bg-gray-100 max-w-20 min-w-10 text-center px-0! rounded-md border-transparent focus:ring-0 outline-none">
-              {item.quantity}
-            </span>
+          <PriceDisplay price={item.product.salePrice || item.product.price} />
+
+          <div className="flex flex-wrap items-center gap-2 mt-1">
+            <QuantityInput
+              value={draftQuantity}
+              onIncrease={handleIncrease}
+              onDecrease={handleDecrease}
+              className="py-1 px-1 h-9 max-w-[110px]"
+            />
+            {hasChanges && (
+              <Button
+                onClick={handleConfirmUpdate}
+                className="flex items-center h-9 py-0 px-3 text-xs rounded-full bg-primary text-white flex-shrink-0"
+              >
+                <Check className="w-3.5 h-3.5 mr-1" />
+                {t('update', 'Update')}
+              </Button>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Actions & Total Price */}
-      <div className="flex flex-col items-end gap-2 flex-shrink-0">
+      {/* Actions */}
+      <div className="flex flex-col items-end gap-2 flex-shrink-0 pt-1">
         <DeleteButton
           title="Remove from Cart"
           onClick={handleDeleteItemFromCart}
-          className="opacity-0 group-hover:opacity-100 transition-opacity focus:opacity-100"
+          className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity focus:opacity-100"
         />
       </div>
     </div>
