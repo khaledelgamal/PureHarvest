@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useState, useEffect, type MouseEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { Loader2 } from 'lucide-react';
@@ -23,7 +23,7 @@ const GlobalSearch = () => {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const debouncedQuery = useDebounce(query, 300);
-
+  const pathname = window.location.pathname;
   const { data, isFetching, isLoading } = useQuery({
     queryKey: productKeys.list({ search: debouncedQuery, limit: SEARCH_LIMIT }),
     queryFn: async () => {
@@ -52,10 +52,17 @@ const GlobalSearch = () => {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  const handleSelect = (productId: string) => {
+  const handleSelect = (
+    e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>,
+    productId: string,
+  ) => {
+    if (e.ctrlKey) return;
+
     setIsOpen(false);
-    setQuery('');
-    navigate(routePaths.SHOP.ITEM_DETAILS.path(productId));
+    const product = products.find(p => p.id === productId);
+    if (product) {
+      setQuery(product.name);
+    }
   };
 
   const handleSearchButtonClick = () => {
@@ -65,6 +72,11 @@ const GlobalSearch = () => {
     }
   };
 
+  useEffect(() => {
+    if (!/^\/shop\/([^/]+)$/.test(pathname)) {
+      setQuery('');
+    }
+  }, [pathname]);
   return (
     <div ref={wrapperRef} className="relative flex justify-center gap-0">
       {/* Input */}
@@ -109,29 +121,33 @@ const GlobalSearch = () => {
           products.map(product => (
             <li
               key={product.id}
-              onClick={() => handleSelect(product.id)}
               className="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-gray-50 transition-colors rounded-sm"
             >
-              {/* Thumbnail */}
-              <div className="w-10 h-10 rounded-md overflow-hidden bg-gray-100 shrink-0">
-                {product.imageUrl ? (
-                  <img
-                    src={product.imageUrl}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-200" />
-                )}
-              </div>
+              <Link
+                to={routePaths.SHOP.ITEM_DETAILS.path(product.id)}
+                onClick={e => handleSelect(e, product.id)}
+              >
+                {/* Thumbnail */}
+                <div className="w-10 h-10 rounded-md overflow-hidden bg-gray-100 shrink-0">
+                  {product.imageUrl ? (
+                    <img
+                      src={product.imageUrl}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-200" />
+                  )}
+                </div>
 
-              {/* Name + price */}
-              <div className="flex flex-col min-w-0">
-                <span className="text-sm font-medium text-gray-900 truncate">{product.name}</span>
-                <span className="text-xs text-primary font-semibold">
-                  <PriceDisplay price={product.salePrice ?? product.price} size="sm" />
-                </span>
-              </div>
+                {/* Name + price */}
+                <div className="flex flex-col min-w-0">
+                  <span className="text-sm font-medium text-gray-900 truncate">{product.name}</span>
+                  <span className="text-xs text-primary font-semibold">
+                    <PriceDisplay price={product.salePrice ?? product.price} size="sm" />
+                  </span>
+                </div>
+              </Link>
             </li>
           ))
         )}

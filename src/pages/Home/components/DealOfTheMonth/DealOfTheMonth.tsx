@@ -1,14 +1,12 @@
-import { Button } from '@/components/Buttons/Button/Button';
 import ArrowIcon from '@/icons/ArrowIcon';
 import { routePaths } from '@/router/routePaths';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import CountdownTimer from './components/CountdownTimer/CountdownTimer';
+import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
 
 const DEAL_END_DATE = new Date('2026-07-31T23:59:59');
 
 const DealOfTheMonth = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation('pages/Home');
 
   return (
@@ -39,14 +37,14 @@ const DealOfTheMonth = () => {
 
           <CountdownTimer targetDate={DEAL_END_DATE} />
 
-          <Button
+          <ButtonLink
             className="flex gap-4 items-center font-medium"
-            onClick={() => navigate(routePaths.SHOP.ROOT)}
+            to={routePaths.SHOP.ROOT}
             size="md"
           >
             <span>{t('shopNow', 'Shop now')}</span>
             <ArrowIcon />
-          </Button>
+          </ButtonLink>
         </div>
 
         {/* Right image */}

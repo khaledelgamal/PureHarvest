@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/Buttons/Button/Button';
+import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
+import { routePaths } from '@/router/routePaths';
 import { useBlogComments } from '../../hooks/useBlogComments';
 import dayjs from 'dayjs';
 
@@ -10,6 +13,7 @@ interface BlogCommentsProps {
 
 export const BlogComments = ({ postId }: BlogCommentsProps) => {
   const { t } = useTranslation('pages/BlogDetailsPage');
+  const location = useLocation();
   const [message, setMessage] = useState('');
   const {
     comments,
@@ -20,7 +24,6 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
     isAddingComment,
     addComment,
     user,
-    handleSignInRedirect,
   } = useBlogComments(postId);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -60,9 +63,7 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
               disabled={isAddingComment || !message.trim()}
               className="px-8 py-2.5 rounded-full"
             >
-              {isAddingComment
-                ? t('posting', 'Posting...')
-                : t('postBtn', 'Post Comment')}
+              {isAddingComment ? t('posting', 'Posting...') : t('postBtn', 'Post Comment')}
             </Button>
           </div>
         </form>
@@ -71,9 +72,13 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
           <p className="text-gray-600">
             {t('loginPrompt', 'You must be signed in to post a comment.')}
           </p>
-          <Button onClick={handleSignInRedirect} className="px-6 py-2 rounded-full">
+          <ButtonLink
+            to={routePaths.ACCOUNT.SIGNIN}
+            state={{ from: location.pathname }}
+            className="px-6 py-2 rounded-full"
+          >
             {t('signInBtn', 'Sign In to Comment')}
-          </Button>
+          </ButtonLink>
         </div>
       )}
 
@@ -141,9 +146,7 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
                   disabled={isFetchingNextPage}
                   className="rounded-full px-8"
                 >
-                  {isFetchingNextPage
-                    ? t('loadingMore', 'Loading...')
-                    : t('loadMore', 'Load More')}
+                  {isFetchingNextPage ? t('loadingMore', 'Loading...') : t('loadMore', 'Load More')}
                 </Button>
               </div>
             )}

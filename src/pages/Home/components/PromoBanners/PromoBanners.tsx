@@ -1,17 +1,12 @@
 import { sectionContainer } from '@/constants/global.styles';
-import { Button } from '@/components/Buttons/Button/Button';
 import ArrowIcon from '@/icons/ArrowIcon';
 import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
-import { useNavigate } from 'react-router-dom';
-import { routePaths } from '@/router/routePaths';
 import { useTranslation } from 'react-i18next';
-import type { MouseEventHandler } from 'react';
+import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
+import { routePaths } from '@/router/routePaths';
 
 const PromoBanners = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation('pages/Home');
-
-  const handleShopNow = () => navigate(routePaths.SHOP.ROOT);
 
   return (
     <section className="bg-white py-[100px]">
@@ -33,7 +28,7 @@ const PromoBanners = () => {
               <span className="text-sm">{t('milkDescription', 'Starting at')}</span>
               <PriceDisplay price={14.99} size="lg" priceClassName="text-white" />
             </div>
-            <ShopNowButton onClick={handleShopNow} />
+            <ShopNowButton />
           </div>
         </div>
 
@@ -53,7 +48,7 @@ const PromoBanners = () => {
               <br />
               {t('colaTitle2', 'Soft Drink')}
             </h3>
-            <ShopNowButton onClick={handleShopNow} />
+            <ShopNowButton />
           </div>
         </div>
 
@@ -73,7 +68,7 @@ const PromoBanners = () => {
               <br />
               {t('legumesTitle2', 'Breakfast')}
             </h3>
-            <ShopNowButton onClick={handleShopNow} />
+            <ShopNowButton />
           </div>
         </div>
       </div>
@@ -83,21 +78,17 @@ const PromoBanners = () => {
 
 export default PromoBanners;
 
-const ShopNowButton = ({
-  onClick,
-}: {
-  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
-}) => {
+const ShopNowButton = () => {
   const { t } = useTranslation('pages/Home');
 
   return (
-    <Button
+    <ButtonLink
       className="flex gap-4 items-center font-medium bg-white text-primary 
         rounded-full px-6 py-3 hover:text-white transition-colors duration-300"
-      onClick={onClick}
+      to={routePaths.SHOP.ROOT}
     >
       <span>{t('shopNow', 'Shop Now')}</span>
       <ArrowIcon />
-    </Button>
+    </ButtonLink>
   );
 };

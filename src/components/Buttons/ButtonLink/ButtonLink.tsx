@@ -6,6 +6,7 @@ import { classNames } from '@/utils';
 type ButtonLinkProps = LinkProps & {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  disabled?: boolean;
 };
 
 export const ButtonLink = ({
@@ -13,8 +14,20 @@ export const ButtonLink = ({
   variant = 'fill',
   size = 'sm',
   className,
+  disabled,
   ...props
 }: ButtonLinkProps) => {
+  if (disabled) {
+    return (
+      <button
+        disabled
+        className={classNames(baseStyles, sizeStyles[size], variantStyles[variant], className)}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
     <Link
       {...props}

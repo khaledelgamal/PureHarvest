@@ -1,15 +1,11 @@
 import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { blogAPI } from '@/services/supabase/blog/api';
 import { blogKeys } from '@/services/supabase/blog/keys';
 import useAuthStore from '@/store/useAuthStore';
-import { routePaths } from '@/router/routePaths';
 import { useProfile } from '@/hooks/useProfile';
 
 export const useBlogComments = (postId?: string) => {
   const queryClient = useQueryClient();
-  const location = useLocation();
-  const navigate = useNavigate();
   const { user } = useAuthStore();
   const LIMIT = 5;
 
@@ -53,10 +49,6 @@ export const useBlogComments = (postId?: string) => {
     },
   });
 
-  const handleSignInRedirect = () => {
-    navigate(routePaths.ACCOUNT.SIGNIN, { state: { from: location.pathname } });
-  };
-
   return {
     comments,
     totalComments,
@@ -67,6 +59,5 @@ export const useBlogComments = (postId?: string) => {
     isAddingComment,
     addComment,
     user,
-    handleSignInRedirect,
   };
 };

@@ -1,14 +1,12 @@
-import { Button } from '@/components/Buttons/Button/Button';
+import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
 import { companyInfo } from '@/constants/companyInfo';
 import { sectionContainer } from '@/constants/global.styles';
 import ArrowIcon from '@/icons/ArrowIcon';
 import { routePaths } from '@/router/routePaths';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const { t } = useTranslation('pages/Home');
-  const navigate = useNavigate();
 
   return (
     <section className="bg-white py-[68px]">
@@ -36,21 +34,15 @@ const Hero = () => {
             {t('welcomeTo', 'WELCOME TO')} {companyInfo.name.toUpperCase()}
           </p>
           <h1 className="text-[56px] text-green-gray-900 font-semibold leading-[120%] mb-5">
-            {t('freshHealthy', 'Fresh & Healthy')} <br />{' '}
-            {t('organicFood', 'Organic Food')}
+            {t('freshHealthy', 'Fresh & Healthy')} <br /> {t('organicFood', 'Organic Food')}
           </h1>
           <p className="text-green-gray-500 text-lg mb-8">
             {t('freeShipping', 'Free shipping on all your order. we deliver, you enjoy')}
           </p>
-          <Button
-            className="flex gap-4 items-center font-medium"
-            onClick={() => {
-              navigate(routePaths.SHOP.ROOT);
-            }}
-          >
+          <ButtonLink to={routePaths.SHOP.ROOT} className="flex gap-4 items-center font-medium">
             <span>{t('shopNow', 'Shop now')}</span>
             <ArrowIcon />
-          </Button>
+          </ButtonLink>
         </div>
       </div>
     </section>

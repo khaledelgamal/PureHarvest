@@ -4,7 +4,7 @@ import { classNames } from '@/utils';
 import type { BlogCategory, BlogTag, RecentBlogPost } from '@/services/supabase/blog/types';
 import dayjs from 'dayjs';
 import { routePaths } from '@/router/routePaths';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useDebounce from '@/hooks/useDebounce';
 import { useEffect, useState } from 'react';
 
@@ -42,7 +42,6 @@ export const BlogListFilterSection = ({
 }: BlogListFilterSectionProps) => {
   const { t } = useTranslation('pages/BlogPage');
   const [searchState, setSearchState] = useState<string>(search);
-  const navigate = useNavigate();
   const debouncedValue = useDebounce(searchState, 300);
 
   useEffect(() => {
@@ -97,9 +96,7 @@ export const BlogListFilterSection = ({
 
       {/* Popular Tag */}
       <div className="flex flex-col gap-4">
-        <h4 className="text-xl font-medium text-gray-900">
-          {t('popularTag', 'Popular Tag')}
-        </h4>
+        <h4 className="text-xl font-medium text-gray-900">{t('popularTag', 'Popular Tag')}</h4>
         {isLoadingTags ? (
           <div className="flex flex-wrap gap-2">
             {[1, 2, 3, 4, 5].map(i => (
@@ -146,10 +143,10 @@ export const BlogListFilterSection = ({
         ) : (
           <div className="flex flex-col gap-4">
             {recentPosts.map(rp => (
-              <div
+              <Link
                 key={rp.id}
                 className="flex gap-4 items-center group cursor-pointer"
-                onClick={() => navigate(`${routePaths.BLOGS.BLOG_DETAILS.path(rp.id)}`)}
+                to={routePaths.BLOGS.BLOG_DETAILS.path(rp.id)}
               >
                 <div className="w-[72px] h-[72px] rounded-md overflow-hidden flex-shrink-0 bg-gray-50">
                   {rp.coverImage ? (
@@ -173,7 +170,7 @@ export const BlogListFilterSection = ({
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
