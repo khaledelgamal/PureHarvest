@@ -61,7 +61,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   });
   const addToWishlistMutation = useMutation({
     mutationFn: async () => {
-      if (!user) throw new Error(t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'));
+      if (!user)
+        throw new Error(
+          t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'),
+        );
       await wishlistsAPI.addToWishlist(user.id, product.id);
     },
     onMutate: () => {
@@ -69,9 +72,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     },
 
     onSuccess: () => {
-      toast.success(
-        t('addedToWishlist', '{{name}} added to wishlist.', { name: product.name }),
-      );
+      toast.success(t('addedToWishlist', '{{name}} added to wishlist.', { name: product.name }));
       queryClient.invalidateQueries({ queryKey: wishlistKeys.list(user?.id) });
       setInWishlist(true);
     },
@@ -174,7 +175,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
       {/* Content */}
       <div className="p-4 flex flex-col gap-1 relative">
-        <Link to={routePaths.SHOP.ITEM_DETAILS.path(product.slug)}>
+        <Link to={routePaths.SHOP.ITEM_DETAILS.path(product.id)}>
           <h3
             title={product.name}
             className="text-gray-700  hover:text-primary transition-colors overflow-hidden text-ellipsis text-nowrap"
