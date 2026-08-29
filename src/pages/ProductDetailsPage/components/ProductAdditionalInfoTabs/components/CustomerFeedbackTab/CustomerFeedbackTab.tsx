@@ -6,6 +6,8 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import CustomerFeedbackSkeleton from './components/CustomerFeedbackSkeleton/CustomerFeedbackSkeleton';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 
 dayjs.extend(relativeTime);
 
@@ -15,8 +17,16 @@ interface Props {
 
 export const CustomerFeedbackTab = ({ product }: Props) => {
   const { t } = useTranslation('pages/ProductDetailsPage');
+  const [currentSort, setCurrentSort] = useState('newest');
+
+  const sortOptions = [
+    { value: 'newest', label: t('sortNewest', 'Newest') },
+    { value: 'highest', label: t('sortHighest', 'Highest Rating') },
+    { value: 'lowest', label: t('sortLowest', 'Lowest Rating') },
+  ];
+
   const { data, isLoading, isError, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useProductReviews(product.id);
+    useProductReviews(product.id, 5, currentSort);
 
   const reviews = data?.pages.flatMap(page => page?.reviews || []) || [];
 
@@ -42,6 +52,18 @@ export const CustomerFeedbackTab = ({ product }: Props) => {
 
   return (
     <div className="flex flex-col gap-6 w-full pt-8 lg:max-w-[760px]">
+      <div className="flex items-center gap-3">
+        <span className="text-gray-600 text-sm">{t('sortBy', 'Sort by:')}</span>
+        <div className="w-[200px]">
+          <SelectInput
+            options={sortOptions}
+            value={currentSort}
+            onChange={e => setCurrentSort(e.target.value)}
+            className="py-2.5"
+          />
+        </div>
+      </div>
+
       {reviews.map(review => {
         const userName =
           [review.user?.firstName, review.user?.lastName].filter(Boolean).join(' ') || 'Customer';
@@ -69,9 +91,7 @@ export const CustomerFeedbackTab = ({ product }: Props) => {
             <div className="flex flex-col gap-2 flex-1">
               <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-1">
-                  <h5 className="font-semibold text-gray-900 text-sm">
-                    {userName}
-                  </h5>
+                  <h5 className="font-semibold text-gray-900 text-sm">{userName}</h5>
                   <div className="flex gap-0.5">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} fillPercentage={Math.min(1, Math.max(0, review.rating - i))} />

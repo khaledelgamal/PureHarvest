@@ -6,6 +6,7 @@ import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
 import { routePaths } from '@/router/routePaths';
 import { useBlogComments } from '../../hooks/useBlogComments';
 import dayjs from 'dayjs';
+import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 
 interface BlogCommentsProps {
   postId: string;
@@ -15,8 +16,16 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
   const { t } = useTranslation('pages/BlogDetailsPage');
   const location = useLocation();
   const [message, setMessage] = useState('');
+  const [currentSort, setCurrentSort] = useState('newest');
+
+  const sortOptions = [
+    { value: 'newest', label: t('sortNewest', 'Newest') },
+    { value: 'oldest', label: t('sortOldest', 'Oldest') },
+  ];
+
   const {
     comments,
+    totalComments,
     isLoading,
     isFetchingNextPage,
     hasNextPage,
@@ -24,7 +33,7 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
     isAddingComment,
     addComment,
     user,
-  } = useBlogComments(postId);
+  } = useBlogComments(postId, currentSort);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,9 +93,24 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
 
       {/* Comments List */}
       <div className="flex flex-col gap-6 mt-4">
-        <h4 className="text-xl font-medium text-gray-900">
-          {t('allComments', 'Comments')} ({comments.length})
-        </h4>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <h4 className="text-xl font-medium text-gray-900">
+            {t('allComments', 'Comments')} ({totalComments})
+          </h4>
+          {totalComments > 0 && (
+            <div className="flex items-center gap-3">
+              <span className="text-gray-600 text-sm">{t('sortBy', 'Sort by:')}</span>
+              <div className="w-[180px]">
+                <SelectInput
+                  options={sortOptions}
+                  value={currentSort}
+                  onChange={e => setCurrentSort(e.target.value)}
+                  className="py-2.5"
+                />
+              </div>
+            </div>
+          )}
+        </div>
 
         {isLoading ? (
           <div className="flex flex-col gap-4">

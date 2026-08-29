@@ -1,5 +1,11 @@
 import { supabase } from '../client';
-import { mapSupabaseProductToProduct, mapSupabaseProductWithWishlistToProduct, mapSupabaseReviewToProductReview, type SupabaseProductWithWishlist, type SupabaseReview } from './adapters';
+import {
+  mapSupabaseProductToProduct,
+  mapSupabaseProductWithWishlistToProduct,
+  mapSupabaseReviewToProductReview,
+  type SupabaseProductWithWishlist,
+  type SupabaseReview,
+} from './adapters';
 import type { Product, ProductsResponse, ProductFilters, ProductReview } from './types';
 import type { ServiceResponse } from '../types';
 
@@ -63,7 +69,7 @@ export const productsAPI = {
     const { data, error, count } = await query;
 
     if (error) return { data: null, error: { message: error.message } };
-    
+
     const products = data.map((item: unknown) => {
       return mapSupabaseProductWithWishlistToProduct(item as SupabaseProductWithWishlist);
     });
@@ -100,8 +106,10 @@ export const productsAPI = {
     const { data, error } = await query.single();
 
     if (error) return { data: null, error: { message: error.message } };
-    
-    const product = mapSupabaseProductWithWishlistToProduct(data as unknown as SupabaseProductWithWishlist);
+
+    const product = mapSupabaseProductWithWishlistToProduct(
+      data as unknown as SupabaseProductWithWishlist,
+    );
 
     return { data: product, error: null };
   },
@@ -164,11 +172,12 @@ export const productsAPI = {
     productId: string,
     page: number = 1,
     limit: number = 5,
+    sort: string = 'newest',
   ): Promise<ServiceResponse<{ reviews: ProductReview[]; total: number }>> => {
     const from = (page - 1) * limit;
     const to = from + limit - 1;
 
-    const { data, error, count } = await supabase
+    let query = supabase
       .from('reviews')
       .select(
         `
@@ -190,12 +199,24 @@ export const productsAPI = {
         { count: 'exact' },
       )
       .eq('product_id', productId)
-      .order('created_at', { ascending: false })
       .range(from, to);
+
+    if (sort === 'highest') {
+      query = query.order('rating', { ascending: false }).order('created_at', { ascending: false });
+    } else if (sort === 'lowest') {
+      query = query.order('rating', { ascending: true }).order('created_at', { ascending: false });
+    } else {
+      // default newest
+      query = query.order('created_at', { ascending: false });
+    }
+
+    const { data, error, count } = await query;
 
     if (error) return { data: null, error: { message: error.message } };
 
-    const reviews = data.map((item: unknown) => mapSupabaseReviewToProductReview(item as SupabaseReview));
+    const reviews = data.map((item: unknown) =>
+      mapSupabaseReviewToProductReview(item as SupabaseReview),
+    );
 
     return { data: { reviews, total: count ?? 0 }, error: null };
   },

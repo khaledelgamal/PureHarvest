@@ -17,8 +17,8 @@ export const blogKeys = {
   postById: (id: string) => [...blogKeys.all(), 'post', 'id', id] as const,
 
   // Comments for a post
-  comments: (postId: string, page?: number) =>
-    [...blogKeys.all(), 'comments', postId, page] as const,
+  comments: (postId: string, page?: number, sort?: string) =>
+    [...blogKeys.all(), 'comments', postId, page, sort] as const,
 
   // Recent posts (sidebar widget)
   recentPosts: (limit: number) => [...blogKeys.all(), 'recent', limit] as const,

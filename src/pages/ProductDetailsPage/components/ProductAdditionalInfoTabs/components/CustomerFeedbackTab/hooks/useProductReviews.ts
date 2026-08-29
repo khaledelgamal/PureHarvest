@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { productsAPI } from '@/services/supabase/products/api';
 
-const useProductReviews = (productId: string, limit: number = 5) => {
+const useProductReviews = (productId: string, limit: number = 5, sort: string = 'newest') => {
   return useInfiniteQuery({
-    queryKey: ['productReviews', productId],
+    queryKey: ['productReviews', productId, sort],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await productsAPI.getProductReviews(productId, pageParam, limit);
+      const response = await productsAPI.getProductReviews(productId, pageParam, limit, sort);
       if (response.error) throw new Error(response.error.message);
       return response.data;
     },

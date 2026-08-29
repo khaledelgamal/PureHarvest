@@ -4,7 +4,7 @@ import { blogKeys } from '@/services/supabase/blog/keys';
 import useAuthStore from '@/store/useAuthStore';
 import { useProfile } from '@/hooks/useProfile';
 
-export const useBlogComments = (postId?: string) => {
+export const useBlogComments = (postId?: string, sort: string = 'newest') => {
   const queryClient = useQueryClient();
   const { user } = useAuthStore();
   const LIMIT = 5;
@@ -12,10 +12,10 @@ export const useBlogComments = (postId?: string) => {
   const { data: profile } = useProfile();
 
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
-    queryKey: blogKeys.comments(postId || '', 0),
+    queryKey: blogKeys.comments(postId || '', 0, sort),
     queryFn: async ({ pageParam = 1 }) => {
       if (!postId) throw new Error('No post ID');
-      const { data, error } = await blogAPI.getComments(postId, pageParam, LIMIT);
+      const { data, error } = await blogAPI.getComments(postId, pageParam, LIMIT, sort);
       if (error) throw error;
       const nextPage = data.total > pageParam * LIMIT ? pageParam + 1 : undefined;
       return {

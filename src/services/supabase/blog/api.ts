@@ -154,16 +154,24 @@ export const blogAPI = {
     postId: string,
     page: number = 1,
     limit: number = 20,
+    sort: string = 'newest',
   ): Promise<ServiceResponse<{ comments: BlogComment[]; total: number }>> => {
     const from = (page - 1) * limit;
     const to = from + limit - 1;
 
-    const { data, error, count } = await supabase
+    let query = supabase
       .from('blog_comments')
       .select('*', { count: 'exact' })
       .eq('post_id', postId)
-      .order('created_at', { ascending: false })
       .range(from, to);
+
+    if (sort === 'oldest') {
+      query = query.order('created_at', { ascending: true });
+    } else {
+      query = query.order('created_at', { ascending: false });
+    }
+
+    const { data, error, count } = await query;
 
     if (error) return { data: null, error: { message: error.message } };
     return {
