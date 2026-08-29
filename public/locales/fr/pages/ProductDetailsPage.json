@@ -38,5 +38,9 @@
   "addedToWishlist": "{{name}} a été ajouté à la liste d'envies.",
   "failedToAddWishlist": "Échec de l'ajout de {{name}} à la liste d'envies. Veuillez réessayer.",
   "mustBeLoggedInWishlist": "Vous devez être connecté pour modifier votre liste d'envies.",
-  "failedToUpdateWishlist": "Échec de la mise à jour de la liste d'envies. Veuillez réessayer."
+  "failedToUpdateWishlist": "Échec de la mise à jour de la liste d'envies. Veuillez réessayer.",
+  "cartUpdatedToast": "{{name}} mis à jour — maintenant {{count}} dans votre panier",
+  "addedToCartToast": "{{count}}x {{name}} ajoutés à votre panier",
+  "viewCart": "Voir le panier",
+  "updateCart": "Mettre à jour le panier"
 }

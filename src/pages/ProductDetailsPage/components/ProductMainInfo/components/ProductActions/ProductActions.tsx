@@ -9,6 +9,7 @@ import type { Product } from '@/services/supabase/products/types';
 import { useProductWishlist } from './hooks/useProductWishlist';
 import { classNames } from '@/utils';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'sonner';
 
 interface ProductActionsProps {
   product: Product;
@@ -25,32 +26,91 @@ export const ProductActions = ({ product }: ProductActionsProps) => {
   const isItemInCart = !!cartItem;
 
   const [quantity, setQuantity] = useState<number>(cartItem?.quantity || 1);
+  // Tracks whether user changed quantity after adding — enables "Update Cart"
+  const [hasUnsyncedChanges, setHasUnsyncedChanges] = useState(false);
   const { inWishlist, isUpdatingWishlist, handleWishlistToggle } = useProductWishlist(product);
 
   const handleIncrease = () => {
     const nextQuantity = quantity + 1;
     setQuantity(nextQuantity);
     if (isItemInCart) {
-      changeQuantity(product.id, nextQuantity);
+      setHasUnsyncedChanges(true);
     }
   };
 
   const handleDecrease = () => {
-    const nextQuantity = Math.max(1, quantity - 1);
+    if (quantity <= 1) return;
+    const nextQuantity = quantity - 1;
     setQuantity(nextQuantity);
     if (isItemInCart) {
-      changeQuantity(product.id, nextQuantity);
+      setHasUnsyncedChanges(true);
     }
   };
 
-  const handleAddToCart = () => {
-    if (isItemInCart) return;
+  const handleCartAction = () => {
+    if (isItemInCart && hasUnsyncedChanges) {
+      // Update existing cart item quantity
+      changeQuantity(product.id, quantity);
+      setHasUnsyncedChanges(false);
+      toast.success(
+        t('cartUpdatedToast', 'Updated {{name}} — now {{count}} in your cart', {
+          name: product.name,
+          count: quantity,
+        }),
+      );
+      return;
+    }
+
+    if (isItemInCart) {
+      // Already in cart with no changes — open drawer to view
+      setIsShoppingCartDrawerOpen(true);
+      return;
+    }
+
+    // Fresh add to cart
     addItemToCart(product);
     if (quantity > 1) {
       changeQuantity(product.id, quantity);
     }
-    setIsShoppingCartDrawerOpen(true);
+    toast.success(
+      t('addedToCartToast', 'Added {{count}}x {{name}} to your cart', {
+        name: product.name,
+        count: quantity,
+      }),
+      {
+        action: {
+          label: t('viewCart', 'View Cart'),
+          onClick: () => setIsShoppingCartDrawerOpen(true),
+        },
+      },
+    );
   };
+
+  const getButtonLabel = () => {
+    if (isItemInCart && hasUnsyncedChanges) {
+      return (
+        <>
+          {t('updateCart', 'Update Cart')} <ShoppingBagIcon className="w-5 h-5" />
+        </>
+      );
+    }
+    if (isItemInCart) {
+      return (
+        <>
+          {t('addedToCart', 'Added to Cart')} <Check className="w-5 h-5" />
+        </>
+      );
+    }
+    return (
+      <>
+        {t('addToCart', 'Add to Cart')} <ShoppingBagIcon className="w-5 h-5" />
+      </>
+    );
+  };
+
+  const isOutOfStock = product.stockStatus === 'out_of_stock';
+  // Only truly disabled when out of stock or in cart with no changes to push
+  const isButtonDisabled = isOutOfStock || (isItemInCart && !hasUnsyncedChanges);
 
   return (
     <div className="flex items-center flex-wrap gap-4 border-y border-gray-200 py-6">
@@ -62,24 +122,13 @@ export const ProductActions = ({ product }: ProductActionsProps) => {
       />
 
       <Button
-        onClick={handleAddToCart}
-        disabled={isItemInCart || product.stockStatus === 'out_of_stock'}
+        onClick={handleCartAction}
+        disabled={isButtonDisabled}
         className={classNames(
           'flex-1 min-w-[200px] max-w-[400px] h-[50px] flex items-center justify-center gap-2 rounded-full text-base font-semibold transition-all',
-          isItemInCart
-            ? 'bg-primary-soft/30 text-primary-hard border-primary-soft/40 cursor-not-allowed opacity-90'
-            : '',
         )}
       >
-        {isItemInCart ? (
-          <>
-            {t('addedToCart', 'Added to Cart')} <Check className="w-5 h-5" />
-          </>
-        ) : (
-          <>
-            {t('addToCart', 'Add to Cart')} <ShoppingBagIcon className="w-5 h-5" />
-          </>
-        )}
+        {getButtonLabel()}
       </Button>
 
       <AddToWishlistButton

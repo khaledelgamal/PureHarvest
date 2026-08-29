@@ -38,5 +38,9 @@
   "addedToWishlist": "{{name}} added to wishlist.",
   "failedToAddWishlist": "Failed to add {{name}} to wishlist. Please try again.",
   "mustBeLoggedInWishlist": "You must be logged in to modify your wishlist.",
-  "failedToUpdateWishlist": "Failed to update wishlist. Please try again."
+  "failedToUpdateWishlist": "Failed to update wishlist. Please try again.",
+  "cartUpdatedToast": "Updated {{name}} — now {{count}} in your cart",
+  "addedToCartToast": "Added {{count}}x {{name}} to your cart",
+  "viewCart": "View Cart",
+  "updateCart": "Update Cart"
 }
