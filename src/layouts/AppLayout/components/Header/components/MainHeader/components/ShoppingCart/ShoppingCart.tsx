@@ -1,10 +1,8 @@
 import { ShoppingCart as ShoppingCartIcon } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import useCartStore from '@/store/useCartStore';
 import { useFormatPrice } from '@/hooks/useFormatPrice';
 
 const ShoppingCart = () => {
-  const { t } = useTranslation('layouts/AppLayout');
   const cardItems = useCartStore(state => state.items);
   const formatPrice = useFormatPrice();
   const setIsShoppingCartDrawerOpen = useCartStore(state => state.setIsShoppingCartDrawerOpen);
