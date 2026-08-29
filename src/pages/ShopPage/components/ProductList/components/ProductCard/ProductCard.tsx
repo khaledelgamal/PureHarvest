@@ -131,9 +131,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </div>
 
       {/* Hover actions top right */}
-      <div
-        className={`absolute top-4 right-4 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity`}
-      >
+      <div className={`absolute top-4 right-4 z-10 flex flex-col gap-2`}>
         <Button
           variant="rounded"
           className="group/wishlist bg-white!"
