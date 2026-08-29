@@ -93,6 +93,23 @@ const SignIn = () => {
             {t('register', 'Register')}
           </Link>
         </p>
+
+        <div className="mt-8 p-4 bg-green-gray-50 rounded-lg border border-green-gray-100 text-sm text-green-gray-700">
+          <p className="font-medium mb-2 text-green-gray-900">
+            {t('testCredentialsTitle', 'Demo Credentials')}
+          </p>
+          <div className="font-mono text-xs bg-white p-2 rounded border border-green-gray-100 mb-3">
+            <p>Email: test@pureharvest.com</p>
+            <p className="mt-1">Password: Test123#</p>
+          </div>
+          <p className="text-xs leading-relaxed text-green-gray-500">
+            *{' '}
+            {t(
+              'testCredentialsHint',
+              'Hint: Some behaviors like editing account name, password, and address are not accessible for this demo account.',
+            )}
+          </p>
+        </div>
       </AuthLayout>
     </div>
   );
