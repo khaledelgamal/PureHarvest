@@ -14,7 +14,10 @@ export const BlogCard = ({ post }: BlogCardProps) => {
   const month = publishedDate?.format('MMM').toUpperCase();
 
   return (
-    <div className="flex flex-col bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300 group">
+    <Link
+      to={routePaths.BLOGS.BLOG_DETAILS.path(post.id)}
+      className="flex flex-col bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300 group"
+    >
       {/* Image Container */}
       <div className="relative aspect-[4/3] w-full bg-gray-50 overflow-hidden">
         {post.coverImage ? (
@@ -57,24 +60,19 @@ export const BlogCard = ({ post }: BlogCardProps) => {
         </div>
 
         {/* Title */}
-        <Link to={routePaths.BLOGS.BLOG_DETAILS.path(post.id)}>
-          <h3 className="text-lg font-medium text-gray-900 mb-4 line-clamp-2 group-hover:text-primary transition-colors duration-200 cursor-pointer">
-            {post.title}
-          </h3>
-        </Link>
+        <h3 className="text-lg font-medium text-gray-900 mb-4 line-clamp-2 group-hover:text-primary transition-colors duration-200 cursor-pointer">
+          {post.title}
+        </h3>
 
         {/* Read More */}
         <div className="mt-auto">
-          <Link
-            to={routePaths.BLOGS.BLOG_DETAILS.path(post.id)}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark transition-colors duration-200 group/btn"
-          >
+          <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark transition-colors duration-200 group/btn">
             Read More
             <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
-          </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
