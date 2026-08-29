@@ -29,10 +29,10 @@ export const ProductBrandAndShare = ({ product }: ProductBrandAndShareProps) => 
 
       <div className="flex items-center justify-start">
         <p className="text-sm">{t('shareItem', 'Share item:')}</p>
-        <FacebookButton />
-        <TwitterButton />
-        <PinterestButton />
-        <InstagramButton />
+        <FacebookButton href="https://www.facebook.com/" />
+        <TwitterButton href="https://twitter.com/" />
+        <PinterestButton href="https://www.pinterest.com/" />
+        <InstagramButton href="https://www.instagram.com/" />
       </div>
     </div>
   );

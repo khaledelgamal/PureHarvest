@@ -24,10 +24,10 @@ const CopyrightBar = () => {
         className={`${sectionContainer} border-t border-gray-700 flex flex-col md:flex-row items-center justify-between py-5 gap-4`}
       >
         <div className="flex items-center gap-3">
-          <FacebookButton />
-          <TwitterButton />
-          <PinterestButton />
-          <InstagramButton />
+          <FacebookButton href="https://www.facebook.com/" />
+          <TwitterButton href="https://twitter.com/" />
+          <PinterestButton href="https://www.pinterest.com/" />
+          <InstagramButton href="https://www.instagram.com/" />
         </div>
 
         <p className="text-gray-500 text-sm">

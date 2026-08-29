@@ -1,4 +1,4 @@
-import type { ElementType } from 'react';
+import type { AnchorHTMLAttributes, DetailedHTMLProps, ElementType } from 'react';
 import FacebookIcon from '@/icons/FacebookIcon';
 import InstagramIcon from '@/icons/InstagramIcon';
 import LinkIcon from '@/icons/LinkIcon';
@@ -7,18 +7,23 @@ import TwitterIcon from '@/icons/TwitterIcon';
 import { classNames } from '@/utils';
 import { baseStyles, iconStyles } from './styles';
 
-type SocialButtonProps = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
+type SocialButtonProps = DetailedHTMLProps<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
 > & {
   Icon: ElementType;
 };
 
 export const SocialButton = ({ Icon, className, ...props }: SocialButtonProps) => {
   return (
-    <button {...props} className={classNames(baseStyles, className)}>
+    <a
+      {...props}
+      className={classNames(baseStyles, className)}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <Icon className={iconStyles} />
-    </button>
+    </a>
   );
 };
 

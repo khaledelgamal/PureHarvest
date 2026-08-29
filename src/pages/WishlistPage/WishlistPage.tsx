@@ -19,10 +19,10 @@ const WishlistPage = () => {
 
       <div className="flex items-center justify-start border border-gray-100 rounded-b-lg p-6 mb-4">
         <p className="text-sm">{t('share', 'Share:')}</p>
-        <FacebookButton />
-        <TwitterButton />
-        <PinterestButton />
-        <InstagramButton />
+        <FacebookButton href="https://www.facebook.com/" />
+        <TwitterButton href="https://twitter.com/" />
+        <PinterestButton href="https://www.pinterest.com/" />
+        <InstagramButton href="https://www.instagram.com/" />
       </div>
     </div>
   );
