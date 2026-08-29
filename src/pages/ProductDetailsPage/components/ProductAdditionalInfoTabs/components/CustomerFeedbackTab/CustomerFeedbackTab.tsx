@@ -8,6 +8,7 @@ import CustomerFeedbackSkeleton from './components/CustomerFeedbackSkeleton/Cust
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
+import 'dayjs/locale/fr';
 
 dayjs.extend(relativeTime);
 
@@ -16,7 +17,8 @@ interface Props {
 }
 
 export const CustomerFeedbackTab = ({ product }: Props) => {
-  const { t } = useTranslation('pages/ProductDetailsPage');
+  const { t, i18n } = useTranslation('pages/ProductDetailsPage');
+  dayjs.locale(i18n.language);
   const [currentSort, setCurrentSort] = useState('newest');
 
   const sortOptions = [
