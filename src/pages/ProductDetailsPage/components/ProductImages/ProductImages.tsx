@@ -46,9 +46,10 @@ const Magnifier = ({ src }: { src: string }) => {
 };
 
 export const ProductImages = ({ product }: { product: Product }) => {
-  const images = (product.images && product.images.length > 0)
-    ? [...product.images].sort((a, b) => a.sortOrder - b.sortOrder).map(i => i.imageUrl)
-    : ['https://placehold.co/800x800/eee/ccc?text=No+Image'];
+  const images =
+    product.images && product.images.length > 0
+      ? [...product.images].sort((a, b) => a.sortOrder - b.sortOrder).map(i => i.imageUrl)
+      : ['https://placehold.co/800x800/eee/ccc?text=No+Image'];
 
   const [activeImage, setActiveImage] = useState(0);
   const [, forceRender] = useReducer(x => x + 1, 0);
@@ -69,10 +70,22 @@ export const ProductImages = ({ product }: { product: Product }) => {
     };
   }, [emblaApi]);
 
-  const scrollPrev = () => emblaApi?.scrollPrev();
-  const scrollNext = () => emblaApi?.scrollNext();
-  const prevBtnDisabled = !emblaApi?.canScrollPrev();
-  const nextBtnDisabled = !emblaApi?.canScrollNext();
+  const prevBtnDisabled = activeImage === 0;
+  const nextBtnDisabled = activeImage === images.length - 1;
+
+  const scrollPrev = () => {
+    if (prevBtnDisabled) return;
+    const nextIndex = activeImage - 1;
+    setActiveImage(nextIndex);
+    emblaApi?.scrollTo(nextIndex);
+  };
+
+  const scrollNext = () => {
+    if (nextBtnDisabled) return;
+    const nextIndex = activeImage + 1;
+    setActiveImage(nextIndex);
+    emblaApi?.scrollTo(nextIndex);
+  };
   return (
     <div className="flex flex-col-reverse md:flex-row gap-4 w-full md:w-1/2">
       {/* Thumbnails Carousel */}
@@ -81,7 +94,7 @@ export const ProductImages = ({ product }: { product: Product }) => {
           onClick={scrollPrev}
           disabled={prevBtnDisabled}
           className={classNames(
-            'hidden md:flex p-1 rounded-full border border-gray-200 text-gray-500 hover:text-gray-900 transition disabled:opacity-50 disabled:cursor-not-allowed',
+            'cursor-pointer hidden md:flex p-1 rounded-full border border-gray-200 text-gray-500 hover:text-gray-900 transition disabled:opacity-50 disabled:cursor-not-allowed',
           )}
         >
           <ChevronUp size={20} />
@@ -103,7 +116,11 @@ export const ProductImages = ({ product }: { product: Product }) => {
                   emblaApi?.scrollTo(index);
                 }}
               >
-                <img src={src} alt={`${product.name} thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                <img
+                  src={src}
+                  alt={`${product.name} thumbnail ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
             ))}
           </div>
@@ -113,7 +130,7 @@ export const ProductImages = ({ product }: { product: Product }) => {
           onClick={scrollNext}
           disabled={nextBtnDisabled}
           className={classNames(
-            'hidden md:flex p-1 rounded-full border border-gray-200 text-gray-500 hover:text-gray-900 transition disabled:opacity-50 disabled:cursor-not-allowed',
+            'hidden md:flex p-1 cursor-pointer rounded-full border border-gray-200 text-gray-500 hover:text-gray-900 transition disabled:opacity-50 disabled:cursor-not-allowed',
           )}
         >
           <ChevronDown size={20} />
