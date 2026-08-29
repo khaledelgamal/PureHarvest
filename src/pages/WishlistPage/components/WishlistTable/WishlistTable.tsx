@@ -1,6 +1,8 @@
 import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
 import useWishlist from './hooks/useWishlist';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { routePaths } from '@/router/routePaths';
 
 import styles from './WishlistTable.module.css';
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
@@ -50,7 +52,10 @@ const WishlistTable = () => {
               )}
               <tr key={item.productId}>
                 <td>
-                  <div className={styles.productCell}>
+                  <Link
+                    to={routePaths.SHOP.ITEM_DETAILS.path(item.productId)}
+                    className={styles.productCell}
+                  >
                     {item.product?.imageUrl && (
                       <img
                         src={item.product?.imageUrl}
@@ -60,7 +65,7 @@ const WishlistTable = () => {
                     )}
 
                     <p className={styles.productName}>{item.product?.name}</p>
-                  </div>
+                  </Link>
                 </td>
                 <td>
                   <PriceDisplay

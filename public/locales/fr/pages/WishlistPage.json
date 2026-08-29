@@ -13,5 +13,6 @@
   "removeFromWishlist": "Retirer de la liste d'envies",
   "removedFromWishlist": "{{name}} a été retiré de la liste d'envies.",
   "failedToRemove": "Échec du retrait de {{name}} de la liste d'envies. Veuillez réessayer.",
-  "errorRequestingProduct": "Erreur lors de la demande de ce produit. Veuillez contacter le support à ({{email}})."
+  "errorRequestingProduct": "Erreur lors de la demande de ce produit. Veuillez contacter le support à ({{email}}).",
+  "addedToCartToast": "{{count}}x {{name}} ajoutés à votre panier"
 }

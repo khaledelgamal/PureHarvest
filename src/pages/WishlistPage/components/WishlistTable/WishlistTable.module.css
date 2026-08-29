@@ -66,6 +66,17 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  width: fit-content;
+  text-decoration: none;
+  color: inherit;
+}
+
+.productCell:hover .productName {
+  color: var(--color-primary);
+}
+
+.productCell:hover .productImage {
+  opacity: 0.85;
 }
 
 .productImage {
@@ -73,10 +84,12 @@
   height: 100px;
   border-radius: 12px;
   flex-shrink: 0;
+  transition: opacity 0.2s ease;
 }
 
 .productName {
   margin: 0;
+  transition: color 0.2s ease;
 }
 
 /* Stock status */

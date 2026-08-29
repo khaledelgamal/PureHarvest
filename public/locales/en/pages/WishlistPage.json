@@ -13,5 +13,6 @@
   "removeFromWishlist": "Remove from wishlist",
   "removedFromWishlist": "{{name}} removed from wishlist.",
   "failedToRemove": "Failed to remove {{name}} from wishlist. Please try again.",
-  "errorRequestingProduct": "Error requesting this product. Please contact support at ({{email}})."
+  "errorRequestingProduct": "Error requesting this product. Please contact support at ({{email}}).",
+  "addedToCartToast": "Added {{count}}x {{name}} to your cart"
 }

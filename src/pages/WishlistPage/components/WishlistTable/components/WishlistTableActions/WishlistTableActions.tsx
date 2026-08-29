@@ -21,6 +21,7 @@ const WishlistTableActions = ({ item }: { item: WishlistItem }) => {
   const userId = useAuthStore(state => state.user?.id);
   const addToCart = useCartStore(state => state.addItem);
   const cartItems = useCartStore(state => state.items);
+  const setIsShoppingCartDrawerOpen = useCartStore(state => state.setIsShoppingCartDrawerOpen);
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -64,6 +65,13 @@ const WishlistTableActions = ({ item }: { item: WishlistItem }) => {
   const handleAddToCart = () => {
     if (item.product) {
       addToCart(item.product);
+      toast.success(
+        t('addedToCartToast', 'Added {{count}}x {{name}} to your cart', {
+          name: item.product.name,
+          count: 1,
+        })
+      );
+      setIsShoppingCartDrawerOpen(true);
     } else {
       toast.error(
         t(
