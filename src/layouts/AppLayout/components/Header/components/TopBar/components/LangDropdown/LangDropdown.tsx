@@ -2,11 +2,14 @@ import { DropDown } from '@/components/DropDown/DropDown';
 import { languages } from '@/i18n/languages';
 import { useTranslation } from 'react-i18next';
 
+import { localStorageKeys } from '@/constants/localStorageKeys';
+
 const LangDropdown = () => {
   const { i18n } = useTranslation('layouts/AppLayout');
 
   const handleChange = (value: string) => {
     i18n.changeLanguage(value);
+    localStorage.setItem(localStorageKeys.language, value);
   };
 
   return (
