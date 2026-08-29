@@ -13,8 +13,10 @@ export const DescriptionTab = ({ product }: Props) => {
   return (
     <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 w-full pt-8">
       {/* Left side: Markdown */}
-      <div className="flex-1 text-gray-500 text-sm leading-relaxed prose max-w-none prose-sm prose-p:text-gray-500 prose-li:text-gray-500 prose-ul:list-image-[url(/check-circle.svg)]">
-        <ReactMarkdown>{product.description || `*${t('noDescription', 'No description available.')}*`}</ReactMarkdown>
+      <div className="flex-1 text-gray-500 text-sm leading-relaxed prose max-w-none prose-sm prose-p:text-gray-500 prose-li:text-gray-500">
+        <ReactMarkdown>
+          {product.description || `*${t('noDescription', 'No description available.')}*`}
+        </ReactMarkdown>
       </div>
 
       <ProductDetailsVideo />
