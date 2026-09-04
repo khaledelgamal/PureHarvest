@@ -1,5 +1,7 @@
 import { MapPin, Mail, Phone } from 'lucide-react';
 import type { ElementType } from 'react';
+import { companyInfo, contactSupport } from '@/constants/companyInfo';
+import { useTranslation } from 'react-i18next';
 
 type ContactInfoItemProps = {
   icon: ElementType;
@@ -16,26 +18,26 @@ const ContactInfoItem = ({ icon: Icon, children }: ContactInfoItemProps) => (
 );
 
 export const ContactInfoPanel = () => {
+  const { i18n } = useTranslation();
+
+  const currentLang = i18n.language as keyof typeof companyInfo.location;
+  const address = companyInfo.location[currentLang] || companyInfo.location.en;
+
   return (
     <div
       className="flex flex-col divide-y divide-gray-100 border border-gray-100
                     rounded-lg p-6 md:p-8 bg-white"
     >
       <ContactInfoItem icon={MapPin}>
-        <span>
-          Lincoln- 344, Illinois, <br />
-          Chicago, USA
-        </span>
+        <span>{address}</span>
       </ContactInfoItem>
 
       <ContactInfoItem icon={Mail}>
-        <span>Proxy@gmail.com</span>
-        <span>Help.proxy@gmail.com</span>
+        <span>{contactSupport.email}</span>
       </ContactInfoItem>
 
       <ContactInfoItem icon={Phone}>
-        <span>(219) 555-0114</span>
-        <span>(164) 333-0044</span>
+        <span>{companyInfo.phone}</span>
       </ContactInfoItem>
     </div>
   );

@@ -8,5 +8,12 @@
   "subjectPlaceholder": "Subject",
   "messagePlaceholder": "Message",
   "sending": "Sending...",
-  "sendMessage": "Send Message"
+  "sendMessage": "Send Message",
+  "validation": {
+    "nameRequired": "Name is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "subjectRequired": "Subject is required",
+    "messageMin": "Message must be at least 10 characters"
+  }
 }

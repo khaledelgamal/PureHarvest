@@ -23,12 +23,12 @@ const BreadCrumb = () => {
 
   return (
     <section
-      className={`hidden lg:block h-[120px] w-full bg-no-repeat bg-cover flex-center ${sectionPaddingX} `}
+      className="hidden lg:block w-full bg-no-repeat bg-cover"
       style={{ backgroundImage: `url("/images/breadcrumb-bg.png") ` }}
       aria-label="Bread crumb"
     >
       <div
-        className={`${sectionContainer} flex items-center gap-2`}
+        className={`${sectionContainer} ${sectionPaddingX} flex items-center gap-2 h-[120px]`}
         aria-label="Bread crumb navigation container"
       >
         {/* Home icon */}

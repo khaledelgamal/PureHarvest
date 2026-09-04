@@ -52,7 +52,7 @@ const MobileNavbar = ({ tabs }: MobileNavbarProps) => {
           onClick={() => setIsOpen(prev => !prev)}
           aria-label={isOpen ? t('closeMenu', 'Close menu') : t('openMenu', 'Open menu')}
           aria-expanded={isOpen}
-          className="p-2 rounded-md text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors"
+          className="rounded-md text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors"
         >
           {isOpen ? <CloseIcon className="w-5 h-5" /> : <HamburgerIcon className="w-6 h-6" />}
         </button>
