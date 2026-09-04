@@ -1,4 +1,4 @@
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import { classNames } from '@/utils';
 import BillingInformation from './components/BillingInformation';
 import OrderSummaryCard from './components/OrderSummaryCard';
@@ -22,7 +22,9 @@ const CheckoutPage = () => {
           'py-16 flex flex-col items-center justify-center min-h-[50vh]',
         )}
       >
-        <h2 className="text-2xl font-medium text-gray-900 mb-6">{t('noAddedItems', 'No added items')}</h2>
+        <h2 className="text-2xl font-medium text-gray-900 mb-6">
+          {t('noAddedItems', 'No added items')}
+        </h2>
         <Link to={routePaths.SHOP.ROOT}>
           <Button size="lg">{t('goToShop', 'Go To Shop')}</Button>
         </Link>
@@ -31,7 +33,7 @@ const CheckoutPage = () => {
   }
 
   return (
-    <div className={classNames(sectionContainer, 'py-8')}>
+    <div className={classNames(sectionContainer, 'py-8', sectionPaddingX)}>
       <form onSubmit={onSubmit} className="flex flex-col xl:flex-row gap-6">
         <BillingInformation register={register} watch={watch} errors={errors} />
         <OrderSummaryCard register={register} isPending={isPending} error={error} />

@@ -84,7 +84,7 @@ const CartItem = ({ item }: CartItemProps) => {
               value={draftQuantity}
               onIncrease={handleIncrease}
               onDecrease={handleDecrease}
-              className="py-1 px-1 h-8 md:h-9 max-w-[90px] md:max-w-[110px]"
+              className="h-8 md:max-w-[250px]"
             />
             {hasChanges && (
               <Button

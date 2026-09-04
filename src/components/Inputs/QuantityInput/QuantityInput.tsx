@@ -1,6 +1,7 @@
 import { classNames } from '@/utils';
 
-const buttonClassname = 'w-8! h-8! flex-center rounded-full bg-gray-50 hover:bg-gray-100 cursor-pointer';
+const buttonClassname =
+  'w-8! h-8! flex-center rounded-full bg-gray-50 hover:bg-gray-100 cursor-pointer';
 
 type QuantityInputProps = {
   value: number;
@@ -11,20 +12,17 @@ type QuantityInputProps = {
 
 const QuantityInput = ({ value, onIncrease, onDecrease, className }: QuantityInputProps) => {
   return (
-    <div className={classNames("flex items-center p-2 rounded-full justify-center gap-2 border border-gray-100", className)}>
-      <button
-        className={buttonClassname}
-        onClick={onDecrease}
-        aria-label="Decrease quantity"
-      >
+    <div
+      className={classNames(
+        'flex items-center rounded-full justify-center gap-2 border border-gray-100',
+        className,
+      )}
+    >
+      <button className={buttonClassname} onClick={onDecrease} aria-label="Decrease quantity">
         -
       </button>
       <span className="w-10 text-center">{value}</span>
-      <button
-        className={buttonClassname}
-        onClick={onIncrease}
-        aria-label="Increase quantity"
-      >
+      <button className={buttonClassname} onClick={onIncrease} aria-label="Increase quantity">
         +
       </button>
     </div>

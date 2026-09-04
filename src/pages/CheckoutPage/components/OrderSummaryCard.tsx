@@ -61,7 +61,9 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ register, isPending
       />
 
       <div className="flex flex-col gap-4 mt-2">
-        <h3 className="text-xl font-medium text-gray-900">{t('paymentMethod', 'Payment Method')}</h3>
+        <h3 className="text-xl font-medium text-gray-900">
+          {t('paymentMethod', 'Payment Method')}
+        </h3>
         <ul className="flex flex-col gap-3">
           <li className="flex items-center gap-2">
             <RadioButtonInput id="cashOnDelivery" value="cod" {...register('paymentMethod')} />
@@ -90,7 +92,12 @@ const OrderSummaryCard: React.FC<OrderSummaryCardProps> = ({ register, isPending
         </div>
       )}
 
-      <Button type="submit" className="w-full mt-4 py-3" size="lg" disabled={isPending}>
+      <Button
+        type="submit"
+        className="w-full max-w-[400px] mt-4 py-3"
+        size="lg"
+        disabled={isPending}
+      >
         {isPending ? t('placingOrder', 'Placing Order...') : t('placeOrder', 'Place Order')}
       </Button>
     </div>

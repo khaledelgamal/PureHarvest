@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import { useTranslation } from 'react-i18next';
 import PlayTriangleIcon from '@/icons/PlayTriangleIcon';
+import { classNames } from '@/utils';
 
 // Temp video from YouTube (Big Buck Bunny - free to use)
 const TEMP_VIDEO_URL = 'https://www.youtube.com/embed/hqAKFSnFYow?si=zY8O9U0JibgWjUlU&autoplay=1';
@@ -13,7 +14,7 @@ const VideoBanner = () => {
 
   return (
     <section className="bg-linear-to-b from-green-gray-50 from-50% to-white to-50% py-8 md:py-[50px]">
-      <div className={sectionContainer}>
+      <div className={classNames(sectionContainer, sectionPaddingX)}>
         <div className="relative w-full rounded-xl md:rounded-2xl overflow-hidden shadow-xl aspect-[4/3] sm:aspect-video min-h-[320px]">
           {isPlaying ? (
             <iframe
