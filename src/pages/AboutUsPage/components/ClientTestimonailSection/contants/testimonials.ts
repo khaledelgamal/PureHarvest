@@ -43,7 +43,7 @@ export const testimonials: Testimonail[] = [
   },
   {
     id: 5,
-    comment: 'The delivery was super fast and the packaging was eco-friendly. Great job!',
+    comment: 'The delivery was super fast and the packaging was eco-friendly.',
     user: {
       name: 'David Williams',
       image: 'https://randomuser.me/api/portraits/men/45.jpg',

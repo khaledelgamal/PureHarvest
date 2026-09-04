@@ -4,7 +4,7 @@ import PinterestIcon from '@/icons/PinterestIcon';
 import TwitterIcon from '@/icons/TwitterIcon';
 import { classNames } from '@/utils';
 import { baseStyles, iconStyles } from '@/components/Buttons/SocialButton/styles';
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import { useTranslation } from 'react-i18next';
 
 const TeamSection = () => {
@@ -35,9 +35,9 @@ const TeamSection = () => {
 
   return (
     <section className="bg-gray-50/50 py-16 sm:py-20">
-      <div className={sectionContainer}>
+      <div className={`${sectionContainer} ${sectionPaddingX}`}>
         <div className="flex flex-col items-center gap-3 text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 leading-tight">
             {t('teamTitle', 'Our Awesome Team')}
           </h2>
           <p className="max-w-2xl text-sm sm:text-base text-gray-600">
