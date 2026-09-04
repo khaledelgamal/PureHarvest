@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import clsx from 'clsx';
 import { Button } from '@/components/Buttons/Button/Button';
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import { useTranslation } from 'react-i18next';
 
 const FAQsPage = () => {
@@ -52,14 +52,14 @@ const FAQsPage = () => {
   };
 
   return (
-    <div className={sectionContainer}>
-      <div className="flex flex-col lg:flex-row gap-12 items-start justify-between mt-6">
+    <div className={`${sectionContainer} ${sectionPaddingX}`}>
+      <div className="flex flex-col lg:flex-row gap-12 items-start justify-between py-12 lg:py-16 mt-6">
         {/* Left Side: FAQs */}
         <div className="flex-1 w-full max-w-2xl mb-4">
-          <h1 className="text-4xl font-semibold text-gray-900 mb-8 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 mb-6 sm:mb-8 leading-tight">
             {t('title', 'Welcome, Let’s Talk About Our PureHarvest')}
           </h1>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             {faqsData.map((faq, index) => {
               const isOpen = openIndex === index;
               return (
@@ -68,18 +68,18 @@ const FAQsPage = () => {
                     variant="text"
                     onClick={() => toggleFaq(index)}
                     className={clsx(
-                      'flex group items-center justify-between p-4 w-full text-left transition-colors duration-200 border border-gray-200 rounded-t-md',
+                      'flex group items-center justify-between p-3 sm:p-4 w-full text-left transition-colors duration-200 border border-gray-200 rounded-t-md',
                       isOpen ? 'border-primary bg-white' : 'bg-gray-50 ',
                     )}
                   >
                     <span
-                      className={`text-base font-medium group-hover:text-primary-hard ${!isOpen ? 'text-gray-900' : 'text-primary-hard'}`}
+                      className={`text-sm sm:text-base font-medium group-hover:text-primary-hard ${!isOpen ? 'text-gray-900' : 'text-primary-hard'}`}
                     >
                       {faq.question}
                     </span>
                     <div
                       className={clsx(
-                        'flex items-center justify-center w-8 h-8 rounded-full transition-colors shrink-0 ml-4 group-hover:bg-primary group-hover:text-white',
+                        'flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full transition-colors shrink-0 ml-3 sm:ml-4 group-hover:bg-primary group-hover:text-white',
                         isOpen ? 'bg-primary text-white' : 'bg-white text-gray-900',
                       )}
                     >
@@ -93,7 +93,7 @@ const FAQsPage = () => {
                     )}
                   >
                     <div className="overflow-hidden">
-                      <div className="p-4 pt-2 text-sm text-gray-600 leading-relaxed border border-t-0 border-primary rounded-b-lg -mt-1 bg-white">
+                      <div className="p-3 sm:p-4 pt-1 sm:pt-2 text-sm text-gray-600 leading-relaxed border border-t-0 border-primary rounded-b-lg -mt-1 bg-white">
                         {faq.answer}
                       </div>
                     </div>
