@@ -20,7 +20,7 @@ const CartTotals = () => {
       <h4 className="text-xl text-gray-900 font-medium">{t('cartTotal', 'Cart Total')}</h4>
       <CartTotalsList subtotal={subtotal} shippingCost={shippingCost} total={total} />
       <ButtonLink
-        className="py-3"
+        className="py-3 text-center w-full sm:w-fit xl:w-full"
         to={routePaths.SHOPPING_CART.CHECKOUT.path}
         disabled={items.length === 0}
       >
