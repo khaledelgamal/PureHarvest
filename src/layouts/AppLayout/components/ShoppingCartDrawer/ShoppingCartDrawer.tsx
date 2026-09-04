@@ -42,12 +42,12 @@ export default function ShoppingCartDrawer() {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-[500px] bg-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out p-10 flex flex-col ${
+        className={`fixed top-0 right-0 h-full w-full md:w-[500px] bg-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out p-6 md:p-10 flex flex-col ${
           isShoppingCartDrawerOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex justify-between items-center pb-4 mb-4">
-          <h2 className="text-xl font-medium">
+        <div className="flex justify-between items-center pb-3 md:pb-4 mb-3 md:mb-4 border-b border-gray-100 md:border-none">
+          <h2 className="text-lg md:text-xl font-medium">
             {t('shoppingCartWithCount', 'Shopping Cart ({{count}})', { count: cardItems.length })}
           </h2>
           <CloseButton onClick={() => setIsShoppingCartDrawerOpen(false)} />
@@ -56,7 +56,7 @@ export default function ShoppingCartDrawer() {
           {/* Cart items */}
           <div className="flex flex-col items-center justify-start h-full text-gray-500">
             {cardItems.length === 0 ? (
-              <p>{t('emptyCart', 'Your cart is empty.')}</p>
+              <p className="mt-10">{t('emptyCart', 'Your cart is empty.')}</p>
             ) : (
               cardItems.map(item => {
                 return <CartItem key={item.product.id} item={item} />;
@@ -64,9 +64,9 @@ export default function ShoppingCartDrawer() {
             )}
           </div>
         </div>
-        <div className="flex flex-col gap-6 mt-6">
-          <div className="flex justify-between">
-            <span>
+        <div className="flex flex-col gap-4 md:gap-6 mt-4 md:mt-6 pt-4 border-t border-gray-100 md:border-none md:pt-0">
+          <div className="flex justify-between text-sm md:text-base">
+            <span className="text-gray-600 md:text-gray-900">
               {t('productsCount', '{{count}} Products', { count: cardItems.length })}
             </span>
             <PriceDisplay price={totalPrice} priceClassName="font-medium" size="sm" />

@@ -53,10 +53,10 @@ const CartItem = ({ item }: CartItemProps) => {
   const hasChanges = draftQuantity !== item.quantity;
 
   return (
-    <div className="w-full flex justify-between items-start gap-4 py-4 hover:bg-gray-50 transition-colors px-2 rounded-lg group">
-      <div className="flex gap-4 items-start justify-start flex-1 min-w-0">
+    <div className="w-full flex justify-between items-start gap-3 md:gap-4 py-3 md:py-4 hover:bg-gray-50 transition-colors px-1 sm:px-2 rounded-lg group">
+      <div className="flex gap-3 md:gap-4 items-start justify-start flex-1 min-w-0">
         {/* Product Image */}
-        <div className="w-20 h-20 bg-white rounded-lg overflow-hidden flex-shrink-0 border border-gray-100 flex items-center justify-center p-1 mt-1">
+        <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-lg overflow-hidden flex-shrink-0 border border-gray-100 flex items-center justify-center p-1 mt-1">
           {item.product.imageUrl ? (
             <img
               src={item.product.imageUrl}
@@ -69,29 +69,29 @@ const CartItem = ({ item }: CartItemProps) => {
         </div>
 
         {/* Product Info */}
-        <div className="flex flex-col items-start justify-start flex-1 min-w-0 gap-1.5">
+        <div className="flex flex-col items-start justify-start flex-1 min-w-0 gap-1 md:gap-1.5">
           <p
             title={item.product.name}
-            className="text-gray-900 font-medium text-base leading-tight line-clamp-2"
+            className="text-gray-900 font-medium text-sm md:text-base leading-tight line-clamp-2"
           >
             {item.product.name}
           </p>
 
-          <PriceDisplay price={item.product.salePrice || item.product.price} />
+          <PriceDisplay price={item.product.salePrice || item.product.price} size="sm" />
 
           <div className="flex flex-wrap items-center gap-2 mt-1">
             <QuantityInput
               value={draftQuantity}
               onIncrease={handleIncrease}
               onDecrease={handleDecrease}
-              className="py-1 px-1 h-9 max-w-[110px]"
+              className="py-1 px-1 h-8 md:h-9 max-w-[90px] md:max-w-[110px]"
             />
             {hasChanges && (
               <Button
                 onClick={handleConfirmUpdate}
-                className="flex items-center h-9 py-0 px-3 text-xs rounded-full bg-primary text-white flex-shrink-0"
+                className="flex items-center h-8 md:h-9 py-0 px-2.5 md:px-3 text-[10px] md:text-xs rounded-full bg-primary text-white flex-shrink-0"
               >
-                <Check className="w-3.5 h-3.5 mr-1" />
+                <Check className="w-3 h-3 md:w-3.5 md:h-3.5 mr-1" />
                 {t('update', 'Update')}
               </Button>
             )}
