@@ -59,14 +59,14 @@ export function OrdersTable({
 
   return (
     <div className={`overflow-x-auto h-[500px] ${className}`}>
-      <table className="w-full">
+      <table className="w-full min-w-[650px]">
         <thead>
           <tr className="border-b border-gray-100">
             {columns.map(col => (
               <th
                 key={col}
-                className="px-6 py-3 text-left text-xs font-semibold
-                             text-gray-400 uppercase tracking-wider"
+                className="px-4 sm:px-6 py-3 text-left text-xs font-semibold
+                             text-gray-400 uppercase tracking-wider whitespace-nowrap"
               >
                 {col}
               </th>
@@ -79,7 +79,7 @@ export function OrdersTable({
             [...Array(skeletonRows)].map((_, i) => (
               <tr key={i}>
                 {[...Array(5)].map((_, j) => (
-                  <td key={j} className="px-6 py-4">
+                  <td key={j} className="px-4 sm:px-6 py-4">
                     <div className="h-6 bg-gray-100 rounded animate-pulse" />
                   </td>
                 ))}
@@ -87,20 +87,20 @@ export function OrdersTable({
             ))
           ) : orders?.length === 0 ? (
             <tr>
-              <td colSpan={5} className="px-6 py-10 text-center text-gray-400 text-sm">
+              <td colSpan={5} className="px-4 sm:px-6 py-10 text-center text-gray-400 text-sm">
                 {emptyMessage}
               </td>
             </tr>
           ) : (
             orders?.map(order => (
               <tr key={order.id} className="hover:bg-gray-50 transition-colors duration-200">
-                <td className="px-6 py-4 text-sm text-gray-700 font-medium">
+                <td className="px-4 sm:px-6 py-3.5 sm:py-4 text-sm text-gray-700 font-medium whitespace-nowrap">
                   #{order.orderNumber}
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600">
+                <td className="px-4 sm:px-6 py-3.5 sm:py-4 text-sm text-gray-600 whitespace-nowrap">
                   {formatDate(order.orderDate, monthFormat)}
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-700">
+                <td className="px-4 sm:px-6 py-3.5 sm:py-4 text-sm text-gray-700 whitespace-nowrap">
                   ${order.totalAmount.toFixed(2)}
                   <span className="text-gray-400 ml-1">
                     (
@@ -110,12 +110,12 @@ export function OrdersTable({
                     )
                   </span>
                 </td>
-                <td className="px-6 py-4 text-sm">
+                <td className="px-4 sm:px-6 py-3.5 sm:py-4 text-sm whitespace-nowrap">
                   <span className={ORDER_STATUS_STYLES[order.status]}>
                     {getStatusLabel(order.status)}
                   </span>
                 </td>
-                <td className="px-6 py-4 text-right">
+                <td className="px-4 sm:px-6 py-3.5 sm:py-4 whitespace-nowrap">
                   <ButtonLink
                     to={routePaths.ACCOUNT.ORDER_HISTORY.ORDER_DETAILS.path(order.id)}
                     variant="text"

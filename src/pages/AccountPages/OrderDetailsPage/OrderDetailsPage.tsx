@@ -51,13 +51,15 @@ export default function OrderDetailsPage() {
   return (
     <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
       {/* ── Header ── */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-        <div className="flex items-center gap-3 flex-wrap">
-          <h2 className="font-medium text-gray-900 text-xl">{t('orderDetails', 'Order Details')}</h2>
-          <span className="text-gray-700">•</span>
-          <span className="text-gray-700 text-sm">{formatDate(order.createdAt)}</span>
-          <span className="text-gray-700">•</span>
-          <span className="text-gray-700 text-sm">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-4 sm:px-6 py-4 border-b border-gray-100">
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <h2 className="font-medium text-gray-900 text-lg sm:text-xl">
+            {t('orderDetails', 'Order Details')}
+          </h2>
+          <span className="text-gray-400">•</span>
+          <span className="text-gray-600 text-xs sm:text-sm">{formatDate(order.createdAt)}</span>
+          <span className="text-gray-400">•</span>
+          <span className="text-gray-600 text-xs sm:text-sm">
             {order.itemCount === 1
               ? t('product', '1 Product', { count: 1 })
               : t('products', '{{count}} Products', { count: order.itemCount })}
@@ -70,8 +72,8 @@ export default function OrderDetailsPage() {
       </div>
 
       {/* ── Addresses + Summary ── */}
-      <div className="bg-white flex gap-6 px-6 pt-6">
-        <div className="rounded-md border border-gray-100 w-full flex divide-x divide-gray-100">
+      <div className="bg-white flex flex-col xl:flex-row gap-6 px-4 sm:px-6 pt-6">
+        <div className="rounded-md border border-gray-100 w-full flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-100">
           {/* Billing Address */}
           <AddressCard title={t('billingAddress', 'Billing Address')} address={order.billing} />
 
@@ -90,12 +92,13 @@ export default function OrderDetailsPage() {
       </div>
 
       {/* ── Progress Tracker ── */}
-      <div className="px-12 py-7">
-        <OrderProgressTracker status={order.status} />
+      <div className="px-4 sm:px-8 lg:px-12 py-5 sm:py-7 overflow-x-auto">
+        <div className="min-w-[480px]">
+          <OrderProgressTracker status={order.status} />
+        </div>
       </div>
 
       {/* ── Products Table ── */}
-
       <OrderProductsTable items={order.items} />
     </div>
   );

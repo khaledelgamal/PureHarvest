@@ -41,31 +41,31 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       {/* ── Top Cards ── */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         {/* Profile Card */}
         <div
           className="bg-white rounded-2xl border border-gray-100 shadow-sm
-                      flex flex-col items-center justify-center gap-3 py-8"
+                      flex flex-col items-center justify-center gap-3 py-6 sm:py-8 px-4 sm:px-6"
         >
           {profileLoading ? (
-            <div className="w-24 h-24 rounded-full bg-gray-100 animate-pulse" />
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gray-100 animate-pulse" />
           ) : profile?.avatarUrl ? (
             <img
               src={profile.avatarUrl}
               alt={fullName}
-              className="w-24 h-24 rounded-full object-cover ring-4 ring-green-gray-100"
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-4 ring-green-gray-100"
             />
           ) : (
             <div
-              className="w-24 h-24 rounded-full bg-primary flex-center
-                          text-white text-2xl font-bold ring-4 ring-green-gray-100"
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-primary flex-center
+                          text-white text-xl sm:text-2xl font-bold ring-4 ring-green-gray-100"
             >
               {fullName?.[0]?.toUpperCase() ?? '?'}
             </div>
           )}
 
           <div className="text-center">
-            <h3 className="font-semibold text-gray-900 text-lg">
+            <h3 className="font-semibold text-gray-900 text-base sm:text-lg">
               {profileLoading ? (
                 <span className="block w-32 h-5 bg-gray-100 rounded animate-pulse mx-auto" />
               ) : (
@@ -81,8 +81,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Billing Address Card */}
-
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sm:p-6 flex flex-col">
           {profileLoading ? (
             <div className="space-y-3 flex-1">
               {[...Array(4)].map((_, i) => (
@@ -106,8 +105,10 @@ export default function DashboardPage() {
 
       {/* ── Recent Orders ── */}
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-        <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-          <h3 className="font-semibold text-gray-900">{t('recentOrderHistory', 'Recent Order History')}</h3>
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
+          <h3 className="font-semibold text-gray-900 text-base sm:text-lg">
+            {t('recentOrderHistory', 'Recent Order History')}
+          </h3>
           <ButtonLink to={routePaths.ACCOUNT.ORDER_HISTORY.path} variant="text" size="md">
             {t('viewAll', 'View All')}
           </ButtonLink>

@@ -26,7 +26,7 @@ export const BillingAddressSection = ({ profile }: Props) => {
     <SettingsSectionLayout title={t('billingAddress', 'Billing Address')}>
       <form onSubmit={handleSubmit(values => updateBilling(values))} className="space-y-4">
         {/* Row 1: First + Last + Company */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <FormField label={t('firstName', 'First name')}>
             <TextFieldInput
               {...register('firstName')}
@@ -59,7 +59,7 @@ export const BillingAddressSection = ({ profile }: Props) => {
         </FormField>
 
         {/* Row 3: Country + State + Zip */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <FormField label={t('countryRegion', 'Country / Region')}>
             <SelectInput
               {...register('country')}
@@ -95,7 +95,7 @@ export const BillingAddressSection = ({ profile }: Props) => {
         </div>
 
         {/* Row 4: Email + Phone */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormField label={t('email', 'Email')}>
             <TextFieldInput
               {...register('email')}

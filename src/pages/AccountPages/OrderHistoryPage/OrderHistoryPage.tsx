@@ -30,8 +30,8 @@ export default function OrderHistoryPage() {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
       {/* ── Header ── */}
-      <div className="px-6 py-5 border-b border-gray-100">
-        <h3 className="font-semibold text-gray-900 text-lg">
+      <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
+        <h3 className="font-semibold text-gray-900 text-base sm:text-lg">
           {t('orderHistory', 'Order History')}
         </h3>
       </div>
@@ -49,7 +49,7 @@ export default function OrderHistoryPage() {
 
       {/* ── Pagination ── */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 px-6 py-5 border-t border-gray-100">
+        <div className="flex items-center justify-center gap-2 px-4 sm:px-6 py-4 sm:py-5 border-t border-gray-100 flex-wrap">
           <button
             onClick={() => setPage(p => Math.max(1, p - 1))}
             disabled={page === 1}

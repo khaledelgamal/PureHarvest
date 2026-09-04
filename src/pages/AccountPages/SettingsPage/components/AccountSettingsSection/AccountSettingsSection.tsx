@@ -72,8 +72,8 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
         </Button>
       </form>
 
-      <div className="flex flex-col items-center gap-4 shrink-0 flex-1 mt-10">
-        <div className="w-56 h-56 rounded-full overflow-hidden ring-4 ring-green-gray-100">
+      <div className="flex flex-col items-center gap-4 shrink-0 mt-2 lg:mt-10 order-first lg:order-last">
+        <div className="w-36 h-36 sm:w-44 sm:h-44 lg:w-56 lg:h-56 rounded-full overflow-hidden ring-4 ring-green-gray-100">
           {isLoadingProfile ? (
             <div className="w-full h-full bg-gray-100 animate-pulse" />
           ) : profile?.avatarUrl ? (

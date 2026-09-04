@@ -28,7 +28,7 @@ export const OrderSummaryCard = ({
   };
 
   return (
-    <div className="p-5 border border-gray-100 rounded-md min-w-72">
+    <div className="p-4 sm:p-5 border border-gray-100 rounded-md w-full xl:w-80 shrink-0">
       {/* ── Order ID + Payment Method ── */}
       <div className="grid grid-cols-2 gap-4 pb-4 border-b border-gray-100 divide-x divide-gray-100">
         <div className="space-y-0.5">

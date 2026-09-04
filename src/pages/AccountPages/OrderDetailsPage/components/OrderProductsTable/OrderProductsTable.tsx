@@ -19,14 +19,14 @@ export const OrderProductsTable = ({ items }: OrderProductsTableProps) => {
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full">
+      <table className="w-full min-w-[550px]">
         <thead>
           <tr className="bg-gray-100 border-y border-gray-100">
             {headers.map(col => (
               <th
                 key={col}
-                className="px-6 py-3 text-left text-xs font-medium
-                           text-gray-700 uppercase"
+                className="px-4 sm:px-6 py-3 text-left text-xs font-medium
+                           text-gray-700 uppercase whitespace-nowrap"
               >
                 {col}
               </th>
@@ -38,9 +38,9 @@ export const OrderProductsTable = ({ items }: OrderProductsTableProps) => {
           {items.map(item => (
             <tr key={item.id} className="hover:bg-gray-50 transition-colors duration-200">
               {/* Product */}
-              <td className="px-6 py-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0">
+              <td className="px-4 sm:px-6 py-3 sm:py-4">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden shrink-0">
                     <img
                       src={item.productImage ?? PLACEHOLDER_IMAGE}
                       alt={item.productName}
@@ -55,13 +55,17 @@ export const OrderProductsTable = ({ items }: OrderProductsTableProps) => {
               </td>
 
               {/* Price */}
-              <td className="px-6 py-4 text-sm text-gray-600">${item.price.toFixed(2)}</td>
+              <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-gray-600 whitespace-nowrap">
+                ${item.price.toFixed(2)}
+              </td>
 
               {/* Quantity */}
-              <td className="px-6 py-4 text-sm text-gray-600">x{item.quantity}</td>
+              <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-gray-600 whitespace-nowrap">
+                x{item.quantity}
+              </td>
 
               {/* Subtotal */}
-              <td className="px-6 py-4 text-sm font-medium text-gray-900">
+              <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                 ${item.subtotal.toFixed(2)}
               </td>
             </tr>
