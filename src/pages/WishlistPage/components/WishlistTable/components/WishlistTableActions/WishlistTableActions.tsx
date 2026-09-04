@@ -69,7 +69,7 @@ const WishlistTableActions = ({ item }: { item: WishlistItem }) => {
         t('addedToCartToast', 'Added {{count}}x {{name}} to your cart', {
           name: item.product.name,
           count: 1,
-        })
+        }),
       );
       setIsShoppingCartDrawerOpen(true);
     } else {
@@ -91,6 +91,7 @@ const WishlistTableActions = ({ item }: { item: WishlistItem }) => {
     <div className={styles.actionButtons}>
       <Button
         size="md"
+        className="whitespace-nowrap"
         onClick={handleAddToCart}
         disabled={(['in-cart', 'added-to-cart'] as ItemAdditionState[]).includes(itemAdditionState)}
       >

@@ -41,10 +41,6 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-.wishlistTable tbody tr:last-child {
-  border-bottom: none;
-}
-
 /* Row cells */
 .wishlistTable tbody td {
   padding: 16px 0;
@@ -59,6 +55,18 @@
 .wishlistTable tbody td:last-child {
   padding-right: 24px;
   border-right: 1px solid #e5e7eb;
+}
+
+.wishlistTable tbody tr:last-child td {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wishlistTable tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.wishlistTable tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
 }
 
 /* Product cell */
@@ -144,7 +152,6 @@
   }
 
   .actionButtons {
-    flex-direction: column;
     gap: 8px;
   }
 }
