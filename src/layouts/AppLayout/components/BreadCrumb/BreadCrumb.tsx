@@ -1,4 +1,4 @@
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import { routePaths } from '@/router/routePaths';
 import { ChevronRight, House } from 'lucide-react';
 import { type ReactNode } from 'react';
@@ -23,7 +23,7 @@ const BreadCrumb = () => {
 
   return (
     <section
-      className="hidden lg:block h-[120px] w-full bg-no-repeat bg-cover flex-center"
+      className={`hidden lg:block h-[120px] w-full bg-no-repeat bg-cover flex-center ${sectionPaddingX} `}
       style={{ backgroundImage: `url("/images/breadcrumb-bg.png") ` }}
       aria-label="Bread crumb"
     >
