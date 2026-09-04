@@ -1,4 +1,4 @@
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import AppLogo from '../../../AppLogo/AppLogo';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
@@ -34,10 +34,12 @@ const SubscribeNewsletter = () => {
   }
 
   return (
-    <div className={`py-10 md:py-[50px] bg-green-gray-50 border-t border-green-gray-200 relative`}>
+    <div
+      className={`${sectionPaddingX} py-10 md:py-[50px] bg-green-gray-50 border-t border-green-gray-200 relative`}
+    >
       <CloseButton className="absolute top-1 right-1" onClick={handleClose} />
       <div
-        className={`${sectionContainer} flex flex-col xl:flex-row items-center justify-between gap-6 md:gap-8 xl:gap-24 text-center xl:text-left`}
+        className={`${sectionContainer} flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8 xl:gap-24 text-center xl:text-left`}
       >
         {/* Logo */}
         <div className="shrink-0">
@@ -83,10 +85,10 @@ const SubscribeNewsletter = () => {
               disabled:opacity-70
             "
           />
-          <div className="absolute right-1 md:right-1.5">
+          <div className={` absolute right-1 md:right-1.5 `}>
             <Button
               size="md"
-              className="flex items-center justify-center gap-1 w-[120px] py-2 md:py-2"
+              className="flex items-center justify-center gap-1 max-w-[120px] py-2 md:py-2"
               type="submit"
               disabled={isPending}
             >
