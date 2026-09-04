@@ -21,8 +21,8 @@ const MainHeader = () => {
         </Link>
 
         {/* Search and Icons - Same line on mobile */}
-        <div className="flex flex-col sm:flex-row  items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full sm:w-auto">
-          <div className="flex-1 sm:flex-initial">
+        <div className="flex-1 flex flex-col sm:flex-row  items-center justify-between sm:justify-end gap-3 sm:gap-4 w-full sm:w-auto">
+          <div className="flex-1 w-full sm:flex-initial justify-self-center">
             <GlobalSearch />
           </div>
 
