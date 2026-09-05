@@ -53,7 +53,7 @@ export const BlogList = ({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 flex-1">
           {/* Search */}
-          <div className="flex items-center gap-2 px-3.5 py-2 rounded-md border border-gray-200 bg-white flex-1 max-w-xs sm:max-w-sm focus-within:border-primary transition-colors">
+          <div className="flex h-[42px] items-center gap-2 px-3.5 py-2 rounded-md border border-gray-200 bg-white sm:flex-1 max-w-xs sm:max-w-sm focus-within:border-primary transition-colors">
             <SearchIcon className="text-gray-400 w-4 h-4 flex-shrink-0" />
             <input
               type="text"
