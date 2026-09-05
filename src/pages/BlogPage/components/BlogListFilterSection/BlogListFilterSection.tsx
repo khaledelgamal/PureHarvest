@@ -1,16 +1,14 @@
-import { SearchIcon, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/utils';
 import type { BlogCategory, BlogTag, RecentBlogPost } from '@/services/supabase/blog/types';
 import dayjs from 'dayjs';
 import { routePaths } from '@/router/routePaths';
 import { Link } from 'react-router-dom';
-import useDebounce from '@/hooks/useDebounce';
-import { useEffect, useState } from 'react';
 
 interface BlogListFilterSectionProps {
   // State
-  search: string;
+  search?: string;
   category: string;
   tag: string;
 
@@ -29,7 +27,6 @@ interface BlogListFilterSectionProps {
 }
 
 export const BlogListFilterSection = ({
-  search,
   category,
   tag,
   categories,
@@ -41,27 +38,9 @@ export const BlogListFilterSection = ({
   onFilterChange,
 }: BlogListFilterSectionProps) => {
   const { t } = useTranslation('pages/BlogPage');
-  const [searchState, setSearchState] = useState<string>(search);
-  const debouncedValue = useDebounce(searchState, 300);
-
-  useEffect(() => {
-    onFilterChange('search', debouncedValue);
-  }, [debouncedValue]);
 
   return (
-    <div className="w-[312px] flex-shrink-0 flex flex-col gap-6">
-      {/* Search */}
-      <div className="flex items-center gap-2 px-4 py-[14px] rounded-md border border-gray-100 bg-white">
-        <SearchIcon className="text-gray-900 w-5 h-5 flex-shrink-0" />
-        <input
-          type="text"
-          placeholder={t('searchPlaceholder', 'Search...')}
-          value={searchState}
-          onChange={e => setSearchState(e.target.value)}
-          className="w-full placeholder:text-gray-500 outline-none text-gray-900 bg-transparent"
-        />
-      </div>
-
+    <div className="w-full lg:w-[312px] flex-shrink-0 flex flex-col gap-6">
       {/* Top Categories */}
       <div className="flex flex-col gap-4">
         <h4 className="text-xl font-medium text-gray-900">
@@ -124,7 +103,7 @@ export const BlogListFilterSection = ({
       </div>
 
       {/* Recently Added */}
-      <div className="flex flex-col gap-4">
+      <div className="hidden lg:flex flex-col gap-4">
         <h4 className="text-xl font-medium text-gray-900">
           {t('recentlyAdded', 'Recently Added')}
         </h4>

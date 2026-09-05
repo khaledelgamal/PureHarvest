@@ -1,6 +1,6 @@
 import { BlogContent, BlogContentSkeleton } from './components/BlogContent/BlogContent';
 import { BlogComments } from './components/BlogComments/BlogComments';
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import { BlogDetailsAdBanner } from './components/BlogDetailsAdBanner/BlogDetailsAdBanner';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -37,7 +37,7 @@ export default function BlogDetailsPage() {
   }
 
   return (
-    <div className={`${sectionContainer} py-8 flex flex-col`}>
+    <div className={`${sectionContainer} ${sectionPaddingX} py-8 flex flex-col`}>
       {isLoading || !post ? <BlogContentSkeleton /> : <BlogContent post={post} />}
       <BlogDetailsAdBanner />
       {post && <BlogComments postId={post.id} />}

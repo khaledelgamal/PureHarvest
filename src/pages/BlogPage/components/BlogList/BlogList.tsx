@@ -1,8 +1,10 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, SearchIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 import { BlogCard, BlogCardSkeleton } from '../BlogCard/BlogCard';
 import type { BlogPost } from '@/services/supabase/blog/types';
+import useDebounce from '@/hooks/useDebounce';
+import { useEffect, useState } from 'react';
 
 interface BlogListProps {
   posts: BlogPost[];
@@ -10,6 +12,7 @@ interface BlogListProps {
   totalPages: number;
   page: number;
   sortBy: string;
+  search?: string;
   isLoading: boolean;
   onFilterChange: (key: string, value: string) => void;
   onPageChange: (page: number) => void;
@@ -21,11 +24,22 @@ export const BlogList = ({
   totalPages,
   page,
   sortBy,
+  search = '',
   isLoading,
   onFilterChange,
   onPageChange,
 }: BlogListProps) => {
   const { t } = useTranslation('pages/BlogPage');
+  const [searchState, setSearchState] = useState<string>(search);
+  const debouncedSearch = useDebounce(searchState, 300);
+
+  useEffect(() => {
+    onFilterChange('search', debouncedSearch);
+  }, [debouncedSearch]);
+
+  useEffect(() => {
+    setSearchState(search);
+  }, [search]);
 
   const sortOptions = [
     { label: t('sortLatest', 'Latest'), value: 'published_at' },
@@ -35,22 +49,38 @@ export const BlogList = ({
 
   return (
     <div className="flex-1 flex flex-col gap-6">
-      
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <span className="text-gray-600 text-sm">{t('sortBy', 'Sort by:')}</span>
-          <div className="w-[180px]">
-            <SelectInput
-              options={sortOptions}
-              value={sortBy}
-              onChange={(e) => onFilterChange('sortBy', e.target.value)}
-              className="py-2.5"
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 flex-1">
+          {/* Search */}
+          <div className="flex items-center gap-2 px-3.5 py-2 rounded-md border border-gray-200 bg-white flex-1 max-w-xs sm:max-w-sm focus-within:border-primary transition-colors">
+            <SearchIcon className="text-gray-400 w-4 h-4 flex-shrink-0" />
+            <input
+              type="text"
+              placeholder={t('searchPlaceholder', 'Search...')}
+              value={searchState}
+              onChange={e => setSearchState(e.target.value)}
+              className="w-full text-sm placeholder:text-gray-400 outline-none text-gray-900 bg-transparent"
             />
           </div>
+
+          {/* Sort By */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            <span className="text-gray-600 text-sm whitespace-nowrap">
+              {t('sortBy', 'Sort by:')}
+            </span>
+            <div className="w-[150px] sm:w-[170px]">
+              <SelectInput
+                options={sortOptions}
+                value={sortBy}
+                onChange={e => onFilterChange('sortBy', e.target.value)}
+                className="py-2"
+              />
+            </div>
+          </div>
         </div>
-        
-        <div className="text-sm">
+
+        <div className="text-sm shrink-0">
           <span className="font-semibold text-gray-900">{totalPosts}</span>
           <span className="text-gray-500 ml-1">{t('resultsFound', 'Results Found')}</span>
         </div>
@@ -66,7 +96,7 @@ export const BlogList = ({
           </>
         ) : (
           <>
-            {posts.map((post) => (
+            {posts.map(post => (
               <BlogCard key={post.id} post={post} />
             ))}
             {posts.length === 0 && (
@@ -94,11 +124,11 @@ export const BlogList = ({
 
           {[...Array(totalPages)].map((_, i) => {
             const pageNum = i + 1;
-            
+
             // simple pagination display logic
             if (
-              pageNum === 1 || 
-              pageNum === totalPages || 
+              pageNum === 1 ||
+              pageNum === totalPages ||
               (pageNum >= page - 1 && pageNum <= page + 1)
             ) {
               return (
@@ -117,7 +147,11 @@ export const BlogList = ({
                 </button>
               );
             } else if (pageNum === page - 2 || pageNum === page + 2) {
-               return <span key={pageNum} className="text-gray-400">...</span>
+              return (
+                <span key={pageNum} className="text-gray-400">
+                  ...
+                </span>
+              );
             }
             return null;
           })}
@@ -134,7 +168,6 @@ export const BlogList = ({
           </button>
         </div>
       )}
-
     </div>
   );
 };
