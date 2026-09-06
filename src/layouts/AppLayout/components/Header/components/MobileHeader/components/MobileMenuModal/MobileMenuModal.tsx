@@ -5,8 +5,6 @@ import CloseIcon from '@/icons/CloseIcon';
 import AppLogo from '@/components/AppLogo/AppLogo';
 import { routePaths } from '@/router/routePaths';
 import useAuthStore from '@/store/useAuthStore';
-import { useProfile } from '@/hooks/useProfile';
-import UserMenu from '../../../TopBar/components/UserMenu/UserMenu';
 
 interface MobileMenuModalProps {
   isOpen: boolean;
@@ -17,10 +15,6 @@ interface MobileMenuModalProps {
 const MobileMenuModal = ({ isOpen, onClose, tabs }: MobileMenuModalProps) => {
   const { t } = useTranslation('layouts/AppLayout');
   const user = useAuthStore(s => s.user);
-  const { data: profile } = useProfile();
-
-  const displayName =
-    [profile?.firstName, profile?.lastName].filter(Boolean).join(' ') || user?.email || '';
 
   // Lock body scroll while open
   useEffect(() => {
@@ -33,6 +27,7 @@ const MobileMenuModal = ({ isOpen, onClose, tabs }: MobileMenuModalProps) => {
       document.body.style.overflow = '';
     };
   }, [isOpen]);
+
   return (
     <>
       {/* Backdrop */}
@@ -89,16 +84,11 @@ const MobileMenuModal = ({ isOpen, onClose, tabs }: MobileMenuModalProps) => {
         </nav>
 
         {/* Footer */}
-        <div className="px-5 py-5 border-t border-gray-100 flex flex-col gap-4">
-          {/* User row */}
-          <div className="flex items-center justify-between gap-3">
-            {/* User: avatar menu if logged in, or Sign In / Sign Up links */}
-            {user ? (
-              <div className="flex items-center gap-3 min-w-0">
-                <UserMenu position="top-right" />
-                <p className="font-semibold text-gray-900 truncate">{displayName}</p>
-              </div>
-            ) : (
+        {!user && (
+          <div className="px-5 py-5 border-t border-gray-100 flex flex-col gap-4">
+            {/* User row */}
+            <div className="flex items-center justify-between gap-3">
+              {/* User: avatar menu if logged in, or Sign In / Sign Up links */}
               <div className="flex gap-2 text-sm w-full">
                 <Link
                   to={routePaths.ACCOUNT.SIGNIN}
@@ -115,9 +105,9 @@ const MobileMenuModal = ({ isOpen, onClose, tabs }: MobileMenuModalProps) => {
                   {t('signup', 'Sign Up')}
                 </Link>
               </div>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

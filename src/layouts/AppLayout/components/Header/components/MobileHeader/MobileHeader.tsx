@@ -7,16 +7,16 @@ import ShoppingCart from '../MainHeader/components/ShoppingCart/ShoppingCart';
 import GlobalSearch from '../MainHeader/components/GlobalSearch/GlobalSearch';
 import MobileMenuModal from './components/MobileMenuModal/MobileMenuModal';
 import { Link } from 'react-router-dom';
-import { DropDown } from '@/components/DropDown/DropDown';
-import { languages } from '@/i18n/languages';
 import { localStorageKeys } from '@/constants/localStorageKeys';
 import { Menu } from 'lucide-react';
 import useNavTabs from '../../hooks/useNavTabs';
+import UserMenu from '../TopBar/components/UserMenu/UserMenu';
+import useAuthStore from '@/store/useAuthStore';
 
 const MobileHeader = () => {
   const { t, i18n } = useTranslation('layouts/AppLayout');
   const tabs = useNavTabs();
-
+  const user = useAuthStore(s => s.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLangChange = (value: string) => {
@@ -29,7 +29,7 @@ const MobileHeader = () => {
       <div className="lg:hidden bg-white pb-3">
         {/* Row 1: Hamburger | Logo | (Lang Dropdown + Cart) */}
         <div
-          className={`${sectionContainer} ${sectionPaddingX} flex items-center justify-between gap-2 py-3`}
+          className={`${sectionContainer} ${sectionPaddingX} flex flex-wrap items-center justify-between gap-2 py-3`}
         >
           {/* Left: Hamburger button */}
           <button
@@ -42,22 +42,19 @@ const MobileHeader = () => {
           </button>
 
           {/* Center: Logo in normal flex flow */}
-          <Link to={routePaths.HOME} className="flex-1 flex justify-start shrink min-w-0">
+          <Link to={routePaths.HOME} className="flex-1 flex justify-start shrink">
             <AppLogo size="sm" className="sm:hidden" />
             <AppLogo size="md" className="hidden sm:flex" />
           </Link>
 
           {/* Right actions: Language dropdown beside ShoppingCart */}
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            <DropDown
-              options={languages}
-              value={i18n.language}
-              onChange={handleLangChange}
-              gap="0.25rem"
-              className="text-xs font-medium text-gray-700"
-            />
-            <span className="w-px h-5 bg-gray-200" />
             <ShoppingCart />
+            {user && (
+              <div className="ml-3">
+                <UserMenu />
+              </div>
+            )}
           </div>
         </div>
 
