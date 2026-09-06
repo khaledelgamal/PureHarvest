@@ -25,7 +25,6 @@ const checkoutSchema = z.object({
   zipCode: z.string().nonempty('Zip code is required'),
   email: z.email('Invalid email address'),
   phone: z.string().nonempty('Phone number is required'),
-  shipDifferentAddress: z.boolean(),
   orderNotes: z.string().optional(),
   paymentMethod: z.enum(['cod', 'paypal', 'amazon_pay']),
 });
@@ -55,7 +54,6 @@ export const useCheckoutForm = () => {
       zipCode: profile?.billing?.zipCode ?? '',
       email: profile?.billing?.email ?? '',
       phone: profile?.billing?.phone ?? '',
-      shipDifferentAddress: false,
       orderNotes: '',
       paymentMethod: 'cod',
     },

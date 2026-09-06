@@ -2,7 +2,6 @@ import React from 'react';
 import { Country, State } from 'country-state-city';
 import TextFieldInput from '@/components/Inputs/TextFieldInput/TextFieldInput';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
-import CheckboxInput from '@/components/Inputs/CheckboxInput/CheckboxInput';
 import type { UseFormRegister, FieldErrors, UseFormWatch } from 'react-hook-form';
 import type { CheckoutFormValues } from '../hooks/useCheckoutForm';
 import { useTranslation } from 'react-i18next';
@@ -19,11 +18,7 @@ const countryOptions = allCountries.map(c => ({
   value: c.isoCode,
 }));
 
-const BillingInformation: React.FC<BillingInformationProps> = ({
-  register,
-  errors,
-  watch,
-}) => {
+const BillingInformation: React.FC<BillingInformationProps> = ({ register, errors, watch }) => {
   const { t } = useTranslation('pages/CheckoutPage');
   const selectedCountryIso = watch('country');
 
@@ -133,14 +128,6 @@ const BillingInformation: React.FC<BillingInformationProps> = ({
           />
         </div>
       </div>
-
-      <div className="flex items-center gap-2 mt-2">
-        <CheckboxInput id="shipDifferent" {...register('shipDifferentAddress')} />
-        <label htmlFor="shipDifferent" className="text-sm text-gray-700 cursor-pointer select-none">
-          {t('shipDifferentAddress', 'Ship to a different address')}
-        </label>
-      </div>
-
       <div className="mt-6 flex flex-col gap-6">
         <h2 className="text-2xl font-medium text-gray-900">
           {t('additionalInfo', 'Additional Info')}
