@@ -1,8 +1,10 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, SearchIcon } from 'lucide-react';
 import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 import { ProductCard, ProductCardSkeleton } from './components/ProductCard/ProductCard';
 import type { Product } from '@/services/supabase/products/types';
 import { useTranslation } from 'react-i18next';
+import useDebounce from '@/hooks/useDebounce';
 
 interface ProductListProps {
   products: Product[];
@@ -11,9 +13,11 @@ interface ProductListProps {
   page: number;
   sortBy: string;
   sortOrder: string;
+  search?: string;
   isLoading: boolean;
   onPageChange: (page: number) => void;
   onSortChange: (value: string) => void;
+  onSearchChange: (value: string | null) => void;
 }
 
 export const ProductList = ({
@@ -23,11 +27,26 @@ export const ProductList = ({
   page,
   sortBy,
   sortOrder,
+  search = '',
   isLoading,
   onPageChange,
   onSortChange,
+  onSearchChange,
 }: ProductListProps) => {
   const { t } = useTranslation('pages/ShopPage');
+  const [searchState, setSearchState] = useState<string>(search);
+  const debouncedSearch = useDebounce(searchState, 300);
+
+  useEffect(() => {
+    if (debouncedSearch !== search) {
+      onSearchChange(debouncedSearch || null);
+    }
+  }, [debouncedSearch, search, onSearchChange]);
+
+  useEffect(() => {
+    setSearchState(search);
+  }, [search]);
+
   const currentSort = `${sortBy}-${sortOrder}`;
 
   const sortOptions = [
@@ -46,20 +65,38 @@ export const ProductList = ({
   return (
     <div className="flex-1 flex flex-col gap-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <span className="text-gray-600 text-sm">{t('sortBy', 'Sort by:')}</span>
-          <div className="w-[200px]">
-            <SelectInput
-              options={sortOptions}
-              value={currentSort}
-              onChange={e => handleSortChange(e.target.value)}
-              className="py-2.5"
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 flex-1">
+          {/* Search */}
+          <div className="h-[42px] flex items-center gap-2 px-3.5 rounded-md border border-gray-200 bg-white sm:flex-1 max-w-xs sm:max-w-sm focus-within:border-primary transition-colors">
+            <SearchIcon className="text-gray-400 w-4 h-4 shrink-0" />
+            <input
+              type="text"
+              name="shop-search"
+              placeholder={t('searchPlaceholder', 'Search products...')}
+              value={searchState}
+              onChange={e => setSearchState(e.target.value)}
+              className="w-full text-sm placeholder:text-gray-400 outline-none text-gray-900 bg-transparent"
             />
+          </div>
+
+          {/* Sort By */}
+          <div className="h-[42px] flex items-center gap-2.5 shrink-0">
+            <span className="text-gray-600 text-sm whitespace-nowrap">
+              {t('sortBy', 'Sort by:')}
+            </span>
+            <div className="w-[180px] sm:w-[200px]">
+              <SelectInput
+                options={sortOptions}
+                value={currentSort}
+                onChange={e => handleSortChange(e.target.value)}
+                className="py-2"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="text-sm">
+        <div className="text-sm shrink-0">
           <span className="font-semibold text-gray-900">{totalProducts}</span>
           <span className="text-gray-500 ml-1">{t('resultsFound', 'Results Found')}</span>
         </div>

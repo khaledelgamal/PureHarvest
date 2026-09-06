@@ -1,11 +1,9 @@
-import { SearchInput } from './components/SearchInput/SearchInput';
 import { CategoriesSection } from './components/CategoriesSection/CategoriesSection';
 import { PriceSection } from './components/PriceSection/PriceSection';
 import { RatingSection } from './components/RatingSection/RatingSection';
 import { TagsSection } from './components/TagsSection/TagsSection';
 
 interface FilterState {
-  search: string;
   category: string;
   tag: string;
   minPrice?: number;
@@ -13,7 +11,6 @@ interface FilterState {
   ratingAvg?: number;
 }
 interface ShopFilterSectionProps {
-  search: string;
   category: string;
   tag: string;
   minPrice?: number;
@@ -27,7 +24,6 @@ interface ShopFilterSectionProps {
 }
 
 export const ShopFilterSection = ({
-  search,
   category,
   tag,
   minPrice,
@@ -40,11 +36,7 @@ export const ShopFilterSection = ({
   onFilterChange,
 }: ShopFilterSectionProps) => {
   return (
-    <div className="w-[280px] shrink-0 flex flex-col gap-4">
-      <SearchInput
-        initialSearch={search}
-        onSearchChange={value => onFilterChange('search', value)}
-      />
+    <div className="w-full lg:w-[280px] shrink-0 flex flex-col gap-4">
       <CategoriesSection
         categories={categories}
         currentCategory={category}
