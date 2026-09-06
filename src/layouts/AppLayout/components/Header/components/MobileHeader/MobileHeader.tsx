@@ -7,22 +7,16 @@ import ShoppingCart from '../MainHeader/components/ShoppingCart/ShoppingCart';
 import GlobalSearch from '../MainHeader/components/GlobalSearch/GlobalSearch';
 import MobileMenuModal from './components/MobileMenuModal/MobileMenuModal';
 import { Link } from 'react-router-dom';
-import { localStorageKeys } from '@/constants/localStorageKeys';
 import { Menu } from 'lucide-react';
 import useNavTabs from '../../hooks/useNavTabs';
 import UserMenu from '../TopBar/components/UserMenu/UserMenu';
 import useAuthStore from '@/store/useAuthStore';
 
 const MobileHeader = () => {
-  const { t, i18n } = useTranslation('layouts/AppLayout');
+  const { t } = useTranslation('layouts/AppLayout');
   const tabs = useNavTabs();
   const user = useAuthStore(s => s.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleLangChange = (value: string) => {
-    i18n.changeLanguage(value);
-    localStorage.setItem(localStorageKeys.language, value);
-  };
 
   return (
     <>
