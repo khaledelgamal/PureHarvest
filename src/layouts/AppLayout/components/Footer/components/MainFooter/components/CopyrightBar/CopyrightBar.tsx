@@ -5,6 +5,7 @@ import {
   InstagramButton,
 } from '@/components/Buttons/SocialButton/SocialButton';
 import { sectionContainer } from '@/constants/global.styles';
+import LangDropdown from '@/layouts/AppLayout/components/Header/components/TopBar/components/LangDropdown/LangDropdown';
 import { useTranslation } from 'react-i18next';
 
 const paymentMethods = [
@@ -36,7 +37,12 @@ const CopyrightBar = () => {
           })}
         </p>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
+          {/* Lang switcher — only shown on < lg (TopBar handles it on lg+) */}
+          <div className="lg:hidden">
+            <LangDropdown position="top" />
+          </div>
+
           {paymentMethods.map((img, i) => (
             <div
               key={i}
