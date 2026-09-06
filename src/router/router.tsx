@@ -88,11 +88,7 @@ const routes: RouteObject[] = [
           },
         ],
       },
-      {
-        path: routePaths.WISHLIST,
-        handle: { breadcrumb: 'Wishlist' },
-        element: <WishlistPage />,
-      },
+
       {
         path: routePaths.BLOGS.ROOT,
         handle: { breadcrumb: 'Blogs' },
@@ -193,6 +189,11 @@ const routes: RouteObject[] = [
                 element: <SettingsPage />,
               },
             ],
+          },
+          {
+            path: routePaths.WISHLIST,
+            handle: { breadcrumb: 'Wishlist' },
+            element: <WishlistPage />,
           },
         ],
       },
