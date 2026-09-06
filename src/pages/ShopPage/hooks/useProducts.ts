@@ -59,7 +59,6 @@ export const useProducts = () => {
       ratingAvg,
       userId: userProfile?.id,
     }),
-    enabled: !!userProfile?.id,
     queryFn: async () => {
       const { data, error } = await productsAPI.getProducts({
         page,
