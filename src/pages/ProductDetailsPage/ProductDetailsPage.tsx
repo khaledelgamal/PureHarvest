@@ -3,7 +3,7 @@ import { ProductImages } from './components/ProductImages/ProductImages';
 import { ProductMainInfo } from './components/ProductMainInfo/ProductMainInfo';
 import { ProductAdditionalInfoTabs } from './components/ProductAdditionalInfoTabs/ProductAdditionalInfoTabs';
 import { classNames } from '@/utils';
-import { sectionContainer, sectionPaddingY } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX, sectionPaddingY } from '@/constants/global.styles';
 import { useProductDetails } from './hooks/useProductDetails';
 import { ProductDetailsPageSkeleton } from './components/ProductDetailsPageSkeleton/ProductDetailsPageSkeleton';
 import { useTranslation } from 'react-i18next';
@@ -27,7 +27,7 @@ const ProductDetailsPage = () => {
   }
 
   return (
-    <div className={classNames(sectionContainer, sectionPaddingY)}>
+    <div className={classNames(sectionContainer, sectionPaddingY, sectionPaddingX)}>
       <div className="flex flex-col md:flex-row gap-8 mb-12">
         <ProductImages product={product} />
         <ProductMainInfo product={product} />
