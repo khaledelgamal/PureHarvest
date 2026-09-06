@@ -8,7 +8,16 @@ import { routePaths } from '@/router/routePaths';
 import { Settings as SettingsIcon, LogOut as LogOutIcon } from 'lucide-react';
 import { useProfile } from '@/hooks/useProfile';
 
-const UserMenu = () => {
+type UserMenuProps = {
+  position?: 'bottom' | 'top-right';
+};
+
+const positionClasses: Record<NonNullable<UserMenuProps['position']>, string> = {
+  bottom: '-right-6 top-[calc(100%+0.75rem)]',
+  'top-right': 'left-full bottom-0 ml-2',
+};
+
+const UserMenu = ({ position = 'bottom' }: UserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -52,7 +61,7 @@ const UserMenu = () => {
       {/* ── Avatar Trigger ── */}
       <button
         onClick={() => setIsOpen(prev => !prev)}
-        className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-transparent cursor-pointer
+        className="w-10 h-10 rounded-full flex-center overflow-hidden ring-2 ring-transparent cursor-pointer
                    focus:outline-none transition-all duration-300"
         title="Account settings"
       >
@@ -77,7 +86,7 @@ const UserMenu = () => {
       {/* ── Dropdown Menu ── */}
       <div
         className={`
-          absolute -right-6 top-[calc(100%+0.75rem)] w-64 z-50
+          absolute ${positionClasses[position]} w-64 z-50
           bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden
           transition-all duration-300
           ${

@@ -43,7 +43,7 @@ export default function AccountLayout() {
                   key={path}
                   to={path}
                   className={({ isActive }) =>
-                    `flex items-center gap-2.5 sm:gap-3 px-4 sm:px-6 py-3 text-sm whitespace-nowrap transition-colors duration-300
+                    `flex items-center gap-1 sm:gap-3 px-2 sm:px-6 py-3 text-sm whitespace-nowrap transition-colors duration-300
                     ${
                       isActive
                         ? 'text-primary lg:bg-green-gray-50 border-b-2 lg:border-b-0 lg:border-l-2 border-primary font-medium'

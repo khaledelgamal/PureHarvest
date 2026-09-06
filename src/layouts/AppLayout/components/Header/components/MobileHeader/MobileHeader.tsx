@@ -26,7 +26,7 @@ const MobileHeader = () => {
 
   return (
     <>
-      <div className="lg:hidden bg-white">
+      <div className="lg:hidden bg-white pb-3">
         {/* Row 1: Hamburger | Logo | (Lang Dropdown + Cart) */}
         <div
           className={`${sectionContainer} ${sectionPaddingX} flex items-center justify-between gap-2 py-3`}

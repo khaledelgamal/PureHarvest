@@ -20,7 +20,6 @@ import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage';
 import FAQs from '@/pages/FAQsPage/FAQsPage';
 import ContactUsPage from '@/pages/ContactUsPage/ContactUsPage';
 import AboutUsPage from '@/pages/AboutUsPage/AboutUsPage';
-import ScrollToTop from './ScrollToTop';
 import BlogPage from '@/pages/BlogPage/BlogPage';
 import BlogDetailsPage from '@/pages/BlogDetailsPage/BlogDetailsPage';
 import ShopPage from '@/pages/ShopPage/ShopPage';
@@ -36,11 +35,7 @@ const HomePage = lazy(() => import('@/pages/Home/HomePage'));
 
 const routes: RouteObject[] = [
   {
-    element: (
-      <ScrollToTop>
-        <AppLayout />
-      </ScrollToTop>
-    ),
+    element: <AppLayout />,
     // errorElement: <RootErrorBoundary />,
     children: [
       // ========================

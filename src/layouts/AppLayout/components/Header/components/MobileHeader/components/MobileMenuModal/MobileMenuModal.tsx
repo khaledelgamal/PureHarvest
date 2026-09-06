@@ -5,6 +5,7 @@ import CloseIcon from '@/icons/CloseIcon';
 import AppLogo from '@/components/AppLogo/AppLogo';
 import { routePaths } from '@/router/routePaths';
 import useAuthStore from '@/store/useAuthStore';
+import { useProfile } from '@/hooks/useProfile';
 import UserMenu from '../../../TopBar/components/UserMenu/UserMenu';
 
 interface MobileMenuModalProps {
@@ -16,6 +17,10 @@ interface MobileMenuModalProps {
 const MobileMenuModal = ({ isOpen, onClose, tabs }: MobileMenuModalProps) => {
   const { t } = useTranslation('layouts/AppLayout');
   const user = useAuthStore(s => s.user);
+  const { data: profile } = useProfile();
+
+  const displayName =
+    [profile?.firstName, profile?.lastName].filter(Boolean).join(' ') || user?.email || '';
 
   // Lock body scroll while open
   useEffect(() => {
@@ -89,7 +94,10 @@ const MobileMenuModal = ({ isOpen, onClose, tabs }: MobileMenuModalProps) => {
           <div className="flex items-center justify-between gap-3">
             {/* User: avatar menu if logged in, or Sign In / Sign Up links */}
             {user ? (
-              <UserMenu />
+              <div className="flex items-center gap-3 min-w-0">
+                <UserMenu position="top-right" />
+                <p className="font-semibold text-gray-900 truncate">{displayName}</p>
+              </div>
             ) : (
               <div className="flex gap-2 text-sm w-full">
                 <Link
