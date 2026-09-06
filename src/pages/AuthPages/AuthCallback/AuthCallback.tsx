@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/services/supabase/client';
 import { routePaths } from '@/router/routePaths';
 import AuthLayout from '../layouts/AuthLayout';
-import AppLogo from '@/layouts/AppLayout/components/AppLogo/AppLogo';
+import AppLogo from '@/components/AppLogo/AppLogo';
 
 type CallbackState = 'loading' | 'success' | 'error';
 

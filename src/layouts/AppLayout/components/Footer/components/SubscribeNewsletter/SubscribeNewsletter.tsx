@@ -1,5 +1,5 @@
 import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
-import AppLogo from '../../../AppLogo/AppLogo';
+import AppLogo from '@/components/AppLogo/AppLogo';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Button } from '@/components/Buttons/Button/Button';

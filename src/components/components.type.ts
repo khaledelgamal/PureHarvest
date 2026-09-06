@@ -18,3 +18,6 @@ export type DropDownColors = {
   active?: string;
   bg?: string;
 };
+
+export const appLogoSizes = ['sm', 'md', 'lg'] as const;
+export type AppLogoSize = (typeof appLogoSizes)[number];
