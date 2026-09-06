@@ -13,7 +13,7 @@ const TobBar = () => {
   const user = useAuthStore(s => s.user);
 
   return (
-    <div className={`py-3 bg-gray-800 text-gray-300 min-h-16 flex-center`}>
+    <div className={`hidden lg:flex py-3 bg-gray-800 text-gray-300 min-h-16`}>
       <div
         className={` ${sectionContainer} ${sectionPaddingX} flex gap-2 md:gap-0 flex-wrap justify-center md:justify-between   items-center`}
       >

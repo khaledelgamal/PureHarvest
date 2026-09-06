@@ -78,9 +78,9 @@ const GlobalSearch = () => {
     }
   }, [pathname]);
   return (
-    <div ref={wrapperRef} className="relative flex justify-center gap-0">
+    <div ref={wrapperRef} className="relative w-full flex lg:justify-center gap-0">
       {/* Input */}
-      <div className="max-w-[400px] w-full md:w-[340px] flex items-center gap-2 pl-3 md:pl-4 py-2.5 md:py-3 rounded-l-md border border-r-0 border-gray-100">
+      <div className="lg:max-w-[400px] w-full flex items-center gap-2 pl-3 md:pl-4 py-2.5 md:py-3 rounded-l-md border border-r-0 border-gray-100">
         <SearchIcon className="text-gray-400 w-5 h-5 shrink-0" />
         <input
           type="text"
