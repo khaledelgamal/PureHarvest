@@ -26,6 +26,7 @@ type DropDownProps = {
   gap?: string;
   colors?: DropDownColors;
   className?: string;
+  position?: 'bottom' | 'top';
 };
 
 const defaultColors: DropDownColors = {
@@ -33,6 +34,11 @@ const defaultColors: DropDownColors = {
   option: 'text-gray-600',
   active: 'text-primary',
   bg: 'bg-white',
+};
+
+const menuPositionClasses: Record<NonNullable<DropDownProps['position']>, string> = {
+  bottom: 'top-full mt-1',
+  top: 'bottom-full mb-1',
 };
 
 export const DropDown = ({
@@ -43,6 +49,7 @@ export const DropDown = ({
   gap = '1rem',
   colors = {},
   className,
+  position = 'bottom',
 }: DropDownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -84,7 +91,14 @@ export const DropDown = ({
         <ChevronIcon className={classNames(chevronStyles, isOpen ? 'rotate-0' : 'rotate-180')} />
       </button>
 
-      <ul className={classNames(menuStyles, bg, isOpen ? menuOpenStyles : menuClosedStyles)}>
+      <ul
+        className={classNames(
+          menuStyles,
+          menuPositionClasses[position],
+          bg,
+          isOpen ? menuOpenStyles : menuClosedStyles,
+        )}
+      >
         {options.map(opt => (
           <li
             key={opt.value}

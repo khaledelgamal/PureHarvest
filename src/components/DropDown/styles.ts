@@ -5,7 +5,7 @@ export const triggerStyles =
 export const chevronStyles = 'w-5 h-5 transition-transform duration-300 shrink-0';
 
 export const menuStyles =
-  'pl-2 min-w-full absolute top-full left-0 rounded-md mt-1 py-1 shadow-md z-10 max-h-60 transition-all duration-300';
+  'pl-2 min-w-full absolute left-0 rounded-md py-1 shadow-md z-10 max-h-60 transition-all duration-300';
 
 export const menuOpenStyles = 'opacity-100 translate-y-0 pointer-events-auto';
 

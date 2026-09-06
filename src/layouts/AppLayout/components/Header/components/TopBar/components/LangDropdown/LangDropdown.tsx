@@ -4,7 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 import { localStorageKeys } from '@/constants/localStorageKeys';
 
-const LangDropdown = () => {
+type LangDropdownProps = {
+  position?: 'bottom' | 'top';
+};
+
+const LangDropdown = ({ position = 'bottom' }: LangDropdownProps) => {
   const { i18n } = useTranslation('layouts/AppLayout');
 
   const handleChange = (value: string) => {
@@ -18,6 +22,7 @@ const LangDropdown = () => {
       value={i18n.language}
       onChange={handleChange}
       gap="0.5rem"
+      position={position}
       colors={{
         trigger: 'text-gray-300',
         option: 'text-xs text-gray-600 hover:text-gray-300!',
