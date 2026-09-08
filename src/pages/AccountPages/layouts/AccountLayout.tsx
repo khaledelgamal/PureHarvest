@@ -41,6 +41,7 @@ export default function AccountLayout() {
               {navItems.map(({ label, path, icon: Icon }) => (
                 <NavLink
                   key={path}
+                  state={{ preserveScroll: true }}
                   to={path}
                   className={({ isActive }) =>
                     `flex items-center gap-1 sm:gap-3 px-2 sm:px-6 py-3 text-sm whitespace-nowrap transition-colors duration-300
