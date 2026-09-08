@@ -30,12 +30,17 @@ import CheckoutPage from '@/pages/CheckoutPage/CheckoutPage';
 import { ProductName } from '@/layouts/AppLayout/components/BreadCrumb/components/ProductName';
 import { OrderNumber } from '@/layouts/AppLayout/components/BreadCrumb/components/OrderNumber';
 import { BlogTitle } from '@/layouts/AppLayout/components/BreadCrumb/components/BlogTitle';
+import ScrollToTop from './ScrollToTop';
 // Lazy loaded pages
 const HomePage = lazy(() => import('@/pages/Home/HomePage'));
 
 const routes: RouteObject[] = [
   {
-    element: <AppLayout />,
+    element: (
+      <ScrollToTop>
+        <AppLayout />
+      </ScrollToTop>
+    ),
     // errorElement: <RootErrorBoundary />,
     children: [
       // ========================
