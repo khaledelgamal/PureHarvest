@@ -30,7 +30,7 @@ const PromoBanners = () => {
               <span className="text-sm">{t('milkDescription', 'Starting at')}</span>
               <PriceDisplay price={14.99} size="lg" priceClassName="text-white" />
             </div>
-            <ShopNowButton />
+            <ShopNowButton query="tag=fresh-milk" />
           </div>
         </div>
 
@@ -50,7 +50,7 @@ const PromoBanners = () => {
               <br />
               {t('colaTitle2', 'Soft Drink')}
             </h3>
-            <ShopNowButton />
+            <ShopNowButton query="tag=soft-drink" />
           </div>
         </div>
 
@@ -70,7 +70,7 @@ const PromoBanners = () => {
               <br />
               {t('legumesTitle2', 'Breakfast')}
             </h3>
-            <ShopNowButton />
+            <ShopNowButton query="category=dairy-eggs" />
           </div>
         </div>
       </div>
@@ -80,14 +80,14 @@ const PromoBanners = () => {
 
 export default PromoBanners;
 
-const ShopNowButton = () => {
+const ShopNowButton = ({ query }: { query?: string }) => {
   const { t } = useTranslation('pages/Home');
 
   return (
     <ButtonLink
       className="flex gap-4 items-center font-medium bg-white text-primary 
         rounded-full px-6 py-3 hover:text-white transition-colors duration-300"
-      to={routePaths.SHOP.ROOT}
+      to={`${routePaths.SHOP.ROOT}${query ? `?${query}` : ''}`}
     >
       <span>{t('shopNow', 'Shop Now')}</span>
       <ArrowIcon />
