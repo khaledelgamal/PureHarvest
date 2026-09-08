@@ -38,7 +38,10 @@ export const BlogDetailsAdBanner = () => {
               {t('adSubtitle2', 'Up to 56% OFF')}
             </span>
           </h2>
-          <Link to={routePaths.SHOP.ROOT} className="inline-block mt-4 md:mt-6">
+          <Link
+            to={`${routePaths.SHOP.ROOT}?category=fresh-fruit`}
+            className="inline-block mt-4 md:mt-6"
+          >
             <Button className="rounded-full px-5 sm:px-6 py-2 sm:py-2.5 flex items-center gap-2">
               <span>{t('shopBtn', 'Shop Now')}</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
