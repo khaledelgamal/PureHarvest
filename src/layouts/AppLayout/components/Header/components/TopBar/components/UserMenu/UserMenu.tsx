@@ -42,11 +42,10 @@ const UserMenu = () => {
   const handleSignOut = () => {
     signOut(undefined, {
       onSuccess: () => {
-        setIsOpen(false);
+        window.location.reload();
       },
     });
   };
-
   return (
     <div ref={menuRef} className="relative">
       {/* ── Avatar Trigger ── */}
