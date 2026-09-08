@@ -49,7 +49,7 @@ const SignIn = () => {
   });
 
   return (
-    <div className="py-[80px] flex-center">
+    <div className="py-10 flex-center">
       <AuthLayout title={t('signInTitle', 'Sign In')}>
         <form onSubmit={handleSubmit(data => signIn(data))} className="flex flex-col gap-4">
           {serverError && (

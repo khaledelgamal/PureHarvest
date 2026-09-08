@@ -57,7 +57,7 @@ const AuthCallback = () => {
   }, [navigate]);
 
   return (
-    <div className="py-[80px] flex-center">
+    <div className="flex-center">
       <AuthLayout title="Auth verification">
         {/* Loading State */}
         {state === 'loading' && (

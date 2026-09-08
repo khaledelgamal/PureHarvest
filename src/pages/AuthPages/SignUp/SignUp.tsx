@@ -65,7 +65,7 @@ const SignUp = () => {
 
   if (confirmedEmail) {
     return (
-      <div className="py-[80px] flex-center">
+      <div className="py-10 flex-center">
         <AuthLayout title={t('checkEmail', 'Check Your Email')}>
           <div className="flex flex-col items-center gap-4 text-center">
             <p className="text-sm text-gray-600">
@@ -88,7 +88,7 @@ const SignUp = () => {
   }
 
   return (
-    <div className="py-[80px] flex-center">
+    <div className="flex-center">
       <AuthLayout title={t('title', 'Create Account')}>
         <form onSubmit={handleSubmit(data => signUp(data))} className="flex flex-col gap-4">
           {serverError && (

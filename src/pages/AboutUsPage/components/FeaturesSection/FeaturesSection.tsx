@@ -39,13 +39,17 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <div className="w-full relative bg-[#FAFAFA] shadow-xs shadow-gray-100 z-0 overflow-hidden">
+    <div
+      className={`w-full ${sectionContainer} relative bg-[#FAFAFA] shadow-xs shadow-gray-100 z-0 overflow-hidden`}
+    >
       {/* Desktop Farm Background */}
-      <div 
+      <div
         className="hidden lg:block absolute top-0 left-0 w-1/2 h-full bg-cover bg-center z-[-1]"
         style={{ backgroundImage: "url('/images/gradient_farm.png')" }}
       />
-      <div className={`${sectionContainer} ${sectionPaddingX} flex flex-col lg:flex-row gap-10 lg:gap-8 justify-between items-center py-12 lg:py-0`}>
+      <div
+        className={`${sectionContainer} ${sectionPaddingX} flex flex-col lg:flex-row gap-10 lg:gap-8 justify-between items-center py-12 lg:py-0`}
+      >
         <div className="relative w-full lg:flex-1 lg:w-0">
           <img
             src="/images/happy_man_carrying_organic_food_2.png"
