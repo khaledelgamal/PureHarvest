@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { routePaths } from '@/router/routePaths';
 import type { Product } from '@/services/supabase/products/types';
 import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
@@ -25,6 +25,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const [inWishlist, setInWishlist] = useState<boolean>(product.inWishlist || false);
   const [isUpdatingWishlist, setIsUpdatingWishlist] = useState<boolean>(false);
   const cardItems = useCartStore(state => state.items);
+  const navigate = useNavigate();
 
   const addItemToCart = useCartStore(state => state.addItem);
   const setIsShoppingCartDrawerOpen = useCartStore(state => state.setIsShoppingCartDrawerOpen);
@@ -61,10 +62,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   });
   const addToWishlistMutation = useMutation({
     mutationFn: async () => {
-      if (!user)
-        throw new Error(
-          t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'),
-        );
       await wishlistsAPI.addToWishlist(user.id, product.id);
     },
     onMutate: () => {
@@ -92,6 +89,16 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   });
 
   const handleWishlist = async () => {
+    if (!user) {
+      toast.error(t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'), {
+        action: {
+          label: t('signIn', 'Sign In'),
+          onClick: () => navigate(routePaths.ACCOUNT.SIGNIN),
+        },
+      });
+      return;
+    }
+
     try {
       if (inWishlist) {
         await removeFromWishlistMutation.mutateAsync();
