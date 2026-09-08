@@ -105,6 +105,11 @@ export const useProducts = () => {
     newParams.set('page', '1');
     setSearchParams(newParams);
   };
+
+  const handleResetFilters = () => {
+    setSearchParams({ page: '1' });
+  };
+
   return {
     // State
     search,
@@ -133,5 +138,6 @@ export const useProducts = () => {
     handleFilterChange,
     handlePageChange,
     handleSortChange,
+    handleResetFilters,
   };
 };

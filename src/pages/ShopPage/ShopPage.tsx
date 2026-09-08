@@ -36,6 +36,7 @@ export default function ShopPage() {
     handleFilterChange,
     handlePageChange,
     handleSortChange,
+    handleResetFilters,
   } = useProducts();
 
   useEffect(() => {
@@ -141,6 +142,29 @@ export default function ShopPage() {
                 ratingAvg={ratingAvg}
                 onFilterChange={handleFilterChange}
               />
+            </div>
+
+            {/* Mobile modal action buttons */}
+            <div className="flex gap-3 px-6 py-4 border-t border-gray-100">
+              <Button
+                variant="fill"
+                size="sm"
+                className="flex-1"
+                onClick={() => setIsMobileModalOpen(false)}
+              >
+                {t('showResultsBtn', 'Show Results')} ({totalProducts})
+              </Button>
+              <Button
+                variant="border"
+                size="sm"
+                className="flex-1"
+                onClick={() => {
+                  handleResetFilters();
+                  setIsMobileModalOpen(false);
+                }}
+              >
+                {t('resetFiltersBtn', 'Reset Filters')}
+              </Button>
             </div>
           </div>
         </div>
