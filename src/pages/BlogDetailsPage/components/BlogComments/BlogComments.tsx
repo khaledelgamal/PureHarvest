@@ -82,8 +82,9 @@ export const BlogComments = ({ postId }: BlogCommentsProps) => {
             {t('loginPrompt', 'You must be signed in to post a comment.')}
           </p>
           <ButtonLink
-            to={routePaths.ACCOUNT.SIGNIN}
-            state={{ from: location.pathname }}
+            to={`${routePaths.ACCOUNT.SIGNIN}?redirectTo=${encodeURIComponent(
+              location.pathname + location.search + location.hash,
+            )}`}
             className="px-6 py-2 rounded-full"
           >
             {t('signInBtn', 'Sign In to Comment')}

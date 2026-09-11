@@ -1,18 +1,23 @@
-import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { routePaths } from '@/router/routePaths';
 import useAuthStore from '@/store/useAuthStore';
+import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
+import { sectionContainer, sectionPaddingY } from '@/constants/global.styles';
 
 export default function GuestRoute() {
   const user = useAuthStore(store => store.user);
   const isLoading = useAuthStore(store => store.isLoading);
-  const navigate = useNavigate();
+  if (isLoading) {
+    return (
+      <div className={`flex-center ${sectionContainer} ${sectionPaddingY}`}>
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    if (!isLoading && user) {
-      navigate(routePaths.ACCOUNT.DASHBOARD.path, { replace: true });
-    }
-  }, [isLoading, user, navigate]);
+  if (user) {
+    return <Navigate to={routePaths.ACCOUNT.DASHBOARD.path} replace />;
+  }
 
   return <Outlet />;
 }

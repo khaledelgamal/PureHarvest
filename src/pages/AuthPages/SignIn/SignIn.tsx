@@ -4,8 +4,8 @@ import type { ServiceError } from '@/services/supabase/types';
 import TextFieldInput from '@/components/Inputs/TextFieldInput/TextFieldInput';
 import PasswordFieldInput from '@/components/Inputs/PasswordFieldInput/PasswordFieldInput';
 import AuthLayout from '../layouts/AuthLayout';
-import { routePaths } from '@/router/routePaths';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { allRoutesArray, authPaths, routePaths } from '@/router/routePaths';
+import { Link, useNavigate, useSearchParams, matchPath } from 'react-router-dom';
 import { Button } from '@/components/Buttons/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { authAPI } from '@/services/supabase/auth/api';
@@ -19,8 +19,8 @@ interface SignInFormValues {
 const SignIn = () => {
   const { t } = useTranslation('pages/AuthPages');
   const navigate = useNavigate();
-  const location = useLocation();
-
+  const [searchParams] = useSearchParams();
+  const redirectTo = searchParams.get('redirectTo');
   const {
     mutate: signIn,
     isPending,
@@ -32,8 +32,17 @@ const SignIn = () => {
       return data as AuthSession;
     },
     onSuccess: () => {
-      const state = location.state as { from?: string };
-      navigate(state?.from || routePaths.ACCOUNT.DASHBOARD.path);
+      if (!redirectTo) {
+        navigate(routePaths.ACCOUNT.DASHBOARD.path);
+        return;
+      }
+      const isSecurePath = allRoutesArray.some(route => matchPath(route, redirectTo));
+      const isAuthPath = authPaths.some(route => matchPath(route, redirectTo));
+      if (isSecurePath && !isAuthPath) {
+        navigate(redirectTo);
+      } else {
+        navigate(routePaths.ACCOUNT.DASHBOARD.path);
+      }
     },
   });
 
