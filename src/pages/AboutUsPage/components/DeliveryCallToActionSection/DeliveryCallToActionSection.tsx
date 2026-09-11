@@ -1,6 +1,7 @@
 import { ButtonLink } from '@/components/Buttons/ButtonLink/ButtonLink';
 import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import ArrowIcon from '@/icons/ArrowIcon';
+import { routePaths } from '@/router/routePaths';
 import { useTranslation } from 'react-i18next';
 
 const DeliveryCallToActionSection = () => {
@@ -36,7 +37,7 @@ const DeliveryCallToActionSection = () => {
             ))}
           </div>
           <ButtonLink
-            to="/shop"
+            to={routePaths.SHOP.ROOT}
             variant="fill"
             size="lg"
             className="flex gap-4 items-center font-medium w-fit mt-2 lg:mt-4"
