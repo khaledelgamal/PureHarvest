@@ -37,20 +37,22 @@ const CopyrightBar = () => {
           })}
         </p>
 
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           {/* Lang switcher — only shown on < lg (TopBar handles it on lg+) */}
           <div className="lg:hidden">
             <LangDropdown position="top" />
           </div>
-
+          <ul className="flex flex-wrap items-center gap-4">
           {paymentMethods.map((img, i) => (
-            <div
+            <li
               key={i}
               className="flex-center w-11.25 h-8 bg-green-gray-900 border border-green-gray-800 rounded-b-md"
             >
               <img src={img} alt="payment method" />
-            </div>
+            </li>
           ))}
+          </ul>
+          
         </div>
       </div>
     </div>
