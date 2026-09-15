@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import DeliveryTruckIcon from '@/icons/DeliveryTruckIcon';
 import HeadphonesIcon from '@/icons/HeadphonesIcon';
 import PackageIcon from '@/icons/PackageIcon';
@@ -38,7 +38,7 @@ const ServiceFeatures = () => {
 
   return (
     <section className="bg-linear-to-b from-white from-50% to-green-gray-50 to-50% py-[50px]">
-      <div className={`${sectionContainer}`}>
+      <div className={`${sectionContainer} ${sectionPaddingX}`}>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 rounded-lg overflow-hidden shadow-sm">
           {serviceFeatures.map(({ icon, description, title }, index) => {
             const isActive = index === activeIndex;

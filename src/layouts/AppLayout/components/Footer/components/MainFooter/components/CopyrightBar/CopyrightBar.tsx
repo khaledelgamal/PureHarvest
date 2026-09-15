@@ -4,7 +4,7 @@ import {
   PinterestButton,
   InstagramButton,
 } from '@/components/Buttons/SocialButton/SocialButton';
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import LangDropdown from '@/layouts/AppLayout/components/Header/components/TopBar/components/LangDropdown/LangDropdown';
 import { useTranslation } from 'react-i18next';
 
@@ -22,7 +22,7 @@ const CopyrightBar = () => {
   return (
     <div className="relative z-10">
       <div
-        className={`${sectionContainer} border-t border-gray-700 flex flex-col md:flex-row items-center justify-between py-5 gap-4`}
+        className={`${sectionContainer} ${sectionPaddingX} border-t border-gray-700 flex flex-col md:flex-row items-center justify-between py-5 gap-4`}
       >
         <div className="flex items-center gap-3">
           <FacebookButton href="https://www.facebook.com/" />

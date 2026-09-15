@@ -1,5 +1,5 @@
 import { routePaths } from '@/router/routePaths';
-import { sectionContainer } from '@/constants/global.styles';
+import { sectionContainer, sectionPaddingX } from '@/constants/global.styles';
 import { useTranslation } from 'react-i18next';
 import type { FooterLink } from './types';
 import FooterAbout from './components/FooterAbout/FooterAbout';
@@ -50,13 +50,10 @@ const MainFooter = () => {
         className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-full object-contain opacity-40"
       />
 
-      <div className={`${sectionContainer} relative z-10 py-16 px-4`}>
+      <div className={`${sectionContainer} relative z-10 ${sectionPaddingX} py-16`}>
         <div className="flex flex-wrap justify-between gap-8">
           <FooterAbout />
-          <FooterLinkColumn
-            title={t('myAccount', 'My Account')}
-            links={myAccountLinks}
-          />
+          <FooterLinkColumn title={t('myAccount', 'My Account')} links={myAccountLinks} />
           <FooterLinkColumn title={t('helps', 'Helps')} links={helpsLinks} />
           <FooterLinkColumn title={t('proxy', 'Proxy')} links={proxyLinks} />
           <FooterInstagram />
