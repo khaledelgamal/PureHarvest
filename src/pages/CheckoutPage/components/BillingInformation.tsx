@@ -5,6 +5,9 @@ import SelectInput from '@/components/Inputs/SelectInput/SelectInput';
 import type { UseFormRegister, FieldErrors, UseFormWatch } from 'react-hook-form';
 import type { CheckoutFormValues } from '../hooks/useCheckoutForm';
 import { useTranslation } from 'react-i18next';
+import BillingInformationSkeleton from './BillingInformationSkeleton';
+import useAuthStore from '@/store/useAuthStore';
+import { useProfile } from '@/hooks/useProfile';
 
 interface BillingInformationProps {
   register: UseFormRegister<CheckoutFormValues>;
@@ -21,6 +24,10 @@ const countryOptions = allCountries.map(c => ({
 const BillingInformation: React.FC<BillingInformationProps> = ({ register, errors, watch }) => {
   const { t } = useTranslation('pages/CheckoutPage');
   const selectedCountryIso = watch('country');
+  const isAuthLoading = useAuthStore(state => state.isLoading);
+  const { isLoading: isProfileLoading } = useProfile();
+
+  const isLoading = isAuthLoading || isProfileLoading;
 
   const stateOptions = selectedCountryIso
     ? State.getStatesOfCountry(selectedCountryIso).map(s => ({
@@ -28,6 +35,11 @@ const BillingInformation: React.FC<BillingInformationProps> = ({ register, error
         value: s.name,
       }))
     : [];
+
+  if (isLoading) {
+    return <BillingInformationSkeleton />;
+  }
+
   return (
     <div className="flex flex-col gap-6 w-full">
       <h2 className="text-2xl font-medium text-gray-900">
