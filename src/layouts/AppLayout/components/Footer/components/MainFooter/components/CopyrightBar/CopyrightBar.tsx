@@ -38,21 +38,20 @@ const CopyrightBar = () => {
         </p>
 
         <div className="flex flex-wrap items-center gap-4">
-          {/* Lang switcher — only shown on < lg (TopBar handles it on lg+) */}
-          <div className="lg:hidden">
-            <LangDropdown position="top" />
-          </div>
-          <ul className="flex flex-wrap items-center gap-4">
-          {paymentMethods.map((img, i) => (
-            <li
-              key={i}
-              className="flex-center w-11.25 h-8 bg-green-gray-900 border border-green-gray-800 rounded-b-md"
-            >
-              <img src={img} alt="payment method" />
+          <ul className="w-full flex flex-wrap justify-center items-center gap-4">
+            {/* Lang switcher — only shown on < lg (TopBar handles it on lg+) */}
+            <li className="lg:hidden">
+              <LangDropdown position="top" />
             </li>
-          ))}
+            {paymentMethods.map((img, i) => (
+              <li
+                key={i}
+                className="flex-center w-11.25 h-8 bg-green-gray-900 border border-green-gray-800 rounded-b-md"
+              >
+                <img src={img} alt="payment method" />
+              </li>
+            ))}
           </ul>
-          
         </div>
       </div>
     </div>
