@@ -22,5 +22,6 @@
   "register": "S'inscrire",
   "checkEmail": "Vérifiez votre e-mail",
   "confirmationSent": "Nous avons envoyé un lien de confirmation à {{email}}. Veuillez activer votre compte puis vous connecter.",
-  "backToLogin": "Retour à la connexion"
+  "backToLogin": "Retour à la connexion",
+  "fillCredentials": "Remplissage auto"
 }

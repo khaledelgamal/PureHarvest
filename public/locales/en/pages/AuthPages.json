@@ -22,5 +22,6 @@
   "register": "Register",
   "checkEmail": "Check Your Email",
   "confirmationSent": "We've sent a confirmation link to {{email}}. Please activate your account then login.",
-  "backToLogin": "Back to Login"
+  "backToLogin": "Back to Login",
+  "fillCredentials": "Auto Fill"
 }

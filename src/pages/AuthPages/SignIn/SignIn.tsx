@@ -49,6 +49,7 @@ const SignIn = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<SignInFormValues>({
     defaultValues: {
@@ -56,6 +57,11 @@ const SignIn = () => {
       password: '',
     },
   });
+
+  const handleFillDemoCredentials = () => {
+    setValue('email', 'test@pureharvest.com', { shouldValidate: true });
+    setValue('password', 'Test123#', { shouldValidate: true });
+  };
 
   return (
     <div className="py-10 flex-center">
@@ -104,9 +110,20 @@ const SignIn = () => {
         </p>
 
         <div className="mt-8 p-4 bg-green-gray-50 rounded-lg border border-green-gray-100 text-sm text-green-gray-700">
-          <p className="font-medium mb-2 text-green-gray-900">
-            {t('testCredentialsTitle', 'Demo Credentials')}
-          </p>
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <p className="font-medium text-green-gray-900">
+              {t('testCredentialsTitle', 'Demo Credentials')}
+            </p>
+            <Button
+              type="button"
+              variant="border"
+              size="sm"
+              onClick={handleFillDemoCredentials}
+              className="py-1! px-3! text-xs"
+            >
+              {t('fillCredentials', 'Auto Fill')}
+            </Button>
+          </div>
           <div className="font-mono text-xs bg-white p-2 rounded border border-green-gray-100 mb-3">
             <p>Email: test@pureharvest.com</p>
             <p className="mt-1">Password: Test123#</p>
