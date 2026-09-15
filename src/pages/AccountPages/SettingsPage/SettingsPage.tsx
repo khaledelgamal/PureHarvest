@@ -2,6 +2,7 @@ import { AccountSettingsSection } from './components/AccountSettingsSection/Acco
 import { BillingAddressSection } from './components/BillingAddressSection/BillingAddressSection';
 import { ChangePasswordSection } from './components/ChangePasswordSection/ChangePasswordSection';
 import { useProfile } from '@/hooks/useProfile';
+import { DemoUserHint } from '@/components/DemoUserHint/DemoUserHint';
 
 export default function SettingsPage() {
   const { data: profile, isLoading: isLoadingProfile, isError, refetch } = useProfile();
@@ -42,6 +43,7 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-6">
+      <DemoUserHint />
       <AccountSettingsSection profile={profile} isLoadingProfile={isLoadingProfile} />
       <BillingAddressSection profile={profile} />
       <ChangePasswordSection />

@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import BillingInformationSkeleton from './BillingInformationSkeleton';
 import useAuthStore from '@/store/useAuthStore';
 import { useProfile } from '@/hooks/useProfile';
+import { useIsDemoUser } from '@/hooks/useIsDemoUser';
+import { DemoUserHint } from '@/components/DemoUserHint/DemoUserHint';
 
 interface BillingInformationProps {
   register: UseFormRegister<CheckoutFormValues>;
@@ -26,6 +28,7 @@ const BillingInformation: React.FC<BillingInformationProps> = ({ register, error
   const selectedCountryIso = watch('country');
   const isAuthLoading = useAuthStore(state => state.isLoading);
   const { isLoading: isProfileLoading } = useProfile();
+  const isDemoUser = useIsDemoUser();
 
   const isLoading = isAuthLoading || isProfileLoading;
 
@@ -42,104 +45,110 @@ const BillingInformation: React.FC<BillingInformationProps> = ({ register, error
 
   return (
     <div className="flex flex-col gap-6 w-full">
+      <DemoUserHint />
       <h2 className="text-2xl font-medium text-gray-900">
         {t('billingInformation', 'Billing Information')}
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="flex flex-col gap-2">
-          <label className="text-sm text-gray-900">{t('firstName', 'First name')}</label>
-          <TextFieldInput
-            {...register('firstName')}
-            error={errors.firstName}
-            placeholder={t('firstNamePlaceholder', 'Your first name')}
-          />
+      <fieldset disabled={isDemoUser} className="flex flex-col gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-900">{t('firstName', 'First name')}</label>
+            <TextFieldInput
+              {...register('firstName')}
+              error={errors.firstName}
+              placeholder={t('firstNamePlaceholder', 'Your first name')}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-900">{t('lastName', 'Last name')}</label>
+            <TextFieldInput
+              {...register('lastName')}
+              error={errors.lastName}
+              placeholder={t('lastNamePlaceholder', 'Your last name')}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-900">
+              {t('companyNameOptional', 'Company Name (optional)')}
+            </label>
+            <TextFieldInput
+              {...register('companyName')}
+              error={errors.companyName}
+              placeholder={t('companyNamePlaceholder', 'Company name')}
+            />
+          </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm text-gray-900">{t('lastName', 'Last name')}</label>
-          <TextFieldInput
-            {...register('lastName')}
-            error={errors.lastName}
-            placeholder={t('lastNamePlaceholder', 'Your last name')}
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm text-gray-900">
-            {t('companyNameOptional', 'Company Name (optional)')}
-          </label>
-          <TextFieldInput
-            {...register('companyName')}
-            error={errors.companyName}
-            placeholder={t('companyNamePlaceholder', 'Company name')}
-          />
-        </div>
-      </div>
 
-      <div className="flex flex-col gap-2">
-        <label className="text-sm text-gray-900">{t('streetAddress', 'Street Address')}</label>
-        <TextFieldInput
-          {...register('address')}
-          error={errors.address}
-          placeholder={t('streetAddress', 'Street Address')}
-        />
-      </div>
+        <div className="flex flex-col gap-2">
+          <label className="text-sm text-gray-900">{t('streetAddress', 'Street Address')}</label>
+          <TextFieldInput
+            {...register('address')}
+            error={errors.address}
+            placeholder={t('streetAddress', 'Street Address')}
+          />
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="flex flex-col gap-2">
-          <label className="text-sm text-gray-900">{t('countryRegion', 'Country / Region')}</label>
-          <SelectInput
-            {...register('country')}
-            error={errors.country}
-            options={countryOptions}
-            placeholder={t('selectCountry', 'Select country...')}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-900">
+              {t('countryRegion', 'Country / Region')}
+            </label>
+            <SelectInput
+              {...register('country')}
+              error={errors.country}
+              options={countryOptions}
+              placeholder={t('selectCountry', 'Select country...')}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-900">{t('states', 'States')}</label>
+            <SelectInput
+              {...register('state')}
+              error={errors.state}
+              options={stateOptions}
+              placeholder={
+                !selectedCountryIso
+                  ? t('selectCountryFirst', 'Select country first')
+                  : stateOptions.length === 0
+                    ? t('noStatesAvailable', 'No states available')
+                    : t('selectState', 'Select state...')
+              }
+              disabled={!selectedCountryIso || stateOptions.length === 0}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-900">{t('zipCode', 'Zip Code')}</label>
+            <TextFieldInput
+              {...register('zipCode')}
+              error={errors.zipCode}
+              placeholder={t('zipCode', 'Zip Code')}
+            />
+          </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm text-gray-900">{t('states', 'States')}</label>
-          <SelectInput
-            {...register('state')}
-            error={errors.state}
-            options={stateOptions}
-            placeholder={
-              !selectedCountryIso
-                ? t('selectCountryFirst', 'Select country first')
-                : stateOptions.length === 0
-                  ? t('noStatesAvailable', 'No states available')
-                  : t('selectState', 'Select state...')
-            }
-            disabled={!selectedCountryIso || stateOptions.length === 0}
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm text-gray-900">{t('zipCode', 'Zip Code')}</label>
-          <TextFieldInput
-            {...register('zipCode')}
-            error={errors.zipCode}
-            placeholder={t('zipCode', 'Zip Code')}
-          />
-        </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex flex-col gap-2">
-          <label className="text-sm text-gray-900">{t('email', 'Email')}</label>
-          <TextFieldInput
-            type="email"
-            {...register('email')}
-            error={errors.email}
-            placeholder={t('emailPlaceholder', 'Email Address')}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-900">{t('email', 'Email')}</label>
+            <TextFieldInput
+              type="email"
+              {...register('email')}
+              error={errors.email}
+              placeholder={t('emailPlaceholder', 'Email Address')}
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-900">{t('phone', 'Phone')}</label>
+            <TextFieldInput
+              type="tel"
+              {...register('phone')}
+              error={errors.phone}
+              placeholder={t('phonePlaceholder', 'Phone number')}
+            />
+          </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <label className="text-sm text-gray-900">{t('phone', 'Phone')}</label>
-          <TextFieldInput
-            type="tel"
-            {...register('phone')}
-            error={errors.phone}
-            placeholder={t('phonePlaceholder', 'Phone number')}
-          />
-        </div>
-      </div>
+      </fieldset>
+
       <div className="mt-6 flex flex-col gap-6">
         <h2 className="text-2xl font-medium text-gray-900">
           {t('additionalInfo', 'Additional Info')}

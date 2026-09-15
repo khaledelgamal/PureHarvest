@@ -4,6 +4,7 @@ import { useChangePassword } from './useChangePassword/useChangePassword';
 import FormField from '../FormFIeld/FormField';
 import { SettingsSectionLayout } from '../../layouts/SettingsSectionLayout/SettingsSectionLayout';
 import { useTranslation } from 'react-i18next';
+import { useIsDemoUser } from '@/hooks/useIsDemoUser';
 
 export const ChangePasswordSection = () => {
   const { t } = useTranslation('pages/AccountPages/SettingsPage');
@@ -14,6 +15,7 @@ export const ChangePasswordSection = () => {
     changePassword,
     isPending,
   } = useChangePassword();
+  const isDemoUser = useIsDemoUser();
 
   return (
     <SettingsSectionLayout title={t('changePassword', 'Change Password')}>
@@ -21,6 +23,7 @@ export const ChangePasswordSection = () => {
         onSubmit={handleSubmit(values => changePassword(values))}
         className="space-y-4 max-w-lg"
       >
+        <fieldset disabled={isDemoUser} className="space-y-4">
         <FormField label={t('currentPassword', 'Current Password')}>
           <PasswordFieldInput
             {...register('currentPassword')}
@@ -46,9 +49,10 @@ export const ChangePasswordSection = () => {
           </FormField>
         </div>
 
-        <Button type="submit" variant="fill" size="md" disabled={isPending}>
+        <Button type="submit" variant="fill" size="md" disabled={isPending || isDemoUser}>
           {isPending ? t('changing', 'Changing...') : t('changePassword', 'Change Password')}
         </Button>
+        </fieldset>
       </form>
     </SettingsSectionLayout>
   );

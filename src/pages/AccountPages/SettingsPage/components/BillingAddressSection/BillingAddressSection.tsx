@@ -6,6 +6,7 @@ import { useBillingAddress } from './hooks/useBillingAddress';
 import FormField from '../FormFIeld/FormField';
 import { SettingsSectionLayout } from '../../layouts/SettingsSectionLayout/SettingsSectionLayout';
 import { useTranslation } from 'react-i18next';
+import { useIsDemoUser } from '@/hooks/useIsDemoUser';
 
 type Props = { profile: Profile | undefined };
 
@@ -21,10 +22,12 @@ export const BillingAddressSection = ({ profile }: Props) => {
     updateBilling,
     isPending,
   } = useBillingAddress(profile);
+  const isDemoUser = useIsDemoUser();
 
   return (
     <SettingsSectionLayout title={t('billingAddress', 'Billing Address')}>
       <form onSubmit={handleSubmit(values => updateBilling(values))} className="space-y-4">
+        <fieldset disabled={isDemoUser} className="space-y-4">
         {/* Row 1: First + Last + Company */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <FormField label={t('firstName', 'First name')}>
@@ -113,9 +116,10 @@ export const BillingAddressSection = ({ profile }: Props) => {
           </FormField>
         </div>
 
-        <Button type="submit" variant="fill" size="md" disabled={isPending || !isDirty}>
+        <Button type="submit" variant="fill" size="md" disabled={isPending || !isDirty || isDemoUser}>
           {isPending ? t('saving', 'Saving...') : t('saveChanges', 'Save Changes')}
         </Button>
+        </fieldset>
       </form>
     </SettingsSectionLayout>
   );

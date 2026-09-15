@@ -7,6 +7,7 @@ import FormField from '../FormFIeld/FormField';
 import ImageCropModal from '@/components/ImageCropModal/ImageCropModal';
 import { SettingsSectionLayout } from '../../layouts/SettingsSectionLayout/SettingsSectionLayout';
 import { useTranslation } from 'react-i18next';
+import { useIsDemoUser } from '@/hooks/useIsDemoUser';
 
 type Props = {
   profile: Profile | undefined;
@@ -30,10 +31,12 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
     isUpdatingProfile,
     isUploadingAvatar,
   } = useAccountSettings(profile);
+  const isDemoUser = useIsDemoUser();
 
   return (
     <SettingsSectionLayout title={t('accountSettings', 'Account Settings')}>
       <form onSubmit={handleSubmit(values => updateProfile(values))} className="flex-1 space-y-4">
+        <fieldset disabled={isDemoUser} className="space-y-4">
         <FormField label={t('firstName', 'First name')}>
           <TextFieldInput
             {...register('firstName')}
@@ -67,9 +70,10 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
           />
         </FormField>
 
-        <Button type="submit" variant="fill" size="md" disabled={isUpdatingProfile || !isDirty}>
+        <Button type="submit" variant="fill" size="md" disabled={isUpdatingProfile || !isDirty || isDemoUser}>
           {isUpdatingProfile ? t('saving', 'Saving...') : t('saveChanges', 'Save Changes')}
         </Button>
+        </fieldset>
       </form>
 
       <div className="flex flex-col items-center gap-4 shrink-0 mt-2 lg:mt-10 order-first lg:order-last">
@@ -90,7 +94,7 @@ export const AccountSettingsSection = ({ profile, isLoadingProfile }: Props) => 
           variant="border"
           size="sm"
           onClick={openCropModal}
-          disabled={isUploadingAvatar}
+          disabled={isUploadingAvatar || isDemoUser}
           className="flex items-center gap-2"
         >
           <Camera className="w-4 h-4" />
