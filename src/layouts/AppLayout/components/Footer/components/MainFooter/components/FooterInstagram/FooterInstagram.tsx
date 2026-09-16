@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 
 const instaImages = [
-  '/images/instagram/insta-1.png',
-  '/images/instagram/insta-2.png',
-  '/images/instagram/insta-3.png',
-  '/images/instagram/insta-4.png',
-  '/images/instagram/insta-5.png',
-  '/images/instagram/insta-6.png',
+  '/images/instagram/insta-1.webp',
+  '/images/instagram/insta-2.webp',
+  '/images/instagram/insta-3.webp',
+  '/images/instagram/insta-4.webp',
+  '/images/instagram/insta-5.webp',
+  '/images/instagram/insta-6.webp',
 ];
 
 const FooterInstagram = () => {

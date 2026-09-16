@@ -40,12 +40,12 @@ const MainFooter = () => {
   return (
     <div className="relative bg-[#0a2e1c] overflow-hidden">
       <img
-        src="/images/footer_bg_left.png"
+        src="/images/footer_bg_left.webp"
         alt=""
         className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 h-full object-contain opacity-40"
       />
       <img
-        src="/images/footer_bg_right.png"
+        src="/images/footer_bg_right.webp"
         alt=""
         className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 h-full object-contain opacity-40"
       />

@@ -47,7 +47,7 @@ const DeliveryCallToActionSection = () => {
           </ButtonLink>
         </div>
         <img
-          src="/images/happy_asian_carrying_box_of_food.png"
+          src="/images/happy_asian_carrying_box_of_food.webp"
           alt="Happy Asian Customer"
           className="w-full lg:flex-1 lg:w-0 min-h-[250px] lg:min-h-150 object-cover max-w-md lg:max-w-none rounded-xl lg:rounded-none"
         />

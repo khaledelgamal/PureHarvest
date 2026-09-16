@@ -14,22 +14,22 @@ const TeamSection = () => {
     {
       name: 'Jenny Wilson',
       role: t('roleCEO', 'CEO & Founder'),
-      image: '/images/Jenny Wilson.png',
+      image: '/images/Jenny Wilson.webp',
     },
     {
       name: 'Jane Cooper',
       role: t('roleWorker', 'Worker'),
-      image: '/images/Jane Cooper.png',
+      image: '/images/Jane Cooper.webp',
     },
     {
       name: 'Cody Fisher',
       role: t('roleSecurity', 'Security Guard'),
-      image: '/images/Cody Fisher.png',
+      image: '/images/Cody Fisher.webp',
     },
     {
       name: 'Robert Fox',
       role: t('roleFarmer', 'Senior Farmer Manager'),
-      image: '/images/Robert Fox.png',
+      image: '/images/Robert Fox.webp',
     },
   ];
 

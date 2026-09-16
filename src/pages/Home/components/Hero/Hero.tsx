@@ -16,7 +16,7 @@ const Hero = () => {
         {/* Hero Image */}
         <div className="relative w-full lg:w-1/2 flex justify-center">
           <img
-            src="/images/hero.png"
+            src="/images/hero.webp"
             alt="fresh and healthy organic food image"
             width={795}
             height={564}

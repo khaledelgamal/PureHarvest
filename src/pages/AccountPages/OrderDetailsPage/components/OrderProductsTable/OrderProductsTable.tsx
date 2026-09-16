@@ -1,7 +1,7 @@
 import type { OrderItem } from '@/services/supabase/orders/types';
 import { useTranslation } from 'react-i18next';
 
-const PLACEHOLDER_IMAGE = '/images/placeholder-product.png';
+const PLACEHOLDER_IMAGE = '/images/placeholder-product.webp';
 
 type OrderProductsTableProps = {
   items: OrderItem[];

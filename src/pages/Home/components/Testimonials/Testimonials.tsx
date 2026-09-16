@@ -8,21 +8,21 @@ const Testimonials = () => {
     {
       name: 'Jenny Wilson',
       role: 'Customer',
-      image: '/images/Jenny.png',
+      image: '/images/Jenny.webp',
       comment:
         'Aenean et nisl eget eros consectetur vestibulum vel id erat. Aliquam feugiat massa dui. Sed sagittis diam sit amet ante sodales semper. Aliquam commodo lorem laoreet ultricies ele. ',
     },
     {
       name: 'Guy Hawkins',
       role: 'Customer',
-      image: '/images/Guy.png',
+      image: '/images/Guy.webp',
       comment:
         'Proin sed neque nec tellus malesuada ultrices eget a justo. Nullam a nibh faucibus, semper risus ac, ultricies est. Maecenas eget purus in enim imperdiet dapibus in ac mi. Fusce faucibus lacus felis',
     },
     {
       name: 'Kathryn Murphy',
       role: 'Customer',
-      image: '/images/Kathryn.png',
+      image: '/images/Kathryn.webp',
       comment:
         'Nam sed odio diam. Mauris sagittis sapien sed convallis cursus. Proin mattis ultrices urna ac eleifend. Cras vel nisi nec lectus sagittis venenatis. Curabitur laoreet leo sed lorem pulvina',
     },

@@ -45,14 +45,14 @@ const FeaturesSection = () => {
       {/* Desktop Farm Background */}
       <div
         className="hidden lg:block absolute top-0 left-0 w-1/2 h-full bg-cover bg-center z-[-1]"
-        style={{ backgroundImage: "url('/images/gradient_farm.png')" }}
+        style={{ backgroundImage: "url('/images/gradient_farm.webp')" }}
       />
       <div
         className={`${sectionContainer} ${sectionPaddingX} flex flex-col lg:flex-row gap-10 lg:gap-8 justify-between items-center py-12 lg:py-0`}
       >
         <div className="relative w-full lg:flex-1 lg:w-0">
           <img
-            src="/images/happy_man_carrying_organic_food_2.png"
+            src="/images/happy_man_carrying_organic_food_2.webp"
             alt="Happy man carrying organic food"
             className="w-full max-w-md mx-auto lg:max-w-none lg:mx-0 relative z-10"
           />

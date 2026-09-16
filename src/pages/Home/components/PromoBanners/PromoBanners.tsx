@@ -16,7 +16,7 @@ const PromoBanners = () => {
         {/* Milk Banner */}
         <div className="relative h-[255px] rounded-lg overflow-hidden">
           <img
-            src="/images/promo-milk.png"
+            src="/images/promo-milk.webp"
             alt="Fresh Cow Milk"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -37,7 +37,7 @@ const PromoBanners = () => {
         {/* Cola Banner */}
         <div className="relative h-[255px] rounded-lg overflow-hidden">
           <img
-            src="/images/promo-cola.png"
+            src="/images/promo-cola.webp"
             alt="Water & Soft Drink"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -57,7 +57,7 @@ const PromoBanners = () => {
         {/* Legumes Banner */}
         <div className="relative h-[255px] rounded-lg overflow-hidden">
           <img
-            src="/images/promo-legumes.png"
+            src="/images/promo-legumes.webp"
             alt="Quick Breakfast"
             className="absolute inset-0 w-full h-full object-cover"
           />

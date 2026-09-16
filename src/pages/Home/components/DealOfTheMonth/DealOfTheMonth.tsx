@@ -15,7 +15,7 @@ const DealOfTheMonth = () => {
         {/* Left image */}
         <div className="hidden xl:flex items-center justify-center w-[30%] max-w-[521px] order-2 xl:order-1">
           <img
-            src="/images/best-deals-1.png"
+            src="/images/best-deals-1.webp"
             alt="best deals 1"
             className="shrink-0 w-full h-auto object-contain self-end"
           />
@@ -49,7 +49,7 @@ const DealOfTheMonth = () => {
 
         {/* Right image */}
         <div className="hidden xl:flex items-center justify-center w-[35%] max-w-[704px] order-3">
-          <img src="/images/best-deals-2.png" alt="best deals 2" />
+          <img src="/images/best-deals-2.webp" alt="best deals 2" />
         </div>
       </div>
     </section>

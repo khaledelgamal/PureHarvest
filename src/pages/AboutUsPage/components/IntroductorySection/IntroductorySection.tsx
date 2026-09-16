@@ -20,7 +20,7 @@ const IntroductorySection = () => {
         </p>
       </div>
       <img
-        src="/images/happy_man_carrying_organic_food.png"
+        src="/images/happy_man_carrying_organic_food.webp"
         alt="Happy man carrying organic food"
         className="w-full lg:flex-1 lg:w-0 max-w-md lg:max-w-none"
       />

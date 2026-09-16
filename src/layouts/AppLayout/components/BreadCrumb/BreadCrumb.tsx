@@ -24,7 +24,7 @@ const BreadCrumb = () => {
   return (
     <section
       className="hidden lg:block w-full bg-no-repeat bg-cover"
-      style={{ backgroundImage: `url("/images/breadcrumb-bg.png") ` }}
+      style={{ backgroundImage: `url("/images/breadcrumb-bg.webp") ` }}
       aria-label="Bread crumb"
     >
       <div

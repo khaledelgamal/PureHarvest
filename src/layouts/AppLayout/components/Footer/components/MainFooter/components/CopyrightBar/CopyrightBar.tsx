@@ -9,11 +9,11 @@ import LangDropdown from '@/layouts/AppLayout/components/Header/components/TopBa
 import { useTranslation } from 'react-i18next';
 
 const paymentMethods = [
-  '/images/ApplePay.png',
-  '/images/visa-logo.png',
-  '/images/Discover.png',
-  '/images/Mastercard.png',
-  '/images/SecurePayment.png',
+  '/images/ApplePay.webp',
+  '/images/visa-logo.webp',
+  '/images/Discover.webp',
+  '/images/Mastercard.webp',
+  '/images/SecurePayment.webp',
 ];
 
 const CopyrightBar = () => {
