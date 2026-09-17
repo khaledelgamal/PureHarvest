@@ -42,5 +42,6 @@
   "cartUpdatedToast": "Updated {{name}} — now {{count}} in your cart",
   "addedToCartToast": "Added {{count}}x {{name}} to your cart",
   "viewCart": "View Cart",
-  "updateCart": "Update Cart"
+  "updateCart": "Update Cart",
+  "signIn": "Sign In"
 }

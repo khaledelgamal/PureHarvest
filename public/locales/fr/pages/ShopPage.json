@@ -29,5 +29,6 @@
   "mustBeLoggedInWishlist": "Vous devez être connecté pour modifier votre liste d'envies.",
   "failedToUpdateWishlist": "Échec de la mise à jour de la liste d'envies. Veuillez réessayer.",
   "viewCart": "Voir le panier",
-  "addToCart": "Ajouter au panier"
+  "addToCart": "Ajouter au panier",
+  "signIn": "Se connecter"
 }

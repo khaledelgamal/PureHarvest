@@ -42,5 +42,6 @@
   "cartUpdatedToast": "{{name}} mis à jour — maintenant {{count}} dans votre panier",
   "addedToCartToast": "{{count}}x {{name}} ajoutés à votre panier",
   "viewCart": "Voir le panier",
-  "updateCart": "Mettre à jour le panier"
+  "updateCart": "Mettre à jour le panier",
+  "signIn": "Se connecter"
 }

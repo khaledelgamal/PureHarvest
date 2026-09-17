@@ -29,5 +29,6 @@
   "mustBeLoggedInWishlist": "You must be logged in to modify your wishlist.",
   "failedToUpdateWishlist": "Failed to update wishlist. Please try again.",
   "viewCart": "View Cart",
-  "addToCart": "Add to Cart"
+  "addToCart": "Add to Cart",
+  "signIn": "Sign In"
 }

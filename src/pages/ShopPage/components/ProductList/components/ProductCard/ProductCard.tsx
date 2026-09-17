@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { routePaths } from '@/router/routePaths';
 import type { Product } from '@/services/supabase/products/types';
 import PriceDisplay from '@/components/PriceDisplay/PriceDisplay';
@@ -26,6 +26,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const [isUpdatingWishlist, setIsUpdatingWishlist] = useState<boolean>(false);
   const cardItems = useCartStore(state => state.items);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const addItemToCart = useCartStore(state => state.addItem);
   const setIsShoppingCartDrawerOpen = useCartStore(state => state.setIsShoppingCartDrawerOpen);
@@ -90,10 +91,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   const handleWishlist = async () => {
     if (!user) {
+      const currentPathWithQuery = encodeURIComponent(location.pathname + location.search);
       toast.error(t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'), {
         action: {
           label: t('signIn', 'Sign In'),
-          onClick: () => navigate(routePaths.ACCOUNT.SIGNIN),
+          onClick: () =>
+            navigate(`${routePaths.ACCOUNT.SIGNIN}?redirectTo=${currentPathWithQuery}`),
         },
       });
       return;

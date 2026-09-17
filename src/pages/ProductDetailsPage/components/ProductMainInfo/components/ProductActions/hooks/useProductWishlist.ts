@@ -5,9 +5,13 @@ import { wishlistKeys, wishlistsAPI } from '@/services/supabase/wishlists';
 import { toast } from 'sonner';
 import type { Product } from '@/services/supabase/products/types';
 import { useTranslation } from 'react-i18next';
+import { routePaths } from '@/router/routePaths';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const useProductWishlist = (product: Product) => {
   const { t } = useTranslation('pages/ProductDetailsPage');
+  const navigate = useNavigate();
+  const location = useLocation();
   const user = useAuthStore(state => state.user);
   const [inWishlist, setInWishlist] = useState<boolean>(product.inWishlist || false);
   const [isUpdatingWishlist, setIsUpdatingWishlist] = useState<boolean>(false);
@@ -19,7 +23,10 @@ export const useProductWishlist = (product: Product) => {
 
   const removeFromWishlistMutation = useMutation({
     mutationFn: async () => {
-      if (!user) throw new Error(t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'));
+      if (!user)
+        throw new Error(
+          t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'),
+        );
       await wishlistsAPI.removeFromWishlist(user.id, product.id);
     },
     onMutate: () => {
@@ -47,16 +54,17 @@ export const useProductWishlist = (product: Product) => {
 
   const addToWishlistMutation = useMutation({
     mutationFn: async () => {
-      if (!user) throw new Error(t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'));
+      if (!user)
+        throw new Error(
+          t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'),
+        );
       await wishlistsAPI.addToWishlist(user.id, product.id);
     },
     onMutate: () => {
       setIsUpdatingWishlist(true);
     },
     onSuccess: () => {
-      toast.success(
-        t('addedToWishlist', '{{name}} added to wishlist.', { name: product.name }),
-      );
+      toast.success(t('addedToWishlist', '{{name}} added to wishlist.', { name: product.name }));
       queryClient.invalidateQueries({ queryKey: wishlistKeys.list(user?.id || '') });
       setInWishlist(true);
     },
@@ -75,7 +83,14 @@ export const useProductWishlist = (product: Product) => {
 
   const handleWishlistToggle = async () => {
     if (!user) {
-      toast.error(t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'));
+      const currentPathWithQuery = encodeURIComponent(location.pathname + location.search);
+      toast.error(t('mustBeLoggedInWishlist', 'You must be logged in to modify your wishlist.'), {
+        action: {
+          label: t('signIn', 'Sign In'),
+          onClick: () =>
+            navigate(`${routePaths.ACCOUNT.SIGNIN}?redirectTo=${currentPathWithQuery}`),
+        },
+      });
       return;
     }
     try {
