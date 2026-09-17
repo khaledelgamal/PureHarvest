@@ -36,8 +36,11 @@ const SignIn = () => {
         navigate(routePaths.ACCOUNT.DASHBOARD.path);
         return;
       }
-      const isSecurePath = allRoutesArray.some(route => matchPath(route, redirectTo));
-      const isAuthPath = authPaths.some(route => matchPath(route, redirectTo));
+      
+      const pathname = redirectTo.split('?')[0].split('#')[0];
+      const isSecurePath = allRoutesArray.some(route => matchPath(route, pathname));
+      const isAuthPath = authPaths.some(route => matchPath(route, pathname));
+      
       if (isSecurePath && !isAuthPath) {
         navigate(redirectTo);
       } else {
