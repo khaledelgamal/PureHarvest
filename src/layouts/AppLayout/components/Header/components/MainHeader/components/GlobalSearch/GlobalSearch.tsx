@@ -111,7 +111,7 @@ const GlobalSearch = () => {
       <ul
         className={classNames(
           menuStyles,
-          'bg-white overflow-auto w-full',
+          'bg-white overflow-auto w-full top-full',
           showDropdown ? menuOpenStyles : menuClosedStyles,
         )}
       >
